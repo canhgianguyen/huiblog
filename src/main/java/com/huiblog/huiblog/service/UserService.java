@@ -2,6 +2,7 @@ package com.huiblog.huiblog.service;
 
 import com.huiblog.huiblog.entity.User;
 import com.huiblog.huiblog.model.dto.UserDto;
+import com.huiblog.huiblog.model.request.CreateUserReq;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface UserService {
 
     public User getUserById(int id);
 
-    public UserDto addUser(User user);
+    public UserDto addUser(CreateUserReq createUserReq);
 
     public UserDto editUser(int id, User user);
 
