@@ -9,6 +9,8 @@ import org.springframework.web.context.request.WebRequest;
 @RestControllerAdvice
 public class CustomExceptionHandler {
 
+
+    // Not found record
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<?> handlerNotFoundException(NotFoundException ex, WebRequest request) {
         // Log err
@@ -24,7 +26,7 @@ public class CustomExceptionHandler {
         return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
     }
 
-        // Xu ly tat ca cac Ex chua duoc khai bao
+    // Xu ly tat ca cac Ex chua duoc khai bao
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handlerException(Exception ex, WebRequest request) {
         // Log err

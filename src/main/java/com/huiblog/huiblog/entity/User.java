@@ -1,23 +1,52 @@
 package com.huiblog.huiblog.entity;
 
 import lombok.*;
-import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
+
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Component
+@Entity
+@Table(name = "users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @Column(name = "name")
     private String name;
 
+    @NotNull
+    @Column(name = "email", unique = true)
     private String email;
 
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "phone", length = 11)
     private String phone;
 
+    @Column(name = "dob")
+    private Date dob;
+
+    @Column(name = "gender")
+    private Boolean gender;
+
+    @Column(name = "created")
+    private Date created;
+
+    @Column(name = "updated")
+    private Date updated;
+
+    @Column(name = "avatar")
     private String avatar;
 
-    private String password;
+    @NotNull
+    @Column(name = "role")
+    private Boolean role;
+
 }

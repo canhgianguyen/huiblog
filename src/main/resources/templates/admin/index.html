@@ -1,0 +1,17 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/admin/main_layout_admin :: main-fragment(
+                                                ~{:: title},
+                                                ~{:: mainContent}
+                                               )}">
+<head>
+    <h2 th:fragment="title">Hui's Pesonal Blog Admin Dashboard</h2>
+</head>
+<body>
+
+<!-- start: page -->
+<div th:fragment="mainContent" class="row"></div>
+<!-- end: page -->
+
+</body>
+</html>

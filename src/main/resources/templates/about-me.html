@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/main_layout :: main-fragment(
+                                                ~{:: title},
+                                                ~{:: slider},
+                                                ~{:: mainContent},
+                                                ~{:: sidebar}
+                                               )}">
+<head>
+
+    <title>About Me</title>
+
+</head>
+
+<body>
+
+<!--Content Start-->
+<div th:fragment="mainContent" class="col-xs-12 nopadding">
+    <div class="box">
+        <div class="content-body">
+
+            <!--Featured Image Start-->
+            <div class="featured-image img-div-cover">
+                <img src="images/upload/about-me-featured-image.jpg" alt="featured image"/>
+            </div>
+            <!--Featured Image End-->
+
+            <!--Breadcrumbs Start-->
+            <div class="breadcrumbs">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Little about me</a></li>
+                </ul>
+            </div>
+            <!--Breadcrumbs End-->
+
+            <!--Content Details Body Start-->
+            <div class="content-details-body">
+
+                <div class="page-title title-center">
+                    <h1>Little about me</h1>
+                </div>
+
+                <p><span class="dropcap">W</span>orem ipsum dolor sit amet, consectetur adipiscing elit ut mauris magna,
+                    lacinia ac purus quis, rutrum bibendum leo. Nullam sit amet nibh eu odio ornare laoreet. Duis
+                    imperdiet est ut tristique auctor. Suspendisse mattis condimentum ultricies. Cras non enim et augue
+                    facilisis lacinia nec a turpis. Maecenas a mauris eget ligula condimentum semper. In egestas rhoncus
+                    consequat. Proin ut lectus quis dolor congue iaculis. Vivamus consequat facilisis dolor, eu porta
+                    risus placerat sed. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
+                    Curae; Sed tempor ornare justo sed congue. Cras eu vehicula eros. Morbi nec urna congue lectus
+                    posuere tristique eu ut magna. Duis at lectus quis est mollis viverra. Morbi varius turpis ipsum,
+                    quis ultrices leo suscipit ut. Fusce ac nisi at elit faucibus congue.</p>
+
+                <div data-height="23"></div>
+
+                <blockquote>Aenean et tortor vitae diam cursus ornare sit amet id mi. In tempor libero nec risus porta.
+                    Nullam fringilla nulla volutpat, eget tempor leo sagittis vestibulum sodales.
+                </blockquote>
+
+                <div data-height="25"></div>
+
+                <p>Nullam fringilla erat ut nulla volutpat, eget tempor leo sagittis. Vestibulum sodales luctus nunc, et
+                    lobortis leo hendrerit sed. Sed id ultrices mauris, at suscipit lectus. Praesent non luctus tellus.
+                    Etiam cursus non sapien vel facilisis. Vestibulum convallis est quis nulla vestibulum, sit amet
+                    posuere tortor faucibus. Suspendisse dictum congue lacinia. Suspendisse non dignissim nunc, a
+                    interdum nibh. Aenean pretium quam in orci egestas, lobortis viverra dui semper. Sed euismod quis
+                    mauris a malesuada. Nulla varius eros dui, eu molestie felis mattis non. Nunc sagittis vulputate
+                    ullamcorper. Nullam varius bibendum nisi eu egestas. Donec dapibus orci vel lacus pellentesque, at
+                    molestie nulla volutpat risus erat aliquam dolor, sagittis varius leo erat in turpis.</p>
+
+                <div data-height="30"></div>
+
+                <p class="text-center max-img">
+                    <img src="images/upload/signature.png" alt="signature"/>
+                </p>
+
+                <ul class="social-media-share text-center">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google"></i></a></li>
+                    <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                </ul>
+
+            </div>
+            <!--Content Details Body End-->
+
+        </div>
+
+    </div>
+</div>
+<!--Content End-->
+
+</body>
+</html>

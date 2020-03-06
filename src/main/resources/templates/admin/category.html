@@ -1,0 +1,115 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/admin/main_layout_admin :: main-fragment(
+                                                ~{:: title},
+                                                ~{:: mainContent}
+                                               )}">
+<head>
+    <h2 th:fragment="title">Category</h2>
+</head>
+<body>
+
+<!-- start: page -->
+<section th:fragment="mainContent" class="panel">
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="mb-md">
+                    <button type="button" class="btn btn-primary" id="add-cate">Add
+                        Category <i
+                                class="fa fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+        <table class="table table-bordered table-striped mb-none" id="datatable-editable">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Created Date</th>
+                <th>Updated Date</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="category : ${listCate}">
+                <td th:text="${category.categoryId}"></td>
+                <td th:text="${category.name}"></td>
+                <td th:text="${#dates.format(category.createdDate, 'dd-MM-yyyy HH:mm:ss')}"></td>
+                <td th:text="${#dates.format(category.updatedDate, 'dd-MM-yyyy HH:mm:ss')}"></td>
+                <td>
+                    <button type="button" class="mb-xs btn btn-info btn-edit-cate" th:attr="cateid=${category.categoryId}"><i class="fa fa-pencil" title="Edit category"
+                                                                        style="cursor: pointer"></i></button>
+                    <button type="button" class="mb-xs btn btn-info btn-delete-cate" th:attr="cateid=${category.categoryId}"><i class="fa fa-trash-o" title="Delete category"
+                                                                        style="cursor: pointer"></i></button>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal add cate -->
+    <div class="modal fade" id="modal-add-cate" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Add Category</h5>
+                    <button type="button" class="panel-actions" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="form-group margin-bottom-15" style="margin-top: 20px">
+                        <label class="col-sm-2">Name:</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" id="input-cate-name">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-save-category">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal update cate -->
+    <div class="modal fade" id="modal-update-cate" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Category</h5>
+                    <button type="button" class="panel-actions" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="form-group margin-bottom-15" style="margin-top: 20px">
+                        <label class="col-sm-2">Name:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="input-cate-name-update">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-update-cate">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end: page -->
+
+</body>
+</html>
