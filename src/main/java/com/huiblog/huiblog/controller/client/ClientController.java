@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/")
 @Controller
-public class IndexController {
+public class ClientController {
     @GetMapping("")
     public String index() {
         return "index";

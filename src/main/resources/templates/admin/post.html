@@ -6,6 +6,7 @@
                                                )}">
 <head>
     <h2 th:fragment="title">Post</h2>
+
 </head>
 <body>
 
@@ -676,79 +677,70 @@
          aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" style="width: 950px" role="document">
             <div class="modal-content">
+
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalCenterTitle">Add Post</h5>
                     <button type="button" class="panel-actions" data-dismiss="modal" aria-label="Close">
                         <i class="fa fa-times"></i>
                     </button>
                 </div>
+
                 <div class="modal-body">
-
-                    <div class="panel-body">
-                        <form id="form" action="" class="form-horizontal">
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Category <span class="required">*</span></label>
-                                <div class="col-sm-10">
-                                    <select id="category" class="form-control" required>
-                                        <option value="">Choose a Category</option>
-                                        <option value="apple">Apple</option>
-                                        <option value="google">Google</option>
-                                        <option value="microsoft">Microsoft</option>
-                                        <option value="yahoo">Yahoo</option>
-                                    </select>
-                                    <label class="error" for="category"></label>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Title <span class="required">*</span></label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="fullname" class="form-control"
-                                           placeholder="Hủi đẹp trai. Ahihi"
-                                           required/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Image <span class="required">*</span></label>
-                                <div class="col-sm-10">
-                                    <div class="input-group">
-                                        <div class="fileupload fileupload-new" data-provides="fileupload">
-                                            <div class="fileupload-new thumbnail"
-                                                 style="width: 100px; height: 60px; margin-right: 10px">
-                                                <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image"/>
-                                            </div>
-                                            <div class="fileupload-preview fileupload-exists thumbnail"
-                                                 style="width: 100px; height: 60px; margin-right: 10px"></div>
-                                            <span class="btn btn-default btn-file"><span class="fileupload-new">Select image</span><span
-                                                    class="fileupload-exists">Change</span><input type="file" required/></span>
-                                            <a href="#" class="btn btn-default fileupload-exists"
-                                               data-dismiss="fileupload">Remove</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group" style="height: 270px">
-                                <label class="col-sm-2 control-label">Content <span class="required">*</span></label>
-                                <div class="col-sm-10">
-                                    <textarea id="ssummernote" name="skills" rows="5" style="height: 250px"
-                                              class="form-control"
-                                              placeholder="Viết bài đi em êiiiii" required></textarea>
-                                </div>
-                            </div>
-
-                            <footer class="panel-footer">
-                                <div class="row">
-                                    <div class="col-sm-9 col-sm-offset-3">
-                                        <button class="btn btn-primary">Submit</button>
-                                        <button type="reset" class="btn btn-default">Reset</button>
-                                    </div>
-                                </div>
-                            </footer>
-                        </form>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Category <span class="required">*</span></label>
+                        <div class="col-sm-10">
+                            <select id="category" class="form-control" required>
+                                <option value="">Choose a Category</option>
+                                <option value="apple">Apple</option>
+                                <option value="google">Google</option>
+                                <option value="microsoft">Microsoft</option>
+                                <option value="yahoo">Yahoo</option>
+                            </select>
+                            <label class="error" for="category"></label>
+                        </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Title <span class="required">*</span></label>
+                        <div class="col-sm-10">
+                            <input type="text" name="fullname" class="form-control"
+                                   placeholder="Hủi đẹp trai. Ahihi"
+                                   required/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Image <span class="required">*</span></label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    <div class="fileupload-new thumbnail"
+                                         style="width: 100px; height: 60px; margin-right: 10px">
+                                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image"/>
+                                    </div>
+                                    <div class="fileupload-preview fileupload-exists thumbnail"
+                                         style="width: 100px; height: 60px; margin-right: 10px"></div>
+                                    <span class="btn btn-default btn-file"><span
+                                            class="fileupload-new">Select image</span><span
+                                            class="fileupload-exists">Change</span><input type="file" required/></span>
+                                    <a href="#" class="btn btn-default fileupload-exists"
+                                       data-dismiss="fileupload">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="height: 270px">
+                        <label class="col-sm-2 control-label">Content <span class="required">*</span></label>
+                        <div class="col-sm-10">
+                            <textarea id="summernote" rows="15"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-default">Reset</button>
                 </div>
             </div>
         </div>

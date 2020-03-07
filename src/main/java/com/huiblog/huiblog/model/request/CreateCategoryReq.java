@@ -1,9 +1,5 @@
 package com.huiblog.huiblog.model.request;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.huiblog.huiblog.extension.CustomDateDeserializer;
-import com.huiblog.huiblog.extension.CustomDateSerializer;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;

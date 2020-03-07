@@ -2,6 +2,7 @@ package com.huiblog.huiblog.controller.admin;
 
 
 import com.huiblog.huiblog.model.dto.CategoryDTO;
+import com.huiblog.huiblog.model.dto.Paging;
 import com.huiblog.huiblog.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,9 +28,10 @@ public class AdminController {
         return "admin/post";
     }
 
-    @GetMapping("/category")
-    public String about(Model model) {
-        List<CategoryDTO> listCate = categoryService.getListCategory();
+    @GetMapping(value = {"/category", "/category/{page}"})
+    public String category(Model model, @PathVariable(required = false) Integer page) {
+        int currPage = (page == null ? 0 : page - 1);
+        Paging listCate = categoryService.getListCategory(currPage);
         model.addAttribute("listCate", listCate);
         return "admin/category";
     }
