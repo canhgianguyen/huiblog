@@ -44,10 +44,11 @@
             </tbody>
         </table>
 
+        <!-- Paging -->
         <ul class="pagination">
-            <li th:if="${listCate?.hasPrevious}"><a th:href="@{${listCate?.currPage} - 1}">Prev</a></li>
+            <li th:if="${listCate?.hasPrevious}"><a th:href="@{'/admin/category/' + ${listCate?.currPage - 1}}">Prev</a></li>
             <li class="active"><a><span th:text="'Page ' + ${listCate?.currPage} +' of ' + ${listCate?.totalPages}"></span></a></li>
-            <li th:if="${listCate?.hasNext}"><a th:href="@{${listCate?.currPage} + 1}">Next</a></li>
+            <li th:if="${listCate?.hasNext}"><a th:href="@{'/admin/category/' + ${listCate?.currPage + 1}}">Next</a></li>
         </ul>
 
     </div>

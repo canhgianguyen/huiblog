@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="mb-md">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addPost">Add Post <i
+                    <button type="button" class="btn btn-primary" id="add-post">Add Post <i
                             class="fa fa-plus"></i></button>
                 </div>
             </div>
@@ -25,656 +25,40 @@
         <table class="table table-bordered table-striped mb-none" id="datatable-editable">
             <thead>
             <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Actions</th>
+                <td align="center" style="font-weight: bold">ID</td>
+                <td align="center" style="font-weight: bold">Image</td>
+                <td style="font-weight: bold">Title</td>
+                <td style="font-weight: bold">Created Date</td>
+                <td style="font-weight: bold">Updated Date</td>
+                <td align="center" style="font-weight: bold">Action</td>
             </tr>
             </thead>
             <tbody>
-            <tr class="gradeX">
-                <td>Trident</td>
-                <td>Internet
-                    Explorer 4.0
-                </td>
-                <td>Win 95+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeC">
-                <td>Trident</td>
-                <td>Internet
-                    Explorer 5.0
-                </td>
-                <td>Win 95+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Trident</td>
-                <td>Internet
-                    Explorer 5.5
-                </td>
-                <td>Win 95+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Trident</td>
-                <td>Internet
-                    Explorer 6
-                </td>
-                <td>Win 98+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Trident</td>
-                <td>Internet Explorer 7</td>
-                <td>Win XP SP2+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Trident</td>
-                <td>AOL browser (AOL desktop)</td>
-                <td>Win XP</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Gecko</td>
-                <td>Firefox 1.0</td>
-                <td>Win 98+ / OSX.2+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Gecko</td>
-                <td>Firefox 1.5</td>
-                <td>Win 98+ / OSX.2+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Gecko</td>
-                <td>Firefox 2.0</td>
-                <td>Win 98+ / OSX.2+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Gecko</td>
-                <td>Firefox 3.0</td>
-                <td>Win 2k+ / OSX.3+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Gecko</td>
-                <td>Camino 1.0</td>
-                <td>OSX.2+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Gecko</td>
-                <td>Camino 1.5</td>
-                <td>OSX.3+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Gecko</td>
-                <td>Netscape 7.2</td>
-                <td>Win 95+ / Mac OS 8.6-9.2</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Gecko</td>
-                <td>Netscape Browser 8</td>
-                <td>Win 98SE+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Gecko</td>
-                <td>Netscape Navigator 9</td>
-                <td>Win 98+ / OSX.2+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Gecko</td>
-                <td>Mozilla 1.0</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Gecko</td>
-                <td>Mozilla 1.1</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Gecko</td>
-                <td>Mozilla 1.2</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Gecko</td>
-                <td>Mozilla 1.3</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Gecko</td>
-                <td>Mozilla 1.4</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Gecko</td>
-                <td>Mozilla 1.5</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Gecko</td>
-                <td>Mozilla 1.6</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Gecko</td>
-                <td>Mozilla 1.7</td>
-                <td>Win 98+ / OSX.1+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Gecko</td>
-                <td>Mozilla 1.8</td>
-                <td>Win 98+ / OSX.1+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Gecko</td>
-                <td>Seamonkey 1.1</td>
-                <td>Win 98+ / OSX.2+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Gecko</td>
-                <td>Epiphany 2.20</td>
-                <td>Gnome</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Webkit</td>
-                <td>Safari 1.2</td>
-                <td>OSX.3</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Webkit</td>
-                <td>Safari 1.3</td>
-                <td>OSX.3</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Webkit</td>
-                <td>Safari 2.0</td>
-                <td>OSX.4+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Webkit</td>
-                <td>Safari 3.0</td>
-                <td>OSX.4+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Webkit</td>
-                <td>OmniWeb 5.5</td>
-                <td>OSX.4+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Webkit</td>
-                <td>iPod Touch / iPhone</td>
-                <td>iPod</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Webkit</td>
-                <td>S60</td>
-                <td>S60</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Presto</td>
-                <td>Opera 7.0</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Presto</td>
-                <td>Opera 7.5</td>
-                <td>Win 95+ / OSX.2+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Presto</td>
-                <td>Opera 8.0</td>
-                <td>Win 95+ / OSX.2+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Presto</td>
-                <td>Opera 8.5</td>
-                <td>Win 95+ / OSX.2+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Presto</td>
-                <td>Opera 9.0</td>
-                <td>Win 95+ / OSX.3+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Presto</td>
-                <td>Opera 9.2</td>
-                <td>Win 88+ / OSX.3+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Presto</td>
-                <td>Opera 9.5</td>
-                <td>Win 88+ / OSX.3+</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Presto</td>
-                <td>Opera for Wii</td>
-                <td>Wii</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Presto</td>
-                <td>Nokia N800</td>
-                <td>N800</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Presto</td>
-                <td>Nintendo DS browser</td>
-                <td>Nintendo DS</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeC">
-                <td>KHTML</td>
-                <td>Konqureror 3.1</td>
-                <td>KDE 3.1</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>KHTML</td>
-                <td>Konqureror 3.3</td>
-                <td>KDE 3.3</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>KHTML</td>
-                <td>Konqureror 3.5</td>
-                <td>KDE 3.5</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeX">
-                <td>Tasman</td>
-                <td>Internet Explorer 4.5</td>
-                <td>Mac OS 8-9</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeC">
-                <td>Tasman</td>
-                <td>Internet Explorer 5.1</td>
-                <td>Mac OS 7.6-9</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeC">
-                <td>Tasman</td>
-                <td>Internet Explorer 5.2</td>
-                <td>Mac OS 8-X</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Misc</td>
-                <td>NetFront 3.1</td>
-                <td>Embedded devices</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeA">
-                <td>Misc</td>
-                <td>NetFront 3.4</td>
-                <td>Embedded devices</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeX">
-                <td>Misc</td>
-                <td>Dillo 0.8</td>
-                <td>Embedded devices</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeX">
-                <td>Misc</td>
-                <td>Links</td>
-                <td>Text only</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeX">
-                <td>Misc</td>
-                <td>Lynx</td>
-                <td>Text only</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeC">
-                <td>Misc</td>
-                <td>IE Mobile</td>
-                <td>Windows Mobile 6</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeC">
-                <td>Misc</td>
-                <td>PSP browser</td>
-                <td>PSP</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>
-            </tr>
-            <tr class="gradeU">
-                <td>Other browsers</td>
-                <td>All others</td>
-                <td>-</td>
-                <td class="actions">
-                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+            <tr th:each="post : ${listPost?.content}">
+                <td align="center" th:text="${post?.id}"></td>
+                <td align="center"><img th:src="@{${post.img}}" style="width: 60px; height: 40px"/></td>
+                <td th:text="${post?.title}"></td>
+                <td th:text="${#dates.format(post?.created, 'dd-MM-yyyy HH:mm:ss')}"></td>
+                <td th:text="${#dates.format(post?.updated, 'dd-MM-yyyy HH:mm:ss')}"></td>
+                <td align="center">
+                    <button type="button" class="mb-xs btn btn-info btn-edit-post" th:attr="postid=${post?.id}"><i class="fa fa-pencil" title="Edit category" style="cursor: pointer"></i></button>
+                    <button type="button" class="mb-xs btn btn-info btn-delete-post" th:attr="postid=${post?.id}"><i class="fa fa-trash-o" title="Delete category" style="cursor: pointer"></i></button>
                 </td>
             </tr>
             </tbody>
         </table>
+
+        <!-- Paging -->
+        <ul class="pagination">
+            <li th:if="${listPost?.hasPrevious}"><a th:href="@{'/admin/post/' + ${listPost?.currPage - 1}}">Prev</a></li>
+            <li class="active"><a><span th:text="'Page ' + ${listPost?.currPage} +' of ' + ${listPost?.totalPages}"></span></a></li>
+            <li th:if="${listPost?.hasNext}"><a th:href="@{'/admin/post/' + ${listPost?.currPage + 1}}">Next</a></li>
+        </ul>
     </div>
 
 
-    <!-- Modal -->
-    <div class="modal fade" id="addPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-         aria-hidden="true">
+    <!-- Modal Add Post -->
+    <div class="modal fade" id="modal-add-post" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" style="width: 950px" role="document">
             <div class="modal-content">
 
@@ -689,14 +73,12 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Category <span class="required">*</span></label>
                         <div class="col-sm-10">
-                            <select id="category" class="form-control" required>
-                                <option value="">Choose a Category</option>
-                                <option value="apple">Apple</option>
-                                <option value="google">Google</option>
-                                <option value="microsoft">Microsoft</option>
-                                <option value="yahoo">Yahoo</option>
+                            <select id="post-cteate-category-id" class="form-control" required>
+                                <option value="" disabled selected hidden>Choose a Category</option>
+
+                                <option th:each="category : ${listCate}" th:attr="value=${category.categoryId}" th:text="${category.name}"></option>
+
                             </select>
-                            <label class="error" for="category"></label>
                         </div>
                     </div>
 
@@ -705,7 +87,7 @@
                         <div class="col-sm-10">
                             <input type="text" name="fullname" class="form-control"
                                    placeholder="Hủi đẹp trai. Ahihi"
-                                   required/>
+                                   id="post-cteate-title"/>
                         </div>
                     </div>
 
@@ -714,33 +96,107 @@
                         <div class="col-sm-10">
                             <div class="input-group">
                                 <div class="fileupload fileupload-new" data-provides="fileupload">
-                                    <div class="fileupload-new thumbnail"
-                                         style="width: 100px; height: 60px; margin-right: 10px">
+                                    <div class="fileupload-new thumbnail">
                                         <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image"/>
                                     </div>
-                                    <div class="fileupload-preview fileupload-exists thumbnail"
-                                         style="width: 100px; height: 60px; margin-right: 10px"></div>
+                                    <div class="fileupload-preview fileupload-exists thumbnail"></div>
                                     <span class="btn btn-default btn-file"><span
                                             class="fileupload-new">Select image</span><span
-                                            class="fileupload-exists">Change</span><input type="file" required/></span>
+                                            class="fileupload-exists">Change</span><input type="file" id="post-cteate-file-upload"/></span>
                                     <a href="#" class="btn btn-default fileupload-exists"
                                        data-dismiss="fileupload">Remove</a>
                                 </div>
                             </div>
+
                         </div>
                     </div>
 
-                    <div class="form-group" style="height: 270px">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Content <span class="required">*</span></label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <textarea style="width: 750px; height: 200px" class="col-sm-10 form-control" id="post-cteate-content"></textarea>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary modal-close" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" id="post-cteate-submit-btn">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Update Post -->
+    <div class="modal fade" id="modal-update-post" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" style="width: 950px" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Post</h5>
+                    <button type="button" class="panel-actions" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Category <span class="required">*</span></label>
+                        <div class="col-sm-10">
+                            <select id="post-update-category-id" class="form-control" required>
+                                <option value="" disabled selected hidden>Choose a Category</option>
+
+                                <option th:each="category : ${listCate}" th:attr="value=${category.categoryId}" th:text="${category.name}"></option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Title <span class="required">*</span></label>
+                        <div class="col-sm-10">
+                            <input type="text" name="fullname" class="form-control"
+                                   placeholder="Hủi đẹp trai. Ahihi"
+                                   id="post-update-title"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Image <span class="required">*</span></label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    <div class="fileupload-new thumbnail">
+                                        <img id="post-update-img" src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image"/>
+                                    </div>
+                                    <div class="fileupload-preview fileupload-exists thumbnail"></div>
+                                    <span class="btn btn-default btn-file"><span
+                                            class="fileupload-new">Select image</span><span
+                                            class="fileupload-exists">Change</span><input type="file" id="post-update-file-upload"/></span>
+                                    <a href="#" class="btn btn-default fileupload-exists"
+                                       data-dismiss="fileupload">Remove</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label class="col-sm-2 control-label">Content <span class="required">*</span></label>
                         <div class="col-sm-10">
-                            <textarea id="summernote" rows="15"></textarea>
+                            <div class="input-group">
+                                <textarea style="width: 750px; height: 200px" class="col-sm-10 form-control" id="post-update-content"></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-primary">Submit</button>
-                    <button type="reset" class="btn btn-default">Reset</button>
+                    <button type="button" class="btn btn-secondary modal-close" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" id="post-update-submit-btn">Submit</button>
                 </div>
             </div>
         </div>

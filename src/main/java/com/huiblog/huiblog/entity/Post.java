@@ -30,14 +30,14 @@ public class Post {
     private String content;
 
     @Column(name = "created")
-    private Date creatd;
+    private Date createdDate;
 
     @Column(name = "updated")
-    private Date updated;
+    private Date updatedDate;
 
     @Column(name = "img")
     private String img;
 
     @Column(name = "view_num")
-    private Byte viewNum;
+    private int viewNum;
 }

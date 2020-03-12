@@ -3,6 +3,12 @@ $(document).ready(function() {
     var dataCategory = {};
     var cateid;
 
+    //$('#summernote').summernote({height: 200});
+
+    $("#add-post").on("click", function () {
+        $('#modal-add-post').modal();
+    });
+
     // Add new category
     $("#add-cate").on("click", function () {
         $('#input-cate-name').val();

@@ -30,19 +30,31 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Paging getListCategory(int page) {
         Paging paging = new Paging();
-        Page<Category> cateEntitys = categoryRepository.findAll(PageRequest.of(page, 6, Sort.by("createdDate").descending()));
+        Page<Category> cateEntities = categoryRepository.findAll(PageRequest.of(page, 6, Sort.by("createdDate").descending()));
         List<CategoryDTO> cateDTOs = new ArrayList<>();
-        for (Category category : cateEntitys.getContent()) {
+        for (Category category : cateEntities.getContent()) {
             cateDTOs.add(CategoryMapper.toCategoryDTO(category));
         }
+        
 
         paging.setCurrPage(page + 1);
         paging.setContent(cateDTOs);
-        paging.setHasNext(cateEntitys.hasNext());
-        paging.setHasPrevious(cateEntitys.hasPrevious());
-        paging.setTotalPages(cateEntitys.getTotalPages());
+        paging.setHasNext(cateEntities.hasNext());
+        paging.setHasPrevious(cateEntities.hasPrevious());
+        paging.setTotalPages(cateEntities.getTotalPages());
 
         return paging;
+    }
+
+    @Override
+    public List<CategoryDTO> getListCategory() {
+        List<Category> cateEntitys = categoryRepository.findAll();
+        List<CategoryDTO> cateDTOs = new ArrayList<>();
+        for (Category category : cateEntitys) {
+            cateDTOs.add(CategoryMapper.toCategoryDTO(category));
+        }
+
+        return cateDTOs;
     }
 
     @Override

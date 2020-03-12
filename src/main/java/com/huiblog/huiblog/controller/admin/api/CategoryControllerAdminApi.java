@@ -35,15 +35,15 @@ public class CategoryControllerAdminApi {
         return ResponseEntity.ok(listCate);
     }
 
-//    @ApiOperation(value = "Get list category", response = CategoryDTO.class, responseContainer = "List")
-//    @ApiResponses({
-//            @ApiResponse(code=500,message = "")
-//    })
-//    @GetMapping("/categories")
-//    public ResponseEntity<?> getListCategory(){
-//        List<CategoryDTO> categoryDTOS = categoryService.getListCategory();
-//        return ResponseEntity.ok(categoryDTOS);
-//    }
+    @ApiOperation(value = "Get list category", response = CategoryDTO.class, responseContainer = "List")
+    @ApiResponses({
+            @ApiResponse(code=500,message = "")
+    })
+    @GetMapping("/categories")
+    public ResponseEntity<?> getListCategory(){
+        List<CategoryDTO> categoryDTOS = categoryService.getListCategory();
+        return ResponseEntity.ok(categoryDTOS);
+    }
 
     @GetMapping("/categories/{id}")
     public ResponseEntity<?> getCategoryById(@PathVariable int id){
