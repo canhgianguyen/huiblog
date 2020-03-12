@@ -11,12 +11,16 @@ import com.huiblog.huiblog.model.request.CreatePostReq;
 import com.huiblog.huiblog.model.request.UpdatePostReq;
 import com.huiblog.huiblog.repository.PostRepository;
 import com.huiblog.huiblog.service.PostService;
+import org.hibernate.search.jpa.FullTextEntityManager;
+import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,11 +30,80 @@ public class PostServiceImpl implements PostService {
     @Autowired
     PostRepository postRepository;
 
+    @Autowired
+    private EntityManager entityManager;
+
 
     @Override
     public Paging getListPost(int page) {
         Paging paging = new Paging();
         Page<Post> postEntities = postRepository.findAll(PageRequest.of(page, 6, Sort.by("createdDate").descending()));
+        List<PostDTO> postDTOs = new ArrayList<>();
+        for (Post post : postEntities.getContent()) {
+            postDTOs.add(PostMapper.toPostDTO(post));
+        }
+
+        paging.setCurrPage(page + 1);
+        paging.setContent(postDTOs);
+        paging.setHasNext(postEntities.hasNext());
+        paging.setHasPrevious(postEntities.hasPrevious());
+        paging.setTotalPages(postEntities.getTotalPages());
+
+        return paging;
+    }
+
+    @Override
+    public List<Post> getListPostSearch(String searchKey) {
+        // get the full text entity manager
+        FullTextEntityManager fullTextEntityManager =
+                org.hibernate.search.jpa.Search.
+                        getFullTextEntityManager(entityManager);
+
+        // create the query using Hibernate Search query DSL
+        QueryBuilder queryBuilder =
+                fullTextEntityManager.getSearchFactory()
+                        .buildQueryBuilder().forEntity(Post.class).get();
+
+        // a very basic query by keywords
+        org.apache.lucene.search.Query query =
+                queryBuilder
+                        .keyword()
+                        .onFields("title","content")
+                        .matching(searchKey)
+                        .createQuery();
+
+        // wrap Lucene query in an Hibernate Query object
+        org.hibernate.search.jpa.FullTextQuery jpaQuery =
+                fullTextEntityManager.createFullTextQuery(query, Post.class);
+        return jpaQuery.getResultList();
+    }
+
+    @Override
+    public Paging getListPostFTS(int page, String searchKey) {
+        Paging paging = new Paging();
+        // get the full text entity manager
+        FullTextEntityManager fullTextEntityManager =
+                org.hibernate.search.jpa.Search.
+                        getFullTextEntityManager(entityManager);
+
+        // create the query using Hibernate Search query DSL
+        QueryBuilder queryBuilder =
+                fullTextEntityManager.getSearchFactory()
+                        .buildQueryBuilder().forEntity(Post.class).get();
+
+        // a very basic query by keywords
+        org.apache.lucene.search.Query query =
+                queryBuilder
+                        .keyword()
+                        .onFields("title", "content")
+                        .matching(searchKey)
+                        .createQuery();
+
+        // wrap Lucene query in an Hibernate Query object
+        org.hibernate.search.jpa.FullTextQuery jpaQuery =
+                fullTextEntityManager.createFullTextQuery(query, Post.class);
+
+        Page<Post> postEntities = new PageImpl<Post>(jpaQuery.getResultList(), PageRequest.of(page, 6), jpaQuery.getResultSize() );
         List<PostDTO> postDTOs = new ArrayList<>();
         for (Post post : postEntities.getContent()) {
             postDTOs.add(PostMapper.toPostDTO(post));

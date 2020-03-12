@@ -1,5 +1,6 @@
 package com.huiblog.huiblog.controller.admin.api;
 
+import com.huiblog.huiblog.entity.Post;
 import com.huiblog.huiblog.model.api.BaseApiResult;
 import com.huiblog.huiblog.model.dto.CategoryDTO;
 import com.huiblog.huiblog.model.dto.PostDTO;
@@ -16,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -37,6 +39,15 @@ public class PostControllerAdminApi {
         }
 
         return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/posts/search")
+    public ResponseEntity<?> getPostSearch(@RequestParam String searchKey){
+
+            List<Post> postDTO = postService.getListPostSearch(searchKey);
+
+
+        return ResponseEntity.ok(postDTO);
     }
 
     @ApiOperation(value = "Create post", response = PostDTO.class)

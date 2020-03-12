@@ -38,6 +38,18 @@ public class AdminController {
         return "admin/post";
     }
 
+    @GetMapping(value = {"/post/search/", "/post/search/{page}"})
+    public String search(Model model, @PathVariable(required = false) Integer page, @RequestParam(required = false) String searchKey) {
+        int currPage = (page == null ? 0 : page - 1);
+        Paging listPost = postService.getListPostFTS(currPage, searchKey);
+        model.addAttribute("listPost", listPost);
+
+        List<CategoryDTO> listCate = categoryService.getListCategory();
+        model.addAttribute("listCate", listCate);
+
+        return "admin/post";
+    }
+
     @GetMapping(value = {"/category", "/category/{page}"})
     public String category(Model model, @PathVariable(required = false) Integer page) {
         int currPage = (page == null ? 0 : page - 1);

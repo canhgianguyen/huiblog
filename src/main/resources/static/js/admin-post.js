@@ -4,7 +4,6 @@ $(document).ready(function() {
     var postID;
 
     $("#add-post").on("click", function () {
-        console.log('kkk')
         $('#modal-add-post').modal();
     });
 
