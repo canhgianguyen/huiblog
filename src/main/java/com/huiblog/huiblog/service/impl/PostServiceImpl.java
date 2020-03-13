@@ -135,6 +135,9 @@ public class PostServiceImpl implements PostService {
         org.apache.lucene.search.Query query =
                 queryBuilder
                         .keyword()
+                        .fuzzy()
+                        .withEditDistanceUpTo(2)
+                        .withPrefixLength(0)
                         .onFields("title", "content")
                         .matching(searchKey)
                         .createQuery();

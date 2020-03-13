@@ -71,6 +71,9 @@ public class CategoryServiceImpl implements CategoryService {
         org.apache.lucene.search.Query query =
                 queryBuilder
                         .keyword()
+                        .fuzzy()
+                        .withEditDistanceUpTo(2)
+                        .withPrefixLength(0)
                         .onFields("name")
                         .matching(searchKey)
                         .createQuery();

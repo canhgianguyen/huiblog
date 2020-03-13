@@ -23,7 +23,7 @@
             <div class="col-sm-12 col-sm-6">
                 <form class="form-inline pull-right" th:action="@{/admin/category/search/}">
                     <div class="form-group">
-                        <input type="search" class="form-control" placeholder="Search" name="searchKey">
+                        <input type="search" class="form-control" placeholder="Search" name="searchKey" th:value="${searchKey}">
                     </div>
                     <button type="submit" class="btn btn-primary" id="add-"><i
                             class="fa fa-search"></i></button>
