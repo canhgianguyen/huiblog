@@ -1,22 +1,28 @@
 package com.huiblog.huiblog.service.impl;
 
 import com.huiblog.huiblog.entity.Category;
+import com.huiblog.huiblog.entity.Post;
 import com.huiblog.huiblog.exception.DuplicateRecordException;
 import com.huiblog.huiblog.exception.InternalServerException;
 import com.huiblog.huiblog.exception.NotFoundException;
 import com.huiblog.huiblog.model.dto.CategoryDTO;
 import com.huiblog.huiblog.model.dto.Paging;
+import com.huiblog.huiblog.model.dto.PostDTO;
 import com.huiblog.huiblog.model.mapper.CategoryMapper;
+import com.huiblog.huiblog.model.mapper.PostMapper;
 import com.huiblog.huiblog.model.request.CreateCategoryReq;
 import com.huiblog.huiblog.model.request.UpdateCategoryReq;
 import com.huiblog.huiblog.repository.CategoryRepository;
 import com.huiblog.huiblog.service.CategoryService;
+import org.hibernate.search.jpa.FullTextEntityManager;
+import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +32,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private EntityManager entityManager;
 
     @Override
     public Paging getListCategory(int page) {
@@ -42,6 +51,77 @@ public class CategoryServiceImpl implements CategoryService {
         paging.setHasNext(cateEntities.hasNext());
         paging.setHasPrevious(cateEntities.hasPrevious());
         paging.setTotalPages(cateEntities.getTotalPages());
+
+        return paging;
+    }
+
+    @Override
+    public Paging getListPostFTS(int page, String searchKey) {
+        // get the full text entity manager
+        FullTextEntityManager fullTextEntityManager =
+                org.hibernate.search.jpa.Search.
+                        getFullTextEntityManager(entityManager);
+
+        // create the query using Hibernate Search query DSL
+        QueryBuilder queryBuilder =
+                fullTextEntityManager.getSearchFactory()
+                        .buildQueryBuilder().forEntity(Category.class).get();
+
+        // a very basic query by keywords
+        org.apache.lucene.search.Query query =
+                queryBuilder
+                        .keyword()
+                        .onFields("name")
+                        .matching(searchKey)
+                        .createQuery();
+
+        // wrap Lucene query in an Hibernate Query object
+        org.hibernate.search.jpa.FullTextQuery jpaQuery =
+                fullTextEntityManager.createFullTextQuery(query, Category.class);
+
+        Paging paging = new Paging();
+        page++;
+        int limit = 6;
+        boolean hasNext = true;
+        boolean hasPrevious = true;
+        int totalPage = 0;
+        int totalElements = jpaQuery.getResultSize();
+
+        if ( (float) totalElements % limit == 0) {
+            totalPage = totalElements/limit;
+        }
+        else {
+            totalPage = totalElements/limit + 1;
+        }
+
+        if (page < 0) {
+            page = 1;
+        }
+
+        if (page > totalPage) {
+            page = 1;
+        }
+
+        if (page == 1) {
+            hasPrevious = false;
+        }
+
+        if (page == totalPage) {
+            hasNext = false;
+        }
+        jpaQuery.setFirstResult(page * limit - limit);
+        jpaQuery.setMaxResults(limit);
+
+        List<CategoryDTO> categoryDTOS = new ArrayList<>();
+        for (Object  cate  : jpaQuery.getResultList()) {
+            categoryDTOS.add(CategoryMapper.toCategoryDTO((Category) cate));
+        }
+
+        paging.setCurrPage(page);
+        paging.setTotalPages(totalPage);
+        paging.setHasNext(hasNext);
+        paging.setHasPrevious(hasPrevious);
+        paging.setContent(categoryDTOS);
 
         return paging;
     }

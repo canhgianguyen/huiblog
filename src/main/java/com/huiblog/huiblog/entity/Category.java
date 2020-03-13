@@ -1,7 +1,7 @@
 package com.huiblog.huiblog.entity;
 
 import lombok.*;
-import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.*;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -19,6 +19,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @Field(termVector = TermVector.YES, analyze= Analyze.YES, store= Store.NO)
     @Column(name = "name")
     private String name;
 

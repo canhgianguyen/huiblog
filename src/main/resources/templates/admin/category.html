@@ -19,6 +19,16 @@
                     <button type="button" class="btn btn-primary" id="add-cate">Add Category <i class="fa fa-plus"></i></button>
                 </div>
             </div>
+
+            <div class="col-sm-12 col-sm-6">
+                <form class="form-inline pull-right" th:action="@{/admin/category/search/}">
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search" name="searchKey">
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="add-"><i
+                            class="fa fa-search"></i></button>
+                </form>
+            </div>
         </div>
         <table class="table table-bordered table-striped mb-none" id="datatable-editable">
             <thead>
@@ -45,11 +55,23 @@
         </table>
 
         <!-- Paging -->
+        <th:block th:unless="${search}">
         <ul class="pagination">
             <li th:if="${listCate?.hasPrevious}"><a th:href="@{'/admin/category/' + ${listCate?.currPage - 1}}">Prev</a></li>
             <li class="active"><a><span th:text="'Page ' + ${listCate?.currPage} +' of ' + ${listCate?.totalPages}"></span></a></li>
             <li th:if="${listCate?.hasNext}"><a th:href="@{'/admin/category/' + ${listCate?.currPage + 1}}">Next</a></li>
         </ul>
+        </th:block>
+
+        <th:block th:if="${search}">
+            <ul class="pagination">
+                <li th:if="${listCate?.hasPrevious}"><a th:href="@{'/admin/category/search/' + ${listCate?.currPage - 1} + '?searchKey=' + ${searchKey}}">Prev</a></li>
+                <li class="active"><a><span th:text="'Page ' + ${listCate?.currPage} +' of ' + ${listCate?.totalPages}"></span></a></li>
+                <li th:if="${listCate?.hasNext}"><a th:href="@{'/admin/category/search/' + ${listCate?.currPage + 1} + '?searchKey=' + ${searchKey}}">Next</a></li>
+            </ul>
+        </th:block>
+
+
 
     </div>
 

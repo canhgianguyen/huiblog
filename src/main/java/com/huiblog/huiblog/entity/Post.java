@@ -2,11 +2,15 @@ package com.huiblog.huiblog.entity;
 
 import lombok.*;
 import org.apache.lucene.analysis.core.LowerCaseFilterFactory;
+import org.apache.lucene.analysis.core.StopFilterFactory;
+import org.apache.lucene.analysis.miscellaneous.ASCIIFoldingFilter;
 import org.apache.lucene.analysis.miscellaneous.ASCIIFoldingFilterFactory;
-import org.apache.lucene.analysis.snowball.SnowballPorterFilterFactory;
+import org.apache.lucene.analysis.ngram.NGramFilterFactory;
+import org.apache.lucene.analysis.standard.StandardFilterFactory;
 import org.apache.lucene.analysis.standard.StandardTokenizerFactory;
 
 import org.hibernate.search.annotations.*;
+import org.hibernate.search.annotations.Parameter;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -18,13 +22,6 @@ import java.util.Date;
 @Entity
 @Indexed
 
-@AnalyzerDef(name = "customanalyzer",
-        tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class),
-        filters = {
-                @TokenFilterDef(factory = LowerCaseFilterFactory.class),
-                @TokenFilterDef(factory = ASCIIFoldingFilterFactory.class),
-                @TokenFilterDef(factory = SnowballPorterFilterFactory.class)
-        })
 @Table(name = "post")
 public class Post {
     @Id
@@ -38,12 +35,10 @@ public class Post {
     private String categoryID;
 
     @Field(termVector = TermVector.YES, analyze= Analyze.YES, store= Store.NO)
-    //@Analyzer(definition = "customanalyzer")
     @Column(name = "title")
     private String title;
 
     @Field(termVector = TermVector.YES, analyze= Analyze.YES, store= Store.NO)
-    //@Analyzer(definition = "customanalyzer")
     @Column(name = "content")
     private String content;
 

@@ -61,11 +61,21 @@
         </table>
 
         <!-- Paging -->
-        <ul class="pagination">
-            <li th:if="${listPost?.hasPrevious}"><a th:href="@{'/admin/post/' + ${listPost?.currPage - 1}}">Prev</a></li>
-            <li class="active"><a><span th:text="'Page ' + ${listPost?.currPage} +' of ' + ${listPost?.totalPages}"></span></a></li>
-            <li th:if="${listPost?.hasNext}"><a th:href="@{'/admin/post/' + ${listPost?.currPage + 1}}">Next</a></li>
-        </ul>
+        <th:block th:unless="${search}">
+            <ul class="pagination">
+                <li th:if="${listPost?.hasPrevious}"><a th:href="@{'/admin/post/' + ${listPost?.currPage - 1}}">Prev</a></li>
+                <li class="active"><a><span th:text="'Page ' + ${listPost?.currPage} +' of ' + ${listPost?.totalPages}"></span></a></li>
+                <li th:if="${listPost?.hasNext}"><a th:href="@{'/admin/post/' + ${listPost?.currPage + 1}}">Next</a></li>
+            </ul>
+        </th:block>
+
+        <th:block th:if="${search}">
+            <ul class="pagination">
+                <li th:if="${listPost?.hasPrevious}"><a th:href="@{'/admin/post/search/' + ${listPost?.currPage - 1} + '?searchKey=' + ${searchKey}}">Prev</a></li>
+                <li class="active"><a><span th:text="'Page ' + ${listPost?.currPage} +' of ' + ${listPost?.totalPages}"></span></a></li>
+                <li th:if="${listPost?.hasNext}"><a th:href="@{'/admin/post/search/' + ${listPost?.currPage + 1} + '?searchKey=' + ${searchKey}}">Next</a></li>
+            </ul>
+        </th:block>
     </div>
 
 

@@ -41,13 +41,10 @@ public class PostControllerAdminApi {
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/posts/search")
-    public ResponseEntity<?> getPostSearch(@RequestParam String searchKey){
+    @GetMapping("/posts/search/{page}")
+    public ResponseEntity<?> getPostSearch(@PathVariable int page, @RequestParam String searchKey){
 
-            List<Post> postDTO = postService.getListPostSearch(searchKey);
-
-
-        return ResponseEntity.ok(postDTO);
+        return ResponseEntity.ok(postService.getListPostSearch(page, searchKey));
     }
 
     @ApiOperation(value = "Create post", response = PostDTO.class)

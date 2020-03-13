@@ -53,7 +53,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> getListPostSearch(String searchKey) {
+    public Paging getListPostSearch(int page, String searchKey) {
         // get the full text entity manager
         FullTextEntityManager fullTextEntityManager =
                 org.hibernate.search.jpa.Search.
@@ -68,6 +68,7 @@ public class PostServiceImpl implements PostService {
         org.apache.lucene.search.Query query =
                 queryBuilder
                         .keyword()
+                        .wildcard()
                         .onFields("title","content")
                         .matching(searchKey)
                         .createQuery();
@@ -75,12 +76,51 @@ public class PostServiceImpl implements PostService {
         // wrap Lucene query in an Hibernate Query object
         org.hibernate.search.jpa.FullTextQuery jpaQuery =
                 fullTextEntityManager.createFullTextQuery(query, Post.class);
-        return jpaQuery.getResultList();
+
+        Paging paging = new Paging();
+        int limit = 6;
+        boolean hasNext = true;
+        boolean hasPrevious = true;
+        int totalPage = 0;
+        int totalElements = jpaQuery.getResultSize();
+
+        if ( (float) totalElements % limit == 0) {
+            totalPage = totalElements/limit;
+        }
+        else {
+            totalPage = totalElements/limit + 1;
+        }
+
+        if (page < 0) {
+            page = 1;
+        }
+
+        if (page > totalPage) {
+            page = 1;
+        }
+
+        if (page == 1) {
+            hasPrevious = false;
+        }
+
+        if (page == totalPage) {
+            hasNext = false;
+        }
+        jpaQuery.setFirstResult(page * limit - limit);
+        jpaQuery.setMaxResults(limit);
+
+        paging.setCurrPage(page);
+        paging.setTotalPages(totalPage);
+        paging.setHasNext(hasNext);
+        paging.setHasPrevious(hasPrevious);
+        paging.setContent(jpaQuery.getResultList());
+
+        //Page<Post> postEntities = new PageImpl<Post>(jpaQuery.getResultList(), PageRequest.of(1, 6), jpaQuery.getResultSize());
+        return paging;
     }
 
     @Override
     public Paging getListPostFTS(int page, String searchKey) {
-        Paging paging = new Paging();
         // get the full text entity manager
         FullTextEntityManager fullTextEntityManager =
                 org.hibernate.search.jpa.Search.
@@ -103,17 +143,49 @@ public class PostServiceImpl implements PostService {
         org.hibernate.search.jpa.FullTextQuery jpaQuery =
                 fullTextEntityManager.createFullTextQuery(query, Post.class);
 
-        Page<Post> postEntities = new PageImpl<Post>(jpaQuery.getResultList(), PageRequest.of(page, 6), jpaQuery.getResultSize() );
-        List<PostDTO> postDTOs = new ArrayList<>();
-        for (Post post : postEntities.getContent()) {
-            postDTOs.add(PostMapper.toPostDTO(post));
+        Paging paging = new Paging();
+        page++;
+        int limit = 6;
+        boolean hasNext = true;
+        boolean hasPrevious = true;
+        int totalPage = 0;
+        int totalElements = jpaQuery.getResultSize();
+
+        if ( (float) totalElements % limit == 0) {
+            totalPage = totalElements/limit;
+        }
+        else {
+            totalPage = totalElements/limit + 1;
         }
 
-        paging.setCurrPage(page + 1);
+        if (page < 0) {
+            page = 1;
+        }
+
+        if (page > totalPage) {
+            page = 1;
+        }
+
+        if (page == 1) {
+            hasPrevious = false;
+        }
+
+        if (page == totalPage) {
+            hasNext = false;
+        }
+        jpaQuery.setFirstResult(page * limit - limit);
+        jpaQuery.setMaxResults(limit);
+
+        List<PostDTO> postDTOs = new ArrayList<>();
+        for (Object  post  : jpaQuery.getResultList()) {
+            postDTOs.add(PostMapper.toPostDTO((Post) post));
+        }
+
+        paging.setCurrPage(page);
+        paging.setTotalPages(totalPage);
+        paging.setHasNext(hasNext);
+        paging.setHasPrevious(hasPrevious);
         paging.setContent(postDTOs);
-        paging.setHasNext(postEntities.hasNext());
-        paging.setHasPrevious(postEntities.hasPrevious());
-        paging.setTotalPages(postEntities.getTotalPages());
 
         return paging;
     }

@@ -5,6 +5,9 @@ import com.huiblog.huiblog.model.dto.Paging;
 import com.huiblog.huiblog.model.dto.PostDTO;
 import com.huiblog.huiblog.model.request.CreatePostReq;
 import com.huiblog.huiblog.model.request.UpdatePostReq;
+
+import org.hibernate.search.FullTextQuery;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +16,7 @@ import java.util.List;
 public interface PostService {
     Paging getListPost(int page);
 
-    List<Post> getListPostSearch(String s);
+    Paging getListPostSearch(int page, String s);
 
     Paging getListPostFTS(int page, String s);
 

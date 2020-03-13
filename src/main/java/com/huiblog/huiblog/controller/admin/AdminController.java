@@ -39,10 +39,13 @@ public class AdminController {
     }
 
     @GetMapping(value = {"/post/search/", "/post/search/{page}"})
-    public String search(Model model, @PathVariable(required = false) Integer page, @RequestParam(required = false) String searchKey) {
+    public String searchPost(Model model, @PathVariable(required = false) Integer page, @RequestParam(required = false) String searchKey) {
         int currPage = (page == null ? 0 : page - 1);
         Paging listPost = postService.getListPostFTS(currPage, searchKey);
         model.addAttribute("listPost", listPost);
+
+        model.addAttribute("search", true);
+        model.addAttribute("searchKey", searchKey);
 
         List<CategoryDTO> listCate = categoryService.getListCategory();
         model.addAttribute("listCate", listCate);
@@ -55,6 +58,16 @@ public class AdminController {
         int currPage = (page == null ? 0 : page - 1);
         Paging listCate = categoryService.getListCategory(currPage);
         model.addAttribute("listCate", listCate);
+        return "admin/category";
+    }
+
+    @GetMapping(value = {"/category/search/", "/category/search/{page}"})
+    public String searchCategory(Model model, @PathVariable(required = false) Integer page, @RequestParam(required = false) String searchKey) {
+        int currPage = (page == null ? 0 : page - 1);
+        Paging listCate = categoryService.getListPostFTS(currPage, searchKey);
+        model.addAttribute("listCate", listCate);
+        model.addAttribute("search", true);
+        model.addAttribute("searchKey", searchKey);
         return "admin/category";
     }
 

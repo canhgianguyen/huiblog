@@ -14,6 +14,8 @@ import java.util.List;
 public interface CategoryService {
     Paging getListCategory(int page);
 
+    Paging getListPostFTS(int page, String s);
+
     List<CategoryDTO> getListCategory();
 
     CategoryDTO getCategoryById(int categoryId);
