@@ -29,10 +29,10 @@ public class Post {
     private int id;
 
     @Column(name = "user_id")
-    private String userID;
+    private int userID;
 
     @Column(name = "category_id")
-    private String categoryID;
+    private int categoryID;
 
     @Field(termVector = TermVector.YES, analyze= Analyze.YES, store= Store.NO)
     @Column(name = "title")

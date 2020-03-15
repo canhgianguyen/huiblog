@@ -28,12 +28,13 @@ $(document).ready(function() {
             if(res.data.success) {
                 imgLink = res.data.data;
                 var data = {
-                    categoryID: $("#post-cteate-category-id").val(),
+                    categoryID: parseInt($("#post-cteate-category-id").val()), // $("#post-cteate-category-id").val(),
                     userID: 1,
                     img: imgLink,
                     title: $("#post-cteate-title").val(),
                     content: $("#post-cteate-content").val()
                 };
+                console.log(data)
 
                 // Create Content
                 axios.post("/api/posts", data).then(function(res){

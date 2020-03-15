@@ -18,10 +18,10 @@ public class Comment {
     private int id;
 
     @Column(name = "user_id")
-    private String userID;
+    private int userID;
 
     @Column(name = "post_id")
-    private String email;
+    private int postID;
 
     @Column(name = "content")
     private String content;

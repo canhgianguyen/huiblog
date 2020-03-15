@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 public class UpdatePostReq {
     @NotNull(message = "CategoryID is required")
     @NotEmpty(message = "CategoryID must be not Empty")
-    private String categoryID;
+    private int categoryID;
 
     @NotNull(message = "Image is required")
     @NotEmpty(message = "Image must be not Empty")

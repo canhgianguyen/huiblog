@@ -47,6 +47,6 @@ public class User {
 
     @NotNull
     @Column(name = "role")
-    private Boolean role;
+    private String role;
 
 }
