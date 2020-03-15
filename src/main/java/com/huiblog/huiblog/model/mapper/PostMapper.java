@@ -1,6 +1,7 @@
 package com.huiblog.huiblog.model.mapper;
 
 import com.huiblog.huiblog.entity.Post;
+import com.huiblog.huiblog.model.dto.ConvertStringToURL;
 import com.huiblog.huiblog.model.dto.PostDTO;
 import com.huiblog.huiblog.model.request.CreatePostReq;
 import com.huiblog.huiblog.model.request.UpdatePostReq;
@@ -15,6 +16,7 @@ public class PostMapper {
         postDTO.setCategoryID(post.getCategoryID());
         postDTO.setUserID(post.getUserID());
         postDTO.setTitle(post.getTitle());
+        postDTO.setMetaTitle(post.getMetaTitle());
         postDTO.setContent(post.getContent());
         postDTO.setCreated(post.getCreatedDate());
         postDTO.setUpdated(post.getUpdatedDate());
@@ -30,6 +32,7 @@ public class PostMapper {
         post.setUserID(createPostReq.getUserID());
         post.setImg(createPostReq.getImg());
         post.setTitle(createPostReq.getTitle());
+        post.setMetaTitle(ConvertStringToURL.convert(createPostReq.getTitle()));
         post.setContent(createPostReq.getContent());
         post.setCreatedDate(new Date());
         post.setUpdatedDate(new Date());
@@ -44,6 +47,7 @@ public class PostMapper {
         post.setCategoryID(updatePostReq.getCategoryID());
         post.setImg(updatePostReq.getImg());
         post.setTitle(updatePostReq.getTitle());
+        post.setMetaTitle(ConvertStringToURL.convert(updatePostReq.getTitle()));
         post.setContent(updatePostReq.getContent());
         post.setCreatedDate(createdDate);
         post.setUpdatedDate(new Date());

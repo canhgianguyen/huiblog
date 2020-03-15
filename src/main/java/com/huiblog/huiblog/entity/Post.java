@@ -38,6 +38,9 @@ public class Post {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "meta_title")
+    private String metaTitle;
+
     @Field(termVector = TermVector.YES, analyze= Analyze.YES, store= Store.NO)
     @Column(name = "content")
     private String content;

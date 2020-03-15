@@ -14,6 +14,8 @@ public class PostDTO {
 
     private String title;
 
+    private String metaTitle;
+
     private String content;
 
     private Date created;
