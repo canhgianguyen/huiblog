@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.util.WebUtils;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -34,14 +35,13 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         // Lấy token từ cookie
         String token =  null;
-        Cookie cookie = null;
-        Cookie[] cookies = null;
-        cookies = httpServletRequest.getCookies();
-        for (Cookie ck : cookies) {
-            if (ck.getName().equals("jwt_token")) {
-                token = ck.getValue();
-                break;
-            }
+        Cookie cookie = WebUtils.getCookie(httpServletRequest, "jwt_token");
+
+        token = cookie == null ? null : cookie.getValue();
+
+        if (token == null) {
+            filterChain.doFilter(httpServletRequest, httpServletResponse);
+            return;
         }
 
         // Parse thông tin từ token

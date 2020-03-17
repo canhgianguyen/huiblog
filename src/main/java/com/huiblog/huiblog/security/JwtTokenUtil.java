@@ -40,15 +40,15 @@ public class JwtTokenUtil {
                 .setExpiration(new Date(System.currentTimeMillis() + duration * 1000))
                 .signWith(SignatureAlgorithm.HS512, secret).compact();
 
-        return PREFIX + token;
+        return token;
     }
 
     // Lấy thông tin được lưu trong token
     public Claims getClaimsFromToken(String token) {
         // Kiểm tra token có bắt đầu bằng tiền tố
-        if (token == null || !token.startsWith(PREFIX)) return null;
+        if (token == null) return null;
 
-        token = token.replace(PREFIX, "");
+        //token = token.replace(PREFIX, "");
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
 }

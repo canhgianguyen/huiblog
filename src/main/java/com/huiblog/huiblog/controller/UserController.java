@@ -113,6 +113,7 @@ public class UserController {
 
         Cookie jwtToken = new Cookie("jwt_token", token);
         jwtToken.setMaxAge(60*60*24);
+        jwtToken.setPath("/");
         response.addCookie(jwtToken);
 
         return ResponseEntity.ok(token);

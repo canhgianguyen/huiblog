@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto createUser(CreateUserReq createUserReq) {
-        User user = userRepository.findAllByEmail(createUserReq.getEmail());
+        User user = userRepository.findByEmail(createUserReq.getEmail());
         if(user != null) {
             throw new DuplicateRecordException("Email is already in use!");
         }
