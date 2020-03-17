@@ -46,7 +46,7 @@ public class User {
     private String avatar;
 
     @NotNull
-    @Column(name = "role")
+    @Column(name = "role", columnDefinition = "varchar(255) default 'USER'")
     private String role;
 
 }

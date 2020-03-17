@@ -4,7 +4,7 @@ $(document).ready(function() {
     var postID;
 
     $("#add-post").on("click", function () {
-        $('#modal-add-post').modal();
+        $('#modal-sign-up').modal();
     });
 
     // Create Post

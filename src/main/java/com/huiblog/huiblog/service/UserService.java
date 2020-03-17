@@ -13,7 +13,7 @@ public interface UserService {
 
     public User getUserById(int id);
 
-    public UserDto addUser(CreateUserReq createUserReq);
+    public UserDto createUser(CreateUserReq createUserReq);
 
     public UserDto editUser(int id, User user);
 

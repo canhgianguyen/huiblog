@@ -1,11 +1,15 @@
 package com.huiblog.huiblog.service.impl;
 
 import com.huiblog.huiblog.entity.User;
+import com.huiblog.huiblog.exception.DuplicateRecordException;
 import com.huiblog.huiblog.model.dto.UserDto;
+import com.huiblog.huiblog.model.mapper.UserMapper;
 import com.huiblog.huiblog.model.request.CreateUserReq;
 import com.huiblog.huiblog.repository.UserRepository;
 import com.huiblog.huiblog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,6 +18,9 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<UserDto> getListUser() {
@@ -26,8 +33,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto addUser(CreateUserReq createUserReq) {
-        return null;
+    public UserDto createUser(CreateUserReq createUserReq) {
+        User user = userRepository.findAllByEmail(createUserReq.getEmail());
+        if(user != null) {
+            throw new DuplicateRecordException("Email is already in use!");
+        }
+
+        String passwordEncode = passwordEncoder.encode(createUserReq.getPassword());
+        createUserReq.setPassword(passwordEncode);
+        user = UserMapper.toUser(createUserReq);
+        userRepository.save(user);
+        return UserMapper.toUserDto(user);
     }
 
     @Override
