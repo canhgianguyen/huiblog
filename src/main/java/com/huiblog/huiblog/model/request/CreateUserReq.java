@@ -18,19 +18,19 @@ import java.util.Date;
 @Getter
 @Setter
 public class CreateUserReq {
-//    @ApiModelProperty(
-//            example="Sam Smith",
-//            notes="Name cannot be empty",
-//            required=true
-//    )
-//    @NotEmpty(message = "Ten khong duoc rong")
-//    private String name;
-//
-//    @ApiModelProperty(
-//            example="Ahihi@gmail.com",
-//            notes="Valid email",
-//            required=true
-//    )
+    @ApiModelProperty(
+            example="Sam Smith",
+            notes="Name cannot be empty",
+            required=true
+    )
+    @NotEmpty(message = "Ten khong duoc rong")
+    private String name;
+
+    @ApiModelProperty(
+            example="Ahihi@gmail.com",
+            notes="Valid email",
+            required=true
+    )
     @Email
     private String email;
 

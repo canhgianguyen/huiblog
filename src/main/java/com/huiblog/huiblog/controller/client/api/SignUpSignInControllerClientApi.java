@@ -1,37 +1,37 @@
-package com.huiblog.huiblog.controller;
+package com.huiblog.huiblog.controller.client.api;
 
-import com.huiblog.huiblog.entity.User;
 import com.huiblog.huiblog.model.api.BaseApiResult;
-import com.huiblog.huiblog.model.dto.UserDto;
-import com.huiblog.huiblog.model.mapper.UserMapper;
+import com.huiblog.huiblog.model.dto.PostDTO;
 import com.huiblog.huiblog.model.request.AuthenticateReq;
 import com.huiblog.huiblog.model.request.CreateUserReq;
+import com.huiblog.huiblog.repository.UserRepository;
 import com.huiblog.huiblog.security.JwtTokenUtil;
 import com.huiblog.huiblog.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.util.List;
 
-@RequestMapping("/users")
 @RestController
-public class UserController {
+@RequestMapping("/api")
+public class SignUpSignInControllerClientApi {
     @Autowired
-    private UserService userService;
+    UserService userService;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -39,63 +39,27 @@ public class UserController {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
-
-    public String index() {
-        return "index";
-    }
-
-    @ApiOperation(
-            httpMethod = "GET",
-            value = "Lay danh sach User",
-            response = UserDto.class,
-            responseContainer = "List")
+    @ApiOperation(value = "Create user", response = PostDTO.class)
     @ApiResponses({
-            @ApiResponse(code = 500, message = "Hhi")
+            @ApiResponse(code=400,message = "User already exists in the system"),
+            @ApiResponse(code=500,message = "")
     })
-    @GetMapping("")
-    public ResponseEntity<?> getListUser() {
-        List<UserDto> result = userService.getListUser();
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+    @PostMapping("/users/signup")
+    public ResponseEntity<?> signUp(@Valid @RequestBody CreateUserReq createUserReq) {
+        BaseApiResult result = new BaseApiResult();
+        try {
+            userService.createUser(createUserReq);
+            result.setSuccess(true);
+            result.setMessage("Sign Up successfully!");
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMessage(e.getMessage());
+        }
+        return ResponseEntity.ok(result);
     }
 
-    @ApiOperation(
-            httpMethod = "GET",
-            value = "Lay thong tin user qua id",
-            response = UserDto.class)
-    @ApiResponses({
-            @ApiResponse(code = 404, message = "Can not find user"),
-            @ApiResponse(code = 500, message = "ID is not true")
-    })
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getUserById(@PathVariable int id) {
-        return ResponseEntity.ok(UserMapper.toUserDto(userService.getUserById(id)));
-    }
-
-    @ApiOperation(
-            httpMethod = "Post",
-            value = "Tao user",
-            response = UserDto.class)
-    @ApiResponses({
-            @ApiResponse(code = 400, message = "Email da ton tai"),
-            @ApiResponse(code = 500, message = "Hhehe")
-    })
-    @PostMapping("")
-    public ResponseEntity<?> addUser(@Valid @RequestBody CreateUserReq createUserReq) {
-        return ResponseEntity.ok().body(userService.createUser(createUserReq));
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<UserDto> editUser(@PathVariable int id, @RequestBody User user) {
-        return ResponseEntity.ok().body(userService.editUser(id, user));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> removeUser(@PathVariable int id) {
-        return ResponseEntity.ok(userService.removeUser(id));
-    }
-
-    @PostMapping("/authenticate")
-    public ResponseEntity<?> login(@Valid @RequestBody AuthenticateReq req, HttpServletRequest request,
+    @PostMapping("/users/signin")
+    public ResponseEntity<?> login(@Valid @RequestBody AuthenticateReq req,
                                    HttpServletResponse response) {
         BaseApiResult result = new BaseApiResult();
         try {
@@ -125,8 +89,6 @@ public class UserController {
             result.setSuccess(false);
             result.setMessage("Email or password is incorrect!");
         }
-
-
         return ResponseEntity.ok(result);
     }
 }

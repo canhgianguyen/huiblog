@@ -13,23 +13,22 @@
 <section th:fragment="mainContent" class="panel">
 
     <div class="panel-body">
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="mb-md">
-                    <button type="button" class="btn btn-primary" id="add-cate">Add Category <i class="fa fa-plus"></i></button>
-                </div>
+        <div class="row" style="margin-bottom: 15px">
+            <div class="col-md-6">
+                <button type="button" class="btn btn-primary" id="add-cate">Add Category <i class="fa fa-plus"></i>
+                </button>
             </div>
 
-            <div class="col-sm-12 col-sm-6">
+            <div class="col-md-6">
                 <form class="form-inline pull-right" th:action="@{/admin/category/search/}">
-                    <div class="form-group">
-                        <input type="search" class="form-control" placeholder="Search" name="searchKey" th:value="${searchKey}">
-                    </div>
+                    <input type="search" class="form-control" placeholder="Search" name="searchKey"
+                           th:value="${searchKey}">
                     <button type="submit" class="btn btn-primary" id="add-"><i
                             class="fa fa-search"></i></button>
                 </form>
             </div>
         </div>
+
         <table class="table table-bordered table-striped mb-none" id="datatable-editable">
             <thead>
             <tr>
@@ -47,8 +46,12 @@
                 <td th:text="${#dates.format(category?.createdDate, 'dd-MM-yyyy HH:mm:ss')}"></td>
                 <td th:text="${#dates.format(category?.updatedDate, 'dd-MM-yyyy HH:mm:ss')}"></td>
                 <td align="center">
-                    <button type="button" class="mb-xs btn btn-info btn-edit-cate" th:attr="cateid=${category?.categoryId}"><i class="fa fa-pencil" title="Edit category" style="cursor: pointer"></i></button>
-                    <button type="button" class="mb-xs btn btn-info btn-delete-cate" th:attr="cateid=${category?.categoryId}"><i class="fa fa-trash-o" title="Delete category" style="cursor: pointer"></i></button>
+                    <button type="button" class="mb-xs btn btn-info btn-edit-cate"
+                            th:attr="cateid=${category?.categoryId}"><i class="fa fa-pencil" title="Edit category"
+                                                                        style="cursor: pointer"></i></button>
+                    <button type="button" class="mb-xs btn btn-info btn-delete-cate"
+                            th:attr="cateid=${category?.categoryId}"><i class="fa fa-trash-o" title="Delete category"
+                                                                        style="cursor: pointer"></i></button>
                 </td>
             </tr>
             </tbody>
@@ -56,21 +59,28 @@
 
         <!-- Paging -->
         <th:block th:unless="${search}">
-        <ul class="pagination">
-            <li th:if="${listCate?.hasPrevious}"><a th:href="@{'/admin/category/' + ${listCate?.currPage - 1}}">Prev</a></li>
-            <li class="active"><a><span th:text="'Page ' + ${listCate?.currPage} +' of ' + ${listCate?.totalPages}"></span></a></li>
-            <li th:if="${listCate?.hasNext}"><a th:href="@{'/admin/category/' + ${listCate?.currPage + 1}}">Next</a></li>
-        </ul>
+            <ul class="pagination">
+                <li th:if="${listCate?.hasPrevious}"><a
+                        th:href="@{'/admin/category/' + ${listCate?.currPage - 1}}">Prev</a></li>
+                <li class="active"><a><span
+                        th:text="'Page ' + ${listCate?.currPage} +' of ' + ${listCate?.totalPages}"></span></a></li>
+                <li th:if="${listCate?.hasNext}"><a th:href="@{'/admin/category/' + ${listCate?.currPage + 1}}">Next</a>
+                </li>
+            </ul>
         </th:block>
 
         <th:block th:if="${search}">
             <ul class="pagination">
-                <li th:if="${listCate?.hasPrevious}"><a th:href="@{'/admin/category/search/' + ${listCate?.currPage - 1} + '?searchKey=' + ${searchKey}}">Prev</a></li>
-                <li class="active"><a><span th:text="'Page ' + ${listCate?.currPage} +' of ' + ${listCate?.totalPages}"></span></a></li>
-                <li th:if="${listCate?.hasNext}"><a th:href="@{'/admin/category/search/' + ${listCate?.currPage + 1} + '?searchKey=' + ${searchKey}}">Next</a></li>
+                <li th:if="${listCate?.hasPrevious}"><a
+                        th:href="@{'/admin/category/search/' + ${listCate?.currPage - 1} + '?searchKey=' + ${searchKey}}">Prev</a>
+                </li>
+                <li class="active"><a><span
+                        th:text="'Page ' + ${listCate?.currPage} +' of ' + ${listCate?.totalPages}"></span></a></li>
+                <li th:if="${listCate?.hasNext}"><a
+                        th:href="@{'/admin/category/search/' + ${listCate?.currPage + 1} + '?searchKey=' + ${searchKey}}">Next</a>
+                </li>
             </ul>
         </th:block>
-
 
 
     </div>
@@ -90,7 +100,7 @@
                     <div class="form-group margin-bottom-15" style="margin-top: 20px">
                         <label class="col-sm-2">Name:</label>
                         <div class="col-sm-10">
-                        <input type="text" class="form-control" id="input-cate-name">
+                            <input type="text" class="form-control" id="input-cate-name">
                         </div>
                     </div>
                 </div>

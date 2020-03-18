@@ -22,6 +22,7 @@ public class UserMapper {
 
     public static User toUser(CreateUserReq createUserReq) {
         User user = new User();
+        user.setName(createUserReq.getName());
         user.setEmail(createUserReq.getEmail());
         user.setPassword(createUserReq.getPassword());
         user.setRole("USER");

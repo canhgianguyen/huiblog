@@ -11,10 +11,11 @@ $(document).ready(function() {
         }
 
         var data = {
-            email: $('#sign-in-email').val(),
-            password: $('#sign-in-password').val()
+            email: $('#sign-in-email').val().trim(),
+            password: $('#sign-in-password').val().trim()
         }
-        axios.post("/users/authenticate", data).then(function(res){
+
+        axios.post("/api/users/signin", data).then(function(res){
             if(res.data.success) {
                 new PNotify({
                     title: 'Success!',
