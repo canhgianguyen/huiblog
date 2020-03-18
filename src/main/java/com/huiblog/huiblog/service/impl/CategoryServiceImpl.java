@@ -73,7 +73,7 @@ public class CategoryServiceImpl implements CategoryService {
                         .keyword()
                         .fuzzy()
                         .withEditDistanceUpTo(2)
-                        .withPrefixLength(0)
+                        .withPrefixLength(1)
                         .onFields("name")
                         .matching(searchKey)
                         .createQuery();
@@ -85,38 +85,20 @@ public class CategoryServiceImpl implements CategoryService {
         Paging paging = new Paging();
         page++;
         int limit = 6;
-        boolean hasNext = true;
-        boolean hasPrevious = true;
-        int totalPage = 0;
         int totalElements = jpaQuery.getResultSize();
 
-        if ( (float) totalElements % limit == 0) {
-            totalPage = totalElements/limit;
-        }
-        else {
-            totalPage = totalElements/limit + 1;
-        }
+        int totalPage = (((float) totalElements % limit == 0) ? totalElements/limit : totalElements/limit + 1);
 
-        if (page < 0) {
-            page = 1;
-        }
+        page = ((page < 0) || (page > totalPage) ? 1 : page);
 
-        if (page > totalPage) {
-            page = 1;
-        }
+        boolean hasNext = ((page == totalPage) ? false : true);
+        boolean hasPrevious = ((page == 1) ? false : true);
 
-        if (page == 1) {
-            hasPrevious = false;
-        }
-
-        if (page == totalPage) {
-            hasNext = false;
-        }
         jpaQuery.setFirstResult(page * limit - limit);
         jpaQuery.setMaxResults(limit);
 
         List<CategoryDTO> categoryDTOS = new ArrayList<>();
-        for (Object  cate  : jpaQuery.getResultList()) {
+        for (Object cate : jpaQuery.getResultList()) {
             categoryDTOS.add(CategoryMapper.toCategoryDTO((Category) cate));
         }
 

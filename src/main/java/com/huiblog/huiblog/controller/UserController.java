@@ -1,6 +1,7 @@
 package com.huiblog.huiblog.controller;
 
 import com.huiblog.huiblog.entity.User;
+import com.huiblog.huiblog.model.api.BaseApiResult;
 import com.huiblog.huiblog.model.dto.UserDto;
 import com.huiblog.huiblog.model.mapper.UserMapper;
 import com.huiblog.huiblog.model.request.AuthenticateReq;
@@ -96,26 +97,36 @@ public class UserController {
     @PostMapping("/authenticate")
     public ResponseEntity<?> login(@Valid @RequestBody AuthenticateReq req, HttpServletRequest request,
                                    HttpServletResponse response) {
-        // Xác thực từ username và password.
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        req.getEmail(),
-                        req.getPassword()
-                )
-        );
+        BaseApiResult result = new BaseApiResult();
+        try {
+            // Xác thực từ username và password.
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            req.getEmail(),
+                            req.getPassword()
+                    )
+            );
 
-        // Nếu không xảy ra exception tức là thông tin hợp lệ
-        // Set thông tin authentication vào Security Context
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+            // Nếu không xảy ra exception tức là thông tin hợp lệ
+            // Set thông tin authentication vào Security Context
+            SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        // Gen token
-        String token = jwtTokenUtil.generateToken((UserDetails) authentication.getPrincipal());
+            // Gen token
+            String token = jwtTokenUtil.generateToken((UserDetails) authentication.getPrincipal());
 
-        Cookie jwtToken = new Cookie("jwt_token", token);
-        jwtToken.setMaxAge(60*60*24);
-        jwtToken.setPath("/");
-        response.addCookie(jwtToken);
+            result.setSuccess(true);
+            result.setMessage("Sign In successfully!");
 
-        return ResponseEntity.ok(token);
+            Cookie jwtToken = new Cookie("jwt_token", token);
+            jwtToken.setMaxAge(60*60*24);
+            jwtToken.setPath("/");
+            response.addCookie(jwtToken);
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMessage("Email or password is incorrect!");
+        }
+
+
+        return ResponseEntity.ok(result);
     }
 }

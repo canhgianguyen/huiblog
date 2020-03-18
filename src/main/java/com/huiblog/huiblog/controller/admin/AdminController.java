@@ -2,9 +2,11 @@ package com.huiblog.huiblog.controller.admin;
 
 import com.huiblog.huiblog.model.dto.CategoryDTO;
 import com.huiblog.huiblog.model.dto.Paging;
+import com.huiblog.huiblog.security.CustomUserDetails;
 import com.huiblog.huiblog.service.CategoryService;
 import com.huiblog.huiblog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +33,9 @@ public class AdminController {
         int currPage = (page == null ? 0 : page - 1);
         Paging listPost = postService.getListPost(currPage);
         model.addAttribute("listPost", listPost);
+
+        CustomUserDetails customUserDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println("ID ú dờ: " + customUserDetails.getUser().getId());
 
         List<CategoryDTO> listCate = categoryService.getListCategory();
         model.addAttribute("listCate", listCate);

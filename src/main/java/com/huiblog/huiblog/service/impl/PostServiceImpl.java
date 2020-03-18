@@ -137,8 +137,8 @@ public class PostServiceImpl implements PostService {
                         .keyword()
                         .fuzzy()
                         .withEditDistanceUpTo(2)
-                        .withPrefixLength(0)
-                        .onFields("title", "content")
+                        .withPrefixLength(1)
+                        .onField("title")
                         .matching(searchKey)
                         .createQuery();
 
@@ -146,17 +146,18 @@ public class PostServiceImpl implements PostService {
         org.hibernate.search.jpa.FullTextQuery jpaQuery =
                 fullTextEntityManager.createFullTextQuery(query, Post.class);
 
+
         Paging paging = new Paging();
         page++;
         int limit = 6;
         int totalElements = jpaQuery.getResultSize();
 
-        int totalPage = ((float) totalElements % limit == 0) ? totalElements/limit : totalElements/limit + 1;
+        int totalPage = (((float) totalElements % limit == 0) ? totalElements/limit : totalElements/limit + 1);
 
-        page = (page < 0) || (page > totalPage) ? 1 : page;
+        page = ((page < 0) || (page > totalPage) ? 1 : page);
 
-        boolean hasNext = (page == totalPage) ? false : true;
-        boolean hasPrevious = (page == 1) ? false : true;
+        boolean hasNext = ((page == totalPage) ? false : true);
+        boolean hasPrevious = ((page == 1) ? false : true);
 
         jpaQuery.setFirstResult(page * limit - limit);
         jpaQuery.setMaxResults(limit);

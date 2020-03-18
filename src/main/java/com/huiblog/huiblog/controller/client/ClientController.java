@@ -25,4 +25,9 @@ public class ClientController {
     public String category() {
         return "category";
     }
+
+    @GetMapping("/signin")
+    public String signIn() {
+        return "signin";
+    }
 }
