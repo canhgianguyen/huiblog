@@ -4,9 +4,7 @@ import com.huiblog.huiblog.model.api.BaseApiResult;
 import com.huiblog.huiblog.model.dto.PostDTO;
 import com.huiblog.huiblog.model.request.AuthenticateReq;
 import com.huiblog.huiblog.model.request.CreateUserReq;
-import com.huiblog.huiblog.repository.UserRepository;
 import com.huiblog.huiblog.security.JwtTokenUtil;
-import com.huiblog.huiblog.service.PostService;
 import com.huiblog.huiblog.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -18,11 +16,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -31,9 +27,6 @@ import javax.validation.Valid;
 public class SignUpSignInControllerClientApi {
     @Autowired
     UserService userService;
-
-    @Autowired
-    private PostService postService;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -92,11 +85,5 @@ public class SignUpSignInControllerClientApi {
             result.setMessage("Email or password is incorrect!");
         }
         return ResponseEntity.ok(result);
-    }
-
-    @GetMapping("/{metaTitle}")
-    public ResponseEntity<?> post(@PathVariable(required = true) String metaTitle) {
-        PostDTO postDTO = postService.getPostByMetaTitle(metaTitle);
-        return ResponseEntity.ok(postDTO);
     }
 }

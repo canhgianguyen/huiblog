@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-    <title>Bai Post</title>
+    <title th:text="${post?.title}"></title>
 
 </head>
 
@@ -29,9 +29,9 @@
             <!--Breadcrumbs Start-->
             <div class="breadcrumbs breadcrumbs-left">
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Category</a></li>
-                    <li><a href="#" th:text="${post?.title}"></a></li>
+                    <li>Home</li>
+                    <li>Category</li>
+                    <li th:text="${post?.title}"></li>
                 </ul>
             </div>
             <!--Breadcrumbs End-->
@@ -51,7 +51,7 @@
                         <li th:text="${#dates.format(post?.created, 'dd MMMM yyyy')}"></li>
                         <li th:text="${post.categoryName}"></li>
                         <li th:text="${post.userName}"></li>
-                        <li><a href="#">Comments<span>0</span></a></li>
+                        <li>Comments<span>0</span></li>
                     </ul>
                 </div>
                 <!--Post Meta End-->
@@ -62,332 +62,25 @@
 
                 <div data-height="17"></div>
 
-                <!--Post Tags Start-->
-                <div class="post-single-tags">
-                    <h5>Tags</h5>
-                    <a href="#">dolor</a>
-                    <a href="#">posuere</a>
-                    <a href="#">massa</a>
-                    <a href="#">aliquam ac</a>
-                    <a href="#">dolor</a>
-                    <a href="#">posuere</a>
-                </div>
-                <!--Post Tags End-->
-
-                <!--Social Media Share Start-->
-                <div class="social-media-share2">
-                    <ul>
-                        <li><a href="javascript:facebookShare('https://studio.envato.com/', 550, 350)"
-                               target="_blank"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="javascript:twitterShare('https://studio.envato.com/', 550, 350)" target="_blank"><i
-                                class="fa fa-twitter"></i></a></li>
-                        <li><a href="javascript:googleShare('https://studio.envato.com/', 550, 350)" target="_blank"><i
-                                class="fa fa-google"></i></a></li>
-                        <li><a href="javascript:pinterestShare('https://studio.envato.com/', 550, 350)" target="_blank"><i
-                                class="fa fa-pinterest-p"></i></a></li>
-                        <li><a href="javascript:linkedinShare('https://studio.envato.com/', 550, 350)"
-                               target="_blank"><i class="fa fa-linkedin"></i></a></li>
-                    </ul>
-                </div>
-                <!--Social Media Share End-->
-
-                <!--Post Pagination Start-->
-                <div class="post-pagination-wrap">
-                    <div class="post-pagination pagination-prev">
-                        <a href="#">
-                            <span>Previous Post</span>
-                            <h4>Eenean et tortor vitae diam</h4>
-                        </a>
-                    </div>
-                    <div class="post-pagination pagination-next">
-                        <a href="#">
-                            <span>Next Post</span>
-                            <h4>Quiseue nec lobortis arcu</h4>
-                        </a>
-                    </div>
-                </div>
-                <!--Post Pagination End-->
 
             </div>
             <!--Post Single Details Top End-->
 
             <!--About Author Start-->
-            <div class="post-author bgimage-cover" data-image-src="images/upload/about-author-bg-image.jpg">
+            <div class="post-author bgimage-cover" data-image-src="/images/upload/about-author-bg-image.jpg">
                 <div class="post-author-details text-center">
                     <figure>
-                        <img src="images/upload/post-author-img.jpg" alt="author"/>
+                        <img src="/images/upload/post-author-img.jpg" alt="author"/>
                     </figure>
                     <h3>About Author</h3>
                     <div class="post-author-description">
-                        <p>Vestibulum ante ipsum primis in faucibus orci luctus ultrices posuere cubilia curae dignissim
-                            viverra dolor sit amet condimentum. Aenean sollicitudin, justo eu pulvinar rutrum.</p>
+                        <p>Author hiện tại chưa có gì để about cả. ^^</p>
                     </div>
-                    <ul class="post-author-social-media">
-                        <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#" target="_blank"><i class="fa fa-google"></i></a></li>
-                        <li><a href="#" target="_blank"><i class="fa fa-pinterest-p"></i></a></li>
-                        <li><a href="#" target="_blank"><i class="fa fa-instagram"></i></a></li>
-                    </ul>
                 </div>
                 <div class="post-author-overlay"></div>
             </div>
             <!--About Author End-->
 
-            <!--Post Single Details Bottom Start-->
-            <div class="post-single-details-body">
-
-                <!--Related Posts Start-->
-                <div class="post-related">
-
-                    <div class="page-title subtitle">
-                        <h2>Related posts</h2>
-                    </div>
-
-                    <div class="container nopadding">
-                        <div class="row">
-
-                            <!--Related Item 1-->
-                            <div class="col-sm-4">
-                                <div class="box">
-                                    <div class="post-related-item">
-                                        <a href="#">
-                                            <figure class="img-div-cover">
-                                                <div class="overlay-hover"></div>
-                                                <img src="images/upload/related-post01.jpg" alt="related post"/>
-                                            </figure>
-                                        </a>
-                                        <h4>
-                                            <a href="#">
-                                                Vestibulum tincidunt facilisis ultrices amea
-                                            </a>
-                                        </h4>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--Related Item 2-->
-                            <div class="col-sm-4">
-                                <div class="box">
-                                    <div class="post-related-item">
-                                        <a href="#">
-                                            <figure class="img-div-cover">
-                                                <div class="overlay-hover"></div>
-                                                <img src="images/upload/related-post02.jpg" alt="related post"/>
-                                            </figure>
-                                        </a>
-                                        <h4>
-                                            <a href="#">
-                                                Vestibulum tincidunt facilisis ultrices amea
-                                            </a>
-                                        </h4>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--Related Item 3-->
-                            <div class="col-sm-4">
-                                <div class="box">
-                                    <div class="post-related-item">
-                                        <a href="#">
-                                            <figure class="img-div-cover">
-                                                <div class="overlay-hover"></div>
-                                                <img src="images/upload/related-post03.jpg" alt="related post"/>
-                                            </figure>
-                                        </a>
-                                        <h4>
-                                            <a href="#">
-                                                Vestibulum tincidunt facilisis ultrices amea
-                                            </a>
-                                        </h4>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-                <!--Related Posts End-->
-
-                <!--Post Comments Start-->
-                <div class="post-comments">
-
-                    <div class="page-title subtitle">
-                        <h2>Comments<span>5</span></h2>
-                    </div>
-
-                    <ul class="comment-list">
-
-                        <!--Comment 1 Start-->
-                        <li>
-                            <div class="comment-wrapper">
-                                <div class="comment-avatar">
-                                    <figure>
-                                        <img src="images/upload/comment-avatar01.jpg" alt="avatar"/>
-                                    </figure>
-                                </div>
-                                <div class="comment-details">
-                                    <div class="comment-name">
-                                        <a href="#">Susanne Hardy</a>
-                                        <span class="comment-date">20 November 2015</span>
-                                    </div>
-                                    <div class="comment-description">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mauris magna,
-                                            lacinia ac purus quis, rutrum bibendum leo sit amet.</p>
-                                    </div>
-                                    <div class="comment-reply"><a href="#">Reply</a></div>
-                                </div>
-                            </div>
-
-                            <!--Comment Reply Start-->
-                            <ul>
-
-                                <!--Reply 1-->
-                                <li>
-                                    <div class="comment-wrapper">
-                                        <div class="comment-avatar">
-                                            <figure>
-                                                <img src="images/upload/comment-avatar02.jpg" alt="avatar"/>
-                                            </figure>
-                                        </div>
-                                        <div class="comment-details">
-                                            <div class="comment-name">
-                                                <a href="#">John Moser</a>
-                                                <span class="comment-date">20 November 2015</span>
-                                            </div>
-                                            <div class="comment-description">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mauris
-                                                    magna, lacinia ac purus quis, rutrum bibendum leo sit amet.</p>
-                                            </div>
-                                            <div class="comment-reply"><a href="#">Reply</a></div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <!--End-->
-
-                                <!--Reply 2-->
-                                <li>
-                                    <div class="comment-wrapper">
-                                        <div class="comment-avatar">
-                                            <figure>
-                                                <img src="images/upload/comment-avatar01.jpg" alt="avatar"/>
-                                            </figure>
-                                        </div>
-                                        <div class="comment-details">
-                                            <div class="comment-name">
-                                                <a href="#">Susanne Hardy</a>
-                                                <span class="comment-date">20 November 2015</span>
-                                            </div>
-                                            <div class="comment-description">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mauris
-                                                    magna, lacinia ac purus quis, rutrum bibendum leo sit amet.</p>
-                                            </div>
-                                            <div class="comment-reply"><a href="#">Reply</a></div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <!--End-->
-
-                            </ul>
-                            <!--Comment Reply End-->
-
-                        </li>
-                        <!--Comment 1 End-->
-
-                        <!--Comment 2 Start-->
-                        <li>
-                            <div class="comment-wrapper">
-                                <div class="comment-avatar">
-                                    <figure>
-                                        <img src="images/upload/comment-avatar02.jpg" alt="avatar"/>
-                                    </figure>
-                                </div>
-                                <div class="comment-details">
-                                    <div class="comment-name">
-                                        <a href="#">John Moser</a>
-                                        <span class="comment-date">20 November 2015</span>
-                                    </div>
-                                    <div class="comment-description">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mauris magna,
-                                            lacinia ac purus quis, rutrum bibendum leo sit amet.</p>
-                                    </div>
-                                    <div class="comment-reply"><a href="#">Reply</a></div>
-                                </div>
-                            </div>
-                        </li>
-                        <!--Comment 2 End-->
-
-                        <!--Comment 3 Start-->
-                        <li>
-                            <div class="comment-wrapper">
-                                <div class="comment-avatar">
-                                    <figure>
-                                        <img src="images/upload/comment-avatar01.jpg" alt="avatar"/>
-                                    </figure>
-                                </div>
-                                <div class="comment-details">
-                                    <div class="comment-name">
-                                        <a href="#">Susanne Hardy</a>
-                                        <span class="comment-date">20 November 2015</span>
-                                    </div>
-                                    <div class="comment-description">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mauris magna,
-                                            lacinia ac purus quis, rutrum bibendum leo sit amet.</p>
-                                    </div>
-                                    <div class="comment-reply"><a href="#">Reply</a></div>
-                                </div>
-                            </div>
-                        </li>
-                        <!--Comment 3 End-->
-
-                    </ul>
-
-                </div>
-                <!--Post Comments End-->
-
-                <!--Leave a Comment Start-->
-                <div class="post-leave-comment">
-
-                    <div class="page-title subtitle">
-                        <h2>Leave a comment</h2>
-                    </div>
-
-                    <form class="contact-form comment-input">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="box">
-                                    <input id="name" type="text" name="name" required/>
-                                    <label>Your name *</label>
-                                </div>
-                                <div class="box">
-                                    <input id="email" type="text" name="email" required/>
-                                    <label>Your email *</label>
-                                </div>
-                                <div class="box">
-                                    <input id="website" type="text" name="website" required/>
-                                    <label>Website (optional)</label>
-                                </div>
-                                <div class="box">
-                                    <textarea id="mymessage" name="mymessage" required></textarea>
-                                    <label>Your comment *</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <input id="submit_message" type="submit" value="Send message"/>
-                                <span class="loading"><i class="fa fa-spinner fa-pulse"></i></span>
-                            </div>
-                            <div id="reply_message"></div>
-                        </div>
-                    </form>
-
-                </div>
-                <!--Leave a Comment End-->
-
-            </div>
-            <!--Post Single Details Bottom End-->
 
         </div>
     </div>
@@ -405,7 +98,7 @@
             </div>
             <div class="widget-detail">
                 <div class="widget-about-img img-div-cover">
-                    <img src="images/upload/sidebar-about-me.jpg" alt="about me"/>
+                    <img src="/images/upload/sidebar-about-me.jpg" alt="about me"/>
                 </div>
                 <div class="widget-about-detail">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mauris magna, lacinia ac purus quis,
@@ -437,7 +130,7 @@
                         <a href="#">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/recent-post01.jpg" alt="recent post"/>
+                                <img src="/images/upload/recent-post01.jpg" alt="recent post"/>
                             </figure>
                         </a>
                     </div>
@@ -454,7 +147,7 @@
                         <a href="#">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/recent-post02.jpg" alt="recent post"/>
+                                <img src="/images/upload/recent-post02.jpg" alt="recent post"/>
                             </figure>
                         </a>
                     </div>
@@ -471,7 +164,7 @@
                         <a href="#">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/recent-post03.jpg" alt="recent post"/>
+                                <img src="/images/upload/recent-post03.jpg" alt="recent post"/>
                             </figure>
                         </a>
                     </div>
@@ -488,7 +181,7 @@
                         <a href="#">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/recent-post04.jpg" alt="recent post"/>
+                                <img src="/images/upload/recent-post04.jpg" alt="recent post"/>
                             </figure>
                         </a>
                     </div>
@@ -535,7 +228,7 @@
                         <a href="#" target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/widget-instagram01.jpg" alt="widget instagram"/>
+                                <img src="/images/upload/widget-instagram01.jpg" alt="widget instagram"/>
                             </figure>
                         </a>
                     </li>
@@ -543,7 +236,7 @@
                         <a href="#" target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/widget-instagram02.jpg" alt="widget instagram"/>
+                                <img src="/images/upload/widget-instagram02.jpg" alt="widget instagram"/>
                             </figure>
                         </a>
                     </li>
@@ -551,7 +244,7 @@
                         <a href="#" target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/widget-instagram03.jpg" alt="widget instagram"/>
+                                <img src="/images/upload/widget-instagram03.jpg" alt="widget instagram"/>
                             </figure>
                         </a>
                     </li>
@@ -559,7 +252,7 @@
                         <a href="#" target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/widget-instagram04.jpg" alt="widget instagram"/>
+                                <img src="/images/upload/widget-instagram04.jpg" alt="widget instagram"/>
                             </figure>
                         </a>
                     </li>
@@ -567,7 +260,7 @@
                         <a href="#" target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/widget-instagram05.jpg" alt="widget instagram"/>
+                                <img src="/images/upload/widget-instagram05.jpg" alt="widget instagram"/>
                             </figure>
                         </a>
                     </li>
@@ -575,7 +268,7 @@
                         <a href="#" target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/widget-instagram06.jpg" alt="widget instagram"/>
+                                <img src="/images/upload/widget-instagram06.jpg" alt="widget instagram"/>
                             </figure>
                         </a>
                     </li>
@@ -583,7 +276,7 @@
                         <a href="#" target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/widget-instagram07.jpg" alt="widget instagram"/>
+                                <img src="/images/upload/widget-instagram07.jpg" alt="widget instagram"/>
                             </figure>
                         </a>
                     </li>
@@ -591,7 +284,7 @@
                         <a href="#" target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/widget-instagram08.jpg" alt="widget instagram"/>
+                                <img src="/images/upload/widget-instagram08.jpg" alt="widget instagram"/>
                             </figure>
                         </a>
                     </li>
@@ -599,7 +292,7 @@
                         <a href="#" target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/widget-instagram09.jpg" alt="widget instagram"/>
+                                <img src="/images/upload/widget-instagram09.jpg" alt="widget instagram"/>
                             </figure>
                         </a>
                     </li>
@@ -639,7 +332,7 @@
         <aside class="widget widget_banner_sidebar">
             <div class="widget-detail">
                 <a href="#" target="_blank">
-                    <img src="images/upload/banner-widget.jpg" alt="banner widget"/>
+                    <img src="/images/upload/banner-widget.jpg" alt="banner widget"/>
                 </a>
             </div>
         </aside>

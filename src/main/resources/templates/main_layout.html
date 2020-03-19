@@ -8,28 +8,28 @@
     <title th:replace="${title}">Ahihi</title>
 
     <!--Bootstrap Element and Grid System-->
-    <link th:href="@{css/bootstrap.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css">
 
     <!--Main Elements CSS-->
-    <link th:href="@{css/style.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
 
     <!--Font Awesome-->
-    <link th:href="@{fonts/css/font-awesome.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/fonts/css/font-awesome.min.css}" rel="stylesheet" type="text/css">
 
     <!--FlexSlider CSS-->
-    <link th:href="@{bower_components/FlexSlider/flexslider.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/bower_components/FlexSlider/flexslider.css}" rel="stylesheet" type="text/css">
 
     <!--OWL Carousel CSS-->
-    <link th:href="@{bower_components/owl.carousel/assets/owl.carousel.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/bower_components/owl.carousel/assets/owl.carousel.css}" rel="stylesheet" type="text/css">
 
     <!--Megafolio CSS-->
-    <link th:href="@{bower_components/megafolio/css/settings.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/bower_components/megafolio/css/settings.css}" rel="stylesheet" type="text/css">
 
     <!--FancyBox CSS-->
-    <link rel="stylesheet" th:href="@{bower_components/fancybox/jquery.fancybox.css?v=2.1.5}" type="text/css" media="screen"/>
-    <link rel="stylesheet" th:href="@{bower_components/fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5}" type="text/css"
+    <link rel="stylesheet" th:href="@{/bower_components/fancybox/jquery.fancybox.css?v=2.1.5}" type="text/css" media="screen"/>
+    <link rel="stylesheet" th:href="@{/bower_components/fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5}" type="text/css"
           media="screen"/>
-    <link rel="stylesheet" th:href="@{bower_components/fancybox/helpers/jquery.fancybox-thumbs.css?v=1.0.7}" type="text/css"
+    <link rel="stylesheet" th:href="@{/bower_components/fancybox/helpers/jquery.fancybox-thumbs.css?v=1.0.7}" type="text/css"
           media="screen"/>
 
     <!--Google Fonts-->
@@ -37,7 +37,7 @@
           rel='stylesheet' type='text/css'>
 
     <!--Color Scheme Setting-->
-    <link th:href="@{css/color.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/color.css}" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -50,7 +50,7 @@
 <!--Pre Loading End-->
 
 <!--Background Start-->
-<div class="bgimage bgimage-cover" data-image-src="images/upload/bg-image.jpg">
+<div class="bgimage bgimage-cover" data-image-src="/images/upload/bg-image.jpg">
     <div id="particles"></div>
     <div class="bg-overlay" data-bg-color="#353c40" data-opacity="0.85"></div>
 </div>
@@ -72,8 +72,9 @@
             <!--Search Input Start-->
             <div class="search-input">
                 <div class="search-form">
-                    <form>
-                        <input type="search" name="search" placeholder="Search and hit enter">
+                    <form th:action="@{/p/search/}">
+                        <input type="search" placeholder="Search" name="searchKey"
+                               th:value="${searchKey}">
                     </form>
                 </div>
             </div>
@@ -94,7 +95,7 @@
             <!--Logo Start-->
             <div class="logo">
                 <a href="main_layout.html">
-                    <img src="images/logo.png" alt="logo"/>
+                    <img th:src="@{/images/logo.png}" alt="logo"/>
                 </a>
             </div>
             <!--Logo End-->
@@ -110,57 +111,16 @@
 
                 <!--Menu Start-->
                 <ul>
-                    <li class="current-menu"><a href="main_layout.html">Home</a>
-                        <ul>
-                            <li><a href="main_layout.html">Standard</a></li>
-                            <li><a href="home-standard-fullwidth.html">Standard fullwidth</a></li>
-                            <li><a href="home-blog-list.html">Blog list</a></li>
-                            <li><a href="home-blog-list-fullwidth.html">Blog list fullwidth</a></li>
-                            <li><a href="home-masonry.html">Masonry</a></li>
-                            <li><a href="home-masonry-fullwidth.html">Masonry fullwidth</a></li>
-                            <li><a href="#">Third level menu</a>
-                                <ul>
-                                    <li><a href="#">Third level menu</a></li>
-                                    <li><a href="#">Third level menu</a></li>
-                                    <li><a href="#">Third level menu</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                    <li class="current-menu"><a href="/">Home</a>
                     </li>
                     <li><a href="#">Category</a>
                         <ul>
-                            <li><a href="category-page.html">Standard</a></li>
-                            <li><a href="category-page-fullwidth.html">Standard fullwidth</a></li>
-                            <li><a href="category.html">Blog list</a></li>
-                            <li><a href="category-page-list-fullwidth.html">Blog list fullwidth</a></li>
-                            <li><a href="category-page-masonry.html">Masonry</a></li>
-                            <li><a href="category-page-masonry-fullwidth.html">Masonry fullwidth</a></li>
+                            <li th:each="category : ${listCate}"><a href="#" th:text="${category.name}"></a></li>
+
                         </ul>
                     </li>
-                    <li><a href="#">Features</a>
-                        <ul>
-                            <li><a href="/post.html">Standard post</a></li>
-                            <li><a href="post-gallery-one.html">Gallery post one</a></li>
-                            <li><a href="post-gallery-two.html">Gallery post two</a></li>
-                            <li><a href="post-video-youtube.html">Video post youtube</a></li>
-                            <li><a href="post-video-vimeo.html">Video post vimeo</a></li>
-                            <li><a href="post-audio.html">Audio post</a></li>
-                            <li><a href="#">Post fullwidth</a>
-                                <ul>
-                                    <li><a href="post-standard-fullwidth.html">Standard post</a></li>
-                                    <li><a href="post-gallery-one-fullwidth.html">Gallery post one</a></li>
-                                    <li><a href="post-gallery-two-fullwidth.html">Gallery post two</a></li>
-                                    <li><a href="post-video-youtube-fullwidth.html">Video post youtube</a></li>
-                                    <li><a href="post-video-vimeo-fullwidth.html">Video post vimeo</a></li>
-                                    <li><a href="post-audio-fullwidth.html">Audio post</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="color-widget.html">Color widget</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="about-me.html">About me</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="elements.html">Elements</a></li>
+                    <li><a href="/about">About me</a></li>
+                    <li><a href="/contact">Contact</a></li>
                 </ul>
                 <!--Menu End-->
 
@@ -215,7 +175,7 @@
                                 <a href="#" target="_blank">
                                     <figure>
                                         <div class="overlay-hover"></div>
-                                        <img src="images/upload/footer-instagram-item01.jpg" alt="instagram"/>
+                                        <img th:src="@{/images/upload/footer-instagram-item01.jpg}" alt="instagram"/>
                                     </figure>
                                 </a>
                             </div>
@@ -226,7 +186,7 @@
                                 <a href="#" target="_blank">
                                     <figure>
                                         <div class="overlay-hover"></div>
-                                        <img src="images/upload/footer-instagram-item02.jpg" alt="instagram"/>
+                                        <img th:src="@{/images/upload/footer-instagram-item02.jpg}" alt="instagram"/>
                                     </figure>
                                 </a>
                             </div>
@@ -237,7 +197,7 @@
                                 <a href="#" target="_blank">
                                     <figure>
                                         <div class="overlay-hover"></div>
-                                        <img src="images/upload/footer-instagram-item03.jpg" alt="instagram"/>
+                                        <img th:src="@{/images/upload/footer-instagram-item03.jpg}" alt="instagram"/>
                                     </figure>
                                 </a>
                             </div>
@@ -248,7 +208,7 @@
                                 <a href="#" target="_blank">
                                     <figure>
                                         <div class="overlay-hover"></div>
-                                        <img src="images/upload/footer-instagram-item04.jpg" alt="instagram"/>
+                                        <img th:src="@{/images/upload/footer-instagram-item04.jpg}" alt="instagram"/>
                                     </figure>
                                 </a>
                             </div>
@@ -259,7 +219,7 @@
                                 <a href="#" target="_blank">
                                     <figure>
                                         <div class="overlay-hover"></div>
-                                        <img src="images/upload/footer-instagram-item05.jpg" alt="instagram"/>
+                                        <img th:src="@{/images/upload/footer-instagram-item05.jpg}" alt="instagram"/>
                                     </figure>
                                 </a>
                             </div>
@@ -270,7 +230,7 @@
                                 <a href="#" target="_blank">
                                     <figure>
                                         <div class="overlay-hover"></div>
-                                        <img src="images/upload/footer-instagram-item06.jpg" alt="instagram"/>
+                                        <img th:src="@{/images/upload/footer-instagram-item06.jpg}" alt="instagram"/>
                                     </figure>
                                 </a>
                             </div>
@@ -281,7 +241,7 @@
                                 <a href="#" target="_blank">
                                     <figure>
                                         <div class="overlay-hover"></div>
-                                        <img src="images/upload/footer-instagram-item07.jpg" alt="instagram"/>
+                                        <img th:src="@{/images/upload/footer-instagram-item07.jpg}" alt="instagram"/>
                                     </figure>
                                 </a>
                             </div>
@@ -292,7 +252,7 @@
                                 <a href="#" target="_blank">
                                     <figure>
                                         <div class="overlay-hover"></div>
-                                        <img src="images/upload/footer-instagram-item08.jpg" alt="instagram"/>
+                                        <img th:src="@{/images/upload/footer-instagram-item08.jpg}" alt="instagram"/>
                                     </figure>
                                 </a>
                             </div>
@@ -303,7 +263,7 @@
                                 <a href="#" target="_blank">
                                     <figure>
                                         <div class="overlay-hover"></div>
-                                        <img src="images/upload/footer-instagram-item09.jpg" alt="instagram"/>
+                                        <img th:src="@{/images/upload/footer-instagram-item09.jpg}" alt="instagram"/>
                                     </figure>
                                 </a>
                             </div>
@@ -446,48 +406,48 @@
 <!--Whole Container End-->
 
 <!--jQuery files-->
-<script type="text/javascript" th:src="@{js/vendor/jquery-1.11.3.min.js}"></script>
-<script type="text/javascript" th:src="@{js/vendor/modernizr.custom.js}"></script>
-<script type="text/javascript" th:src="@{js/classie.js}"></script>
-<script type="text/javascript" th:src="@{js/search.js}"></script>
+<script type="text/javascript" th:src="@{/js/vendor/jquery-1.11.3.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/vendor/modernizr.custom.js}"></script>
+<script type="text/javascript" th:src="@{/js/classie.js}"></script>
+<script type="text/javascript" th:src="@{/js/search.js}"></script>
 
 <!--jQuery Retina-->
-<script type="text/javascript" th:src="@{js/retina.js}"></script>
+<script type="text/javascript" th:src="@{/js/retina.js}"></script>
 
 <!--Particle Background js file-->
-<script type="text/javascript" th:src="@{js/jquery.particleground.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.particleground.js}"></script>
 
 <!--jQuery FlexSlider-->
-<script type="text/javascript" th:src="@{bower_components/FlexSlider/jquery.flexslider.js}"></script>
+<script type="text/javascript" th:src="@{/bower_components/FlexSlider/jquery.flexslider.js}"></script>
 
 <!--jQuery OWL Carousel-->
-<script type="text/javascript" th:src="@{bower_components/owl.carousel/owl.carousel.min.js}"></script>
+<script type="text/javascript" th:src="@{/bower_components/owl.carousel/owl.carousel.min.js}"></script>
 
 <!--jQuery Megafolio-->
-<script type="text/javascript" th:src="@{bower_components/megafolio/js/jquery.themepunch.tools.min.js}"></script>
-<script type="text/javascript" th:src="@{bower_components/megafolio/js/jquery.themepunch.megafoliopro.js}"></script>
+<script type="text/javascript" th:src="@{/bower_components/megafolio/js/jquery.themepunch.tools.min.js}"></script>
+<script type="text/javascript" th:src="@{/bower_components/megafolio/js/jquery.themepunch.megafoliopro.js}"></script>
 
 <!--jQuery FancyBox-->
-<script type="text/javascript" th:src="@{bower_components/fancybox/jquery.fancybox.pack.js?v=2.1.5}"></script>
-<script type="text/javascript" th:src="@{bower_components/fancybox/helpers/jquery.fancybox-buttons.js?v=1.0.5}"></script>
-<script type="text/javascript" th:src="@{bower_components/fancybox/helpers/jquery.fancybox-media.js?v=1.0.6}"></script>
-<script type="text/javascript" th:src="@{bower_components/fancybox/helpers/jquery.fancybox-thumbs.js?v=1.0.7}"></script>
+<script type="text/javascript" th:src="@{/bower_components/fancybox/jquery.fancybox.pack.js?v=2.1.5}"></script>
+<script type="text/javascript" th:src="@{/bower_components/fancybox/helpers/jquery.fancybox-buttons.js?v=1.0.5}"></script>
+<script type="text/javascript" th:src="@{/bower_components/fancybox/helpers/jquery.fancybox-media.js?v=1.0.6}"></script>
+<script type="text/javascript" th:src="@{/bower_components/fancybox/helpers/jquery.fancybox-thumbs.js?v=1.0.7}"></script>
 
 <!--jQuery Isotope-->
-<script type="text/javascript" th:src="@{js/isotope.pkgd.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/isotope.pkgd.min.js}"></script>
 
 <!--jQuery Imageloaded-->
-<script type="text/javascript" th:src="@{js/imagesloaded.pkgd.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/imagesloaded.pkgd.min.js}"></script>
 
 <!--FitVids js file-->
-<script type="text/javascript" th:src="@{js/jquery.fitvids.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.fitvids.js}"></script>
 
 <!--Placeholder js file-->
-<script type="text/javascript" th:src="@{js/placeholder.js}"></script>
+<script type="text/javascript" th:src="@{/js/placeholder.js}"></script>
 
 <!--Custom js file-->
-<script type="text/javascript" th:src="@{js/custom.js}"></script>
-<script type="text/javascript" th:src="@{js/signin.js}"></script>
+<script type="text/javascript" th:src="@{/js/custom.js}"></script>
+<script type="text/javascript" th:src="@{/js/signin.js}"></script>
 
 </body>
 </html>

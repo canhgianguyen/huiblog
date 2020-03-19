@@ -71,11 +71,9 @@ public class CategoryServiceImpl implements CategoryService {
         org.apache.lucene.search.Query query =
                 queryBuilder
                         .keyword()
-                        .fuzzy()
-                        .withEditDistanceUpTo(2)
-                        .withPrefixLength(1)
+                        .wildcard()
                         .onFields("name")
-                        .matching(searchKey)
+                        .matching("*" + searchKey + "*")
                         .createQuery();
 
         // wrap Lucene query in an Hibernate Query object

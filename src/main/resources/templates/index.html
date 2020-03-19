@@ -16,13 +16,14 @@
 
 <!--Home Slider Start-->
 <div th:fragment="slider" class="home-slider">
+
     <div class="flexslider">
         <ul class="slides">
 
             <!--Slider 1 Start-->
             <li class="img-div-cover">
                 <div class="home-slide-overlay" data-bg-color="#000" data-opacity="0.15"></div>
-                <img src="images/upload/home-slider01.jpg" alt="slider"/>
+                <img src="/images/upload/home-slider01.jpg" alt="slider"/>
 
                 <!--Slider Caption Start-->
                 <div class="flex-caption">
@@ -48,7 +49,7 @@
             <!--Slider 2 Start-->
             <li class="img-div-cover">
                 <div class="home-slide-overlay" data-bg-color="#000" data-opacity="0.15"></div>
-                <img src="images/upload/home-slider02.jpg" alt="slider"/>
+                <img src="/images/upload/home-slider02.jpg" alt="slider"/>
 
                 <!--Slider Caption Start-->
                 <div class="flex-caption">
@@ -74,7 +75,7 @@
             <!--Slider 3 Start-->
             <li class="img-div-cover">
                 <div class="home-slide-overlay" data-bg-color="#000" data-opacity="0.15"></div>
-                <img src="images/upload/home-slider03.jpg" alt="slider"/>
+                <img src="/images/upload/home-slider03.jpg" alt="slider"/>
 
                 <!--Slider Caption Start-->
                 <div class="flex-caption">
@@ -100,7 +101,7 @@
             <!--Slider 4 Start-->
             <li class="img-div-cover">
                 <div class="home-slide-overlay" data-bg-color="#000" data-opacity="0.15"></div>
-                <img src="images/upload/home-slider04.jpg" alt="slider"/>
+                <img src="/images/upload/home-slider04.jpg" alt="slider"/>
 
                 <!--Slider Caption Start-->
                 <div class="flex-caption">
@@ -153,7 +154,7 @@
                     <h3>My Instagram</h3>
                 </div>
                 <figure class="img-div-cover">
-                    <img src="images/upload/home-carousel-image01.jpg" alt="home carousel"/>
+                    <img src="/images/upload/home-carousel-image01.jpg" alt="home carousel"/>
                 </figure>
             </a>
         </div>
@@ -166,7 +167,7 @@
                     <h3>Highlight Story</h3>
                 </div>
                 <figure class="img-div-cover">
-                    <img src="images/upload/home-carousel-image02.jpg" alt="home carousel"/>
+                    <img src="/images/upload/home-carousel-image02.jpg" alt="home carousel"/>
                 </figure>
             </a>
         </div>
@@ -179,7 +180,7 @@
                     <h3>My inspiration</h3>
                 </div>
                 <figure class="img-div-cover">
-                    <img src="images/upload/home-carousel-image03.jpg" alt="home carousel"/>
+                    <img src="/images/upload/home-carousel-image03.jpg" alt="home carousel"/>
                 </figure>
             </a>
         </div>
@@ -192,7 +193,7 @@
                     <h3>Special gallery</h3>
                 </div>
                 <figure class="img-div-cover">
-                    <img src="images/upload/home-carousel-image04.jpg" alt="home carousel"/>
+                    <img src="/images/upload/home-carousel-image04.jpg" alt="home carousel"/>
                 </figure>
             </a>
         </div>
@@ -238,7 +239,7 @@
                 <div class="post-entry">
                     <h2><a th:href="@{'/p/' + ${post.metaTitle}}" th:text="${post?.title}"></a></h2>
                     <div class="post-description">
-                        <p th:text="${post?.content}"></p>
+                        <p th:text="${#strings.abbreviate(post?.content, 200)}"></p>
                     </div>
                     <div class="post-meta">
                         <ul>
@@ -267,15 +268,35 @@
         </div>
 
         <!--Pagination Start-->
-        <nav class="pagination">
-            <ul>
-                <li class="pagination-active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-            </ul>
-        </nav>
+        <th:block th:unless="${search}">
+            <nav class="pagination">
+                <ul>
+                    <li th:if="${listPost?.hasPrevious}"><a th:href="@{${listPost?.currPage - 1}}"><i
+                            class="fa fa-chevron-left"></i></a>
+                    </li>
+                    <li class="pagination-active"><a><span th:text="${listPost?.currPage}"></span></a></li>
+                    <li th:if="${listPost?.hasNext}"><a th:href="@{${listPost?.currPage + 1}}"><i
+                            class="fa fa-chevron-right"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        </th:block>
+
+        <th:block th:if="${search}">
+            <nav class="pagination">
+                <ul>
+                    <li th:if="${listPost?.hasPrevious}"><a
+                            th:href="@{'/p/search/' + ${listPost?.currPage - 1} + '?searchKey=' + ${searchKey}}"><i
+                            class="fa fa-chevron-left"></i></a>
+                    </li>
+                    <li class="pagination-active"><a><span th:text="${listPost?.currPage}"></span></a></li>
+                    <li th:if="${listPost?.hasNext}"><a
+                            th:href="@{'/p/search/' + ${listPost?.currPage + 1} + '?searchKey=' + ${searchKey}}"><i
+                            class="fa fa-chevron-right"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        </th:block>
         <!--Pagination End-->
 
     </div>
@@ -293,7 +314,7 @@
             </div>
             <div class="widget-detail">
                 <div class="widget-about-img img-div-cover">
-                    <img src="images/upload/sidebar-about-me.jpg" alt="about me"/>
+                    <img src="/images/upload/sidebar-about-me.jpg" alt="about me"/>
                 </div>
                 <div class="widget-about-detail">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mauris magna, lacinia ac purus quis,
@@ -325,7 +346,7 @@
                         <a href="#">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/recent-post01.jpg" alt="recent post"/>
+                                <img src="/images/upload/recent-post01.jpg" alt="recent post"/>
                             </figure>
                         </a>
                     </div>
@@ -342,7 +363,7 @@
                         <a href="#">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/recent-post02.jpg" alt="recent post"/>
+                                <img src="/images/upload/recent-post02.jpg" alt="recent post"/>
                             </figure>
                         </a>
                     </div>
@@ -359,7 +380,7 @@
                         <a href="#">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/recent-post03.jpg" alt="recent post"/>
+                                <img src="/images/upload/recent-post03.jpg" alt="recent post"/>
                             </figure>
                         </a>
                     </div>
@@ -376,7 +397,7 @@
                         <a href="#">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/recent-post04.jpg" alt="recent post"/>
+                                <img src="/images/upload/recent-post04.jpg" alt="recent post"/>
                             </figure>
                         </a>
                     </div>
@@ -423,7 +444,7 @@
                         <a href="#" target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/widget-instagram01.jpg" alt="widget instagram"/>
+                                <img src="/images/upload/widget-instagram01.jpg" alt="widget instagram"/>
                             </figure>
                         </a>
                     </li>
@@ -431,7 +452,7 @@
                         <a href="#" target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/widget-instagram02.jpg" alt="widget instagram"/>
+                                <img src="/images/upload/widget-instagram02.jpg" alt="widget instagram"/>
                             </figure>
                         </a>
                     </li>
@@ -439,7 +460,7 @@
                         <a href="#" target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/widget-instagram03.jpg" alt="widget instagram"/>
+                                <img src="/images/upload/widget-instagram03.jpg" alt="widget instagram"/>
                             </figure>
                         </a>
                     </li>
@@ -447,7 +468,7 @@
                         <a href="#" target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/widget-instagram04.jpg" alt="widget instagram"/>
+                                <img src="/images/upload/widget-instagram04.jpg" alt="widget instagram"/>
                             </figure>
                         </a>
                     </li>
@@ -455,7 +476,7 @@
                         <a href="#" target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/widget-instagram05.jpg" alt="widget instagram"/>
+                                <img src="/images/upload/widget-instagram05.jpg" alt="widget instagram"/>
                             </figure>
                         </a>
                     </li>
@@ -463,7 +484,7 @@
                         <a href="#" target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/widget-instagram06.jpg" alt="widget instagram"/>
+                                <img src="/images/upload/widget-instagram06.jpg" alt="widget instagram"/>
                             </figure>
                         </a>
                     </li>
@@ -471,7 +492,7 @@
                         <a href="#" target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/widget-instagram07.jpg" alt="widget instagram"/>
+                                <img src="/images/upload/widget-instagram07.jpg" alt="widget instagram"/>
                             </figure>
                         </a>
                     </li>
@@ -479,7 +500,7 @@
                         <a href="#" target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/widget-instagram08.jpg" alt="widget instagram"/>
+                                <img src="/images/upload/widget-instagram08.jpg" alt="widget instagram"/>
                             </figure>
                         </a>
                     </li>
@@ -487,7 +508,7 @@
                         <a href="#" target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="images/upload/widget-instagram09.jpg" alt="widget instagram"/>
+                                <img src="/images/upload/widget-instagram09.jpg" alt="widget instagram"/>
                             </figure>
                         </a>
                     </li>
@@ -527,7 +548,7 @@
         <aside class="widget widget_banner_sidebar">
             <div class="widget-detail">
                 <a href="#" target="_blank">
-                    <img src="images/upload/banner-widget.jpg" alt="banner widget"/>
+                    <img src="/images/upload/banner-widget.jpg" alt="banner widget"/>
                 </a>
             </div>
         </aside>
