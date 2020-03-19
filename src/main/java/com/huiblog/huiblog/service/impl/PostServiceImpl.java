@@ -9,15 +9,19 @@ import com.huiblog.huiblog.model.dto.PostDTO;
 import com.huiblog.huiblog.model.mapper.PostMapper;
 import com.huiblog.huiblog.model.request.CreatePostReq;
 import com.huiblog.huiblog.model.request.UpdatePostReq;
+import com.huiblog.huiblog.repository.CategoryRepository;
 import com.huiblog.huiblog.repository.PostRepository;
+import com.huiblog.huiblog.repository.UserRepository;
+import com.huiblog.huiblog.security.CustomUserDetails;
+import com.huiblog.huiblog.service.CategoryService;
 import com.huiblog.huiblog.service.PostService;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
@@ -33,6 +37,11 @@ public class PostServiceImpl implements PostService {
     @Autowired
     private EntityManager entityManager;
 
+    @Autowired
+    CategoryRepository categoryRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     @Override
     public Paging getListPost(int page) {
@@ -49,73 +58,6 @@ public class PostServiceImpl implements PostService {
         paging.setHasPrevious(postEntities.hasPrevious());
         paging.setTotalPages(postEntities.getTotalPages());
 
-        return paging;
-    }
-
-    @Override
-    public Paging getListPostSearch(int page, String searchKey) {
-        // get the full text entity manager
-        FullTextEntityManager fullTextEntityManager =
-                org.hibernate.search.jpa.Search.
-                        getFullTextEntityManager(entityManager);
-
-        // create the query using Hibernate Search query DSL
-        QueryBuilder queryBuilder =
-                fullTextEntityManager.getSearchFactory()
-                        .buildQueryBuilder().forEntity(Post.class).get();
-
-        // a very basic query by keywords
-        org.apache.lucene.search.Query query =
-                queryBuilder
-                        .keyword()
-                        .wildcard()
-                        .onFields("title","content")
-                        .matching(searchKey)
-                        .createQuery();
-
-        // wrap Lucene query in an Hibernate Query object
-        org.hibernate.search.jpa.FullTextQuery jpaQuery =
-                fullTextEntityManager.createFullTextQuery(query, Post.class);
-
-        Paging paging = new Paging();
-        int limit = 6;
-        boolean hasNext = true;
-        boolean hasPrevious = true;
-        int totalPage = 0;
-        int totalElements = jpaQuery.getResultSize();
-
-        if ( (float) totalElements % limit == 0) {
-            totalPage = totalElements/limit;
-        }
-        else {
-            totalPage = totalElements/limit + 1;
-        }
-
-        if (page < 0) {
-            page = 1;
-        }
-
-        if (page > totalPage) {
-            page = 1;
-        }
-
-        if (page == 1) {
-            hasPrevious = false;
-        }
-
-        if (page == totalPage) {
-            hasNext = false;
-        }
-        jpaQuery.setFirstResult(page * limit - limit);
-        jpaQuery.setMaxResults(limit);
-
-        paging.setCurrPage(page);
-        paging.setTotalPages(totalPage);
-        paging.setHasNext(hasNext);
-        paging.setHasPrevious(hasPrevious);
-        paging.setContent(jpaQuery.getResultList());
-
-        //Page<Post> postEntities = new PageImpl<Post>(jpaQuery.getResultList(), PageRequest.of(1, 6), jpaQuery.getResultSize());
         return paging;
     }
 
@@ -186,13 +128,32 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public PostDTO getPostByMetaTitle(String metaTitle) {
+        Post post = postRepository.findByMetaTitle(metaTitle);
+        if(post == null) {
+            throw new NotFoundException("This Post does not exist!");
+        }
+        return PostMapper.toPostDTO(post);
+    }
+
+    @Override
     public PostDTO createPost(CreatePostReq createPostReq) {
         Post post = postRepository.findAllByTitle(createPostReq.getTitle());
         if(post != null) {
             throw new DuplicateRecordException("This Post is already exists!");
         }
+
+        // Get userID
+        CustomUserDetails user = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         post = PostMapper.toPost(createPostReq);
-        postRepository.save(post);
+        post.setCategory(categoryRepository.getOne(createPostReq.getCategoryID()));
+        post.setUser(userRepository.getOne(user.getUser().getId()));
+        try {
+            postRepository.save(post);
+        } catch (Exception e){
+            throw new InternalServerException("Database error. Can't update post");
+        }
 
         return PostMapper.toPostDTO(post);
     }
@@ -204,14 +165,11 @@ public class PostServiceImpl implements PostService {
             throw new NotFoundException("This Post does not exist!");
         }
 
-//        if(updatePostReq.getTitle().equals(post.get().getTitle())) {
-//            throw new DuplicateRecordException("This Post is already exists!");
-//        }
         Post updatePost = PostMapper.toPost(updatePostReq, postID, post.get().getCreatedDate());
-
+        updatePost.setCategory(categoryRepository.getOne(updatePostReq.getCategoryID()));
         try {
             postRepository.save(updatePost);
-        }catch (Exception e){
+        } catch (Exception e){
             throw new InternalServerException("Database error. Can't update post");
         }
         return PostMapper.toPostDTO(updatePost);

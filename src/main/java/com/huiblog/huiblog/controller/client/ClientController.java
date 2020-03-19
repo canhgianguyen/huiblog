@@ -1,19 +1,32 @@
 package com.huiblog.huiblog.controller.client;
 
+import com.huiblog.huiblog.model.dto.Paging;
+import com.huiblog.huiblog.model.dto.PostDTO;
+import com.huiblog.huiblog.service.PostService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/")
 @Controller
 public class ClientController {
-    @GetMapping("")
-    public String index() {
+    @Autowired
+    private PostService postService;
+
+    @GetMapping(value = {"", "/{page}"})
+    public String index(Model model, @PathVariable(required = false) Integer page) {
+        int currPage = (page == null ? 0 : page - 1);
+        Paging listPost = postService.getListPost(currPage);
+        model.addAttribute("listPost", listPost);
         return "index";
     }
 
-    @GetMapping("/post")
-    public String post() {
+    @GetMapping("/{metaTitle}")
+    public String post(Model model, @PathVariable(required = true) String metaTitle) {
+        PostDTO postDTO = postService.getPostByMetaTitle(metaTitle);
+        model.addAttribute("post", postDTO);
         return "post";
     }
 

@@ -13,8 +13,10 @@ public class PostMapper {
     public static PostDTO toPostDTO(Post post) {
         PostDTO postDTO = new PostDTO();
         postDTO.setId(post.getId());
-        postDTO.setCategoryID(post.getCategoryID());
-        postDTO.setUserID(post.getUserID());
+        postDTO.setCategoryID(post.getCategory().getId());
+        postDTO.setCategoryName(post.getCategory().getName());
+        postDTO.setUserID(post.getUser().getId());
+        postDTO.setUserName(post.getUser().getName());
         postDTO.setTitle(post.getTitle());
         postDTO.setMetaTitle(post.getMetaTitle());
         postDTO.setContent(post.getContent());
@@ -28,8 +30,8 @@ public class PostMapper {
 
     public static Post toPost(CreatePostReq  createPostReq) {
         Post post = new Post();
-        post.setCategoryID(createPostReq.getCategoryID());
-        post.setUserID(createPostReq.getUserID());
+//        post.setCategoryID(createPostReq.getCategoryID());
+//        post.setUserID(createPostReq.getUserID());
         post.setImg(createPostReq.getImg());
         post.setTitle(createPostReq.getTitle());
         post.setMetaTitle(ConvertStringToURL.convert(createPostReq.getTitle()));
@@ -44,7 +46,7 @@ public class PostMapper {
     public static Post toPost(UpdatePostReq updatePostReq, int postID, Date createdDate) {
         Post post = new Post();
         post.setId(postID);
-        post.setCategoryID(updatePostReq.getCategoryID());
+//        post.setCategoryID(updatePostReq.getCategoryID());
         post.setImg(updatePostReq.getImg());
         post.setTitle(updatePostReq.getTitle());
         post.setMetaTitle(ConvertStringToURL.convert(updatePostReq.getTitle()));

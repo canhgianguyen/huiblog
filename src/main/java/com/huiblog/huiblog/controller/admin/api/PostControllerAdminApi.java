@@ -41,12 +41,6 @@ public class PostControllerAdminApi {
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/posts/search/{page}")
-    public ResponseEntity<?> getPostSearch(@PathVariable int page, @RequestParam String searchKey){
-
-        return ResponseEntity.ok(postService.getListPostSearch(page, searchKey));
-    }
-
     @ApiOperation(value = "Create post", response = PostDTO.class)
     @ApiResponses({
             @ApiResponse(code=400,message = "Post already exists in the system"),

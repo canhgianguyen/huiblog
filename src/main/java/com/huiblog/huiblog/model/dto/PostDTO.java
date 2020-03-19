@@ -10,7 +10,11 @@ public class PostDTO {
 
     private int userID;
 
+    private String userName;
+
     private int categoryID;
+
+    private String categoryName;
 
     private String title;
 

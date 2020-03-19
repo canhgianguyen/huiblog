@@ -4,7 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -48,5 +50,4 @@ public class User {
     @NotNull
     @Column(name = "role", columnDefinition = "varchar(255) default 'USER'")
     private String role;
-
 }

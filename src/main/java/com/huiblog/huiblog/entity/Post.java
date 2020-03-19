@@ -28,11 +28,13 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "user_id")
-    private int userID;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @Column(name = "category_id")
-    private int categoryID;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     @Field(termVector = TermVector.YES, analyze= Analyze.YES, store= Store.NO)
     @Column(name = "title")

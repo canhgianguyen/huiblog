@@ -34,9 +34,6 @@ public class AdminController {
         Paging listPost = postService.getListPost(currPage);
         model.addAttribute("listPost", listPost);
 
-        CustomUserDetails customUserDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println("ID ú dờ: " + customUserDetails.getUser().getId());
-
         List<CategoryDTO> listCate = categoryService.getListCategory();
         model.addAttribute("listCate", listCate);
 

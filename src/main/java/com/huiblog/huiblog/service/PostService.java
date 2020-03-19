@@ -16,11 +16,11 @@ import java.util.List;
 public interface PostService {
     Paging getListPost(int page);
 
-    Paging getListPostSearch(int page, String s);
-
     Paging getListPostFTS(int page, String s);
 
     PostDTO getPostByID(int postID);
+
+    PostDTO getPostByMetaTitle(String metaTitle);
 
     PostDTO createPost(CreatePostReq createPostReq);
 
