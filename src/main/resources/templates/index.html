@@ -216,45 +216,42 @@
 
         <div class="post-list">
 
-            <!--Post Entry 1 Start-->
-            <article class="post-type-standard">
+            <!--Post Start-->
+            <article class="post-type-standard" th:each="post : ${listPost?.content}">
 
                 <!--Post Image-->
                 <div class="post-img img-div-cover">
                     <div class="post-list-category">
                         <ul>
-                            <li><a href="#">Vestibulum</a></li>
-                            <li><a href="#">Aenean</a></li>
+                            <li th:text="${post.categoryName}"></li>
                         </ul>
                     </div>
-                    <a href="#">
+                    <a th:href="@{'/p/' + ${post.metaTitle}}">
                         <figure>
                             <div class="overlay-hover"></div>
-                            <img src="images/upload/post-img01.jpg" alt="post image"/>
+                            <img th:src="@{${post.img}}" alt="post image"/>
                         </figure>
                     </a>
                 </div>
 
                 <!--Post Entry-->
                 <div class="post-entry">
-                    <h2><a href="#">Donec tellus faucibus lobortis</a></h2>
+                    <h2><a th:href="@{'/p/' + ${post.metaTitle}}" th:text="${post?.title}"></a></h2>
                     <div class="post-description">
-                        <p>Nullam fringilla erat ut nulla volutpat, eget tempor leo sagittis vestibulum sodales luctus
-                            nunc mauris a malesuada et lobortis leo hendrerit sed. Sed id ultrices mauris, at suscipit
-                            lectus. Praesent non luctus tellus. Etiam cursus non sapien vel facilisis.</p>
+                        <p th:text="${post?.content}"></p>
                     </div>
                     <div class="post-meta">
                         <ul>
-                            <li><a href="#">12 October 2015</a></li>
-                            <li><a href="#">John Doe</a></li>
-                            <li><a href="#">Comments<span>4</span></a></li>
+                            <li th:text="${#dates.format(post?.created, 'dd MMMM yyyy')}"></li>
+                            <li th:text="${post.userName}"></li>
+                            <li>Comments<span>0</span></li>
                         </ul>
                     </div>
                 </div>
 
                 <!--Post Share-->
                 <div class="post-share">
-                    <div class="read-more-btn"><a href="#">Read more</a></div>
+                    <div class="read-more-btn"><a th:href="@{'/p/' + ${post.metaTitle}}">Read more</a></div>
                     <div class="share-btn">Share</div>
                     <ul class="share-standard">
                         <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -265,299 +262,7 @@
                 </div>
 
             </article>
-            <!--Post Entry 1 End-->
-
-            <!--Post Entry 2 Start-->
-            <article class="post-type-gallery">
-
-                <!--Post Image-->
-                <div class="post-img">
-                    <div class="post-list-category">
-                        <ul>
-                            <li><a href="#">Vestibulum</a></li>
-                            <li><a href="#">Aenean</a></li>
-                        </ul>
-                    </div>
-
-                    <!--Gallery Start-->
-                    <div class="post-gallery">
-                        <div class="megafolio-container norounded noborder">
-
-                            <!--Gallery 1-->
-                            <div class="mega-entry" id="entry-1" data-src="images/upload/post-gallery-imag01.jpg"
-                                 data-width="800" data-height="600">
-                                <a class="fancybox" data-fancybox-group="group1"
-                                   href="images/upload/post-gallery-imag01.jpg">
-                                    <div class="mega-overlay-hover"></div>
-                                </a>
-                            </div>
-
-                            <!--Gallery 2-->
-                            <div class="mega-entry" id="entry-2" data-src="images/upload/post-gallery-imag02.jpg"
-                                 data-width="800" data-height="600">
-                                <a class="fancybox" data-fancybox-group="group1"
-                                   href="images/upload/post-gallery-imag02.jpg">
-                                    <div class="mega-overlay-hover"></div>
-                                </a>
-                            </div>
-
-                            <!--Gallery 3-->
-                            <div class="mega-entry" id="entry-3" data-src="images/upload/post-gallery-imag03.jpg"
-                                 data-width="800" data-height="600">
-                                <a class="fancybox" data-fancybox-group="group1"
-                                   href="images/upload/post-gallery-imag03.jpg">
-                                    <div class="mega-overlay-hover"></div>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!--Gallery End-->
-
-                </div>
-
-                <!--Post Entry-->
-                <div class="post-entry">
-                    <h2><a href="#">Donec tellus faucibus lobortis</a></h2>
-                    <div class="post-description">
-                        <p>Nullam fringilla erat ut nulla volutpat, eget tempor leo sagittis vestibulum sodales luctus
-                            nunc mauris a malesuada et lobortis leo hendrerit sed. Sed id ultrices mauris, at suscipit
-                            lectus. Praesent non luctus tellus. Etiam cursus non sapien vel facilisis.</p>
-                    </div>
-                    <div class="post-meta">
-                        <ul>
-                            <li><a href="#">12 October 2015</a></li>
-                            <li><a href="#">John Doe</a></li>
-                            <li><a href="#">Comments<span>4</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!--Post Share-->
-                <div class="post-share">
-                    <div class="read-more-btn"><a href="#">Read more</a></div>
-                    <div class="share-btn">Share</div>
-                    <ul class="share-standard">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                    </ul>
-                </div>
-
-            </article>
-            <!--Post Entry 2 End-->
-
-            <!--Post Entry 3 Start-->
-            <article class="post-type-slide">
-
-                <!--Post Image-->
-                <div class="post-img">
-                    <div class="post-list-category">
-                        <ul>
-                            <li><a href="#">Vestibulum</a></li>
-                            <li><a href="#">Aenean</a></li>
-                        </ul>
-                    </div>
-
-                    <!--Post List Slide Start-->
-                    <div class="post-list-slide">
-                        <div class="flexslider">
-                            <ul class="slides">
-
-                                <!--Slide 1-->
-                                <li>
-                                    <a class="fancybox" data-fancybox-group="group2"
-                                       href="images/upload/post-list-slide01.jpg">
-                                        <figure>
-                                            <div class="overlay-hover"></div>
-                                            <img src="images/upload/post-list-slide01.jpg" alt="post slide"/>
-                                        </figure>
-                                    </a>
-                                </li>
-
-                                <!--Slide 2-->
-                                <li>
-                                    <a class="fancybox" data-fancybox-group="group2"
-                                       href="images/upload/post-list-slide02.jpg">
-                                        <figure>
-                                            <div class="overlay-hover"></div>
-                                            <img src="images/upload/post-list-slide02.jpg" alt="post slide"/>
-                                        </figure>
-                                    </a>
-                                </li>
-
-                                <!--Slide 3-->
-                                <li>
-                                    <a class="fancybox" data-fancybox-group="group2"
-                                       href="images/upload/post-list-slide03.jpg">
-                                        <figure>
-                                            <div class="overlay-hover"></div>
-                                            <img src="images/upload/post-list-slide03.jpg" alt="post slide"/>
-                                        </figure>
-                                    </a>
-                                </li>
-
-                                <!--Slide 4-->
-                                <li>
-                                    <a class="fancybox" data-fancybox-group="group2"
-                                       href="images/upload/post-list-slide04.jpg">
-                                        <figure>
-                                            <div class="overlay-hover"></div>
-                                            <img src="images/upload/post-list-slide04.jpg" alt="post slide"/>
-                                        </figure>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
-                    <!--Post List Slide End-->
-
-                </div>
-
-                <!--Slide Custom Nav Start-->
-                <div class="flexControl-custom">
-                    <ol class="flexControl-custom-nav">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ol>
-                </div>
-                <!--Slide Custom Nav End-->
-
-                <!--Post Entry-->
-                <div class="post-entry">
-                    <h2><a href="#">Donec tellus faucibus lobortis</a></h2>
-                    <div class="post-description">
-                        <p>Nullam fringilla erat ut nulla volutpat, eget tempor leo sagittis vestibulum sodales luctus
-                            nunc mauris a malesuada et lobortis leo hendrerit sed. Sed id ultrices mauris, at suscipit
-                            lectus. Praesent non luctus tellus. Etiam cursus non sapien vel facilisis.</p>
-                    </div>
-                    <div class="post-meta">
-                        <ul>
-                            <li><a href="#">12 October 2015</a></li>
-                            <li><a href="#">John Doe</a></li>
-                            <li><a href="#">Comments<span>4</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!--Post Share-->
-                <div class="post-share">
-                    <div class="read-more-btn"><a href="#">Read more</a></div>
-                    <div class="share-btn">Share</div>
-                    <ul class="share-standard">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                    </ul>
-                </div>
-
-            </article>
-            <!--Post Entry 3 End-->
-
-            <!--Post Entry 4 Start-->
-            <article class="post-type-video">
-
-                <!--Post Video-->
-                <div class="post-video">
-                    <iframe src="http://player.vimeo.com/video/72104173?title=0&amp;byline=0&amp;portrait=0" width="400"
-                            height="225"></iframe>
-                </div>
-
-                <!--Post Categories Start-->
-                <div class="post-media-category">
-                    <ul>
-                        <li><a href="#">Vestibulum</a></li>
-                        <li><a href="#">Aenean</a></li>
-                    </ul>
-                </div>
-                <!--Post Categories End-->
-
-                <!--Post Entry-->
-                <div class="post-entry">
-                    <h2><a href="#">Donec tellus faucibus lobortis</a></h2>
-                    <div class="post-description">
-                        <p>Nullam fringilla erat ut nulla volutpat, eget tempor leo sagittis vestibulum sodales luctus
-                            nunc mauris a malesuada et lobortis leo hendrerit sed. Sed id ultrices mauris, at suscipit
-                            lectus. Praesent non luctus tellus. Etiam cursus non sapien vel facilisis.</p>
-                    </div>
-                    <div class="post-meta">
-                        <ul>
-                            <li><a href="#">12 October 2015</a></li>
-                            <li><a href="#">John Doe</a></li>
-                            <li><a href="#">Comments<span>4</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!--Post Share-->
-                <div class="post-share">
-                    <div class="read-more-btn"><a href="#">Read more</a></div>
-                    <div class="share-btn">Share</div>
-                    <ul class="share-standard">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                    </ul>
-                </div>
-
-            </article>
-            <!--Post Entry 4 End-->
-
-            <!--Post Entry 5 Start-->
-            <article class="post-type-audio">
-
-                <!--Post Audio-->
-                <div class="post-audio">
-                    <iframe height="300"
-                            src="https://w.soundcloud.com/player/?visual=true&amp;url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F227444763&amp;show_artwork=true"></iframe>
-                </div>
-
-                <!--Post Categories Start-->
-                <div class="post-media-category">
-                    <ul>
-                        <li><a href="#">Vestibulum</a></li>
-                        <li><a href="#">Aenean</a></li>
-                    </ul>
-                </div>
-                <!--Post Categories End-->
-
-                <!--Post Entry-->
-                <div class="post-entry">
-                    <h2><a href="#">Donec tellus faucibus lobortis</a></h2>
-                    <div class="post-description">
-                        <p>Nullam fringilla erat ut nulla volutpat, eget tempor leo sagittis vestibulum sodales luctus
-                            nunc mauris a malesuada et lobortis leo hendrerit sed. Sed id ultrices mauris, at suscipit
-                            lectus. Praesent non luctus tellus. Etiam cursus non sapien vel facilisis.</p>
-                    </div>
-                    <div class="post-meta">
-                        <ul>
-                            <li><a href="#">12 October 2015</a></li>
-                            <li><a href="#">John Doe</a></li>
-                            <li><a href="#">Comments<span>4</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!--Post Share-->
-                <div class="post-share">
-                    <div class="read-more-btn"><a href="#">Read more</a></div>
-                    <div class="share-btn">Share</div>
-                    <ul class="share-standard">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                    </ul>
-                </div>
-
-            </article>
-            <!--Post Entry 5 End-->
+            <!--Post End-->
 
         </div>
 

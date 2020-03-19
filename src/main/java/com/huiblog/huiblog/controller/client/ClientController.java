@@ -23,7 +23,7 @@ public class ClientController {
         return "index";
     }
 
-    @GetMapping("/{metaTitle}")
+    @GetMapping("/p/{metaTitle}")
     public String post(Model model, @PathVariable(required = true) String metaTitle) {
         PostDTO postDTO = postService.getPostByMetaTitle(metaTitle);
         model.addAttribute("post", postDTO);

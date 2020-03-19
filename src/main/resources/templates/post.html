@@ -22,7 +22,7 @@
 
             <!--Featured Image Start-->
             <div class="featured-image img-div-cover">
-                <img src="images/upload/post-single-featured-image01.jpg" alt="featured image"/>
+                <img th:src="@{${post.img}}" alt="featured image"/>
             </div>
             <!--Featured Image End-->
 
@@ -31,7 +31,7 @@
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Category</a></li>
-                    <li><a href="#">Quisque vitae sapien neque risus</a></li>
+                    <li><a href="#" th:text="${post?.title}"></a></li>
                 </ul>
             </div>
             <!--Breadcrumbs End-->
@@ -41,47 +41,23 @@
 
                 <!--Post Title Start-->
                 <div class="page-title">
-                    <h1>Quisque vitae sapien neque risus</h1>
+                    <h1 th:text="${post?.title}"></h1>
                 </div>
                 <!--Post Title End-->
 
                 <!--Post Meta Start-->
                 <div class="post-meta">
                     <ul>
-                        <li><a href="#">12 October 2015</a></li>
-                        <li><a href="#">Category</a></li>
-                        <li><a href="#">John Doe</a></li>
-                        <li><a href="#">Comments<span>4</span></a></li>
+                        <li th:text="${#dates.format(post?.created, 'dd MMMM yyyy')}"></li>
+                        <li th:text="${post.categoryName}"></li>
+                        <li th:text="${post.userName}"></li>
+                        <li><a href="#">Comments<span>0</span></a></li>
                     </ul>
                 </div>
                 <!--Post Meta End-->
 
                 <!--Post Text Content Start-->
-                <p><span class="dropcap">W</span>orem ipsum dolor sit amet, consectetur adipiscing elit ut mauris magna,
-                    lacinia ac purus quis, rutrum bibendum leo. Nullam sit amet nibh eu odio ornare laoreet. Duis
-                    imperdiet est ut tristique auctor. Suspendisse mattis condimentum ultricies. Cras nec enim ipsum
-                    augue facilisis lacinia nec a turpis. Maecenas a mauris eget ligula condimentum semper. In egestas
-                    rhoncus consequat. Proin ut lectus quis dolor congue iaculis. Vivamus consequat facilisis dolor,
-                    amet porta risus placerat sed. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-                    posuere cubilia curae sed tempor ornare justo sed congue cras.</p>
-
-                <p>Nullam fringilla erat ut nulla volutpat, eget tempor leo sagittis. Vestibulum sodales luctus nunc, et
-                    lobortis leo hendrerit sed. Sed id ultrices mauris, at suscipit lectus. Praesent non luctus tellus.
-                    Etiam cursus non sapien vel facilisis. Vestibulum convallis est quis nulla vestibulum, sit amet
-                    posuere tortor faucibus. Suspendisse dictum congue lacinia. Suspendisse dignissim nunc, a interdum
-                    nibh. Aenean pretium quam in orci egestas, lobortis dui semper. Sed euismod quis mauris a malesuada.
-                    Nulla varius eros dui, eu molestie felis mattis. Nunc sagittis vulputate ullamcorper. Nullam varius
-                    bibendum nisi eu egestas. Donec dapibus orci vel lacus pellentesque, at molestie nulla volutpat.</p>
-
-                <p>Donec tellus dui, faucibus lobortis viverra id, blandit at justo. Suspendisse dolor turpis, lobortis
-                    sodales felis sed, hendrerit fermentum quam. Fusce mattis nibh nulla, in aliquam lorem semper eget.
-                    Etiam sit amet vehicula arcu. Aliquam aliquam, ipsum eu posuere suscipit, lorem massa sollicitudin
-                    nibh, sed aliquet justo enim eget sem. Quisque orci augue, varius non luctus eu, laoreet sit amet
-                    ante. Aenean ut augue sollicitudin, interdum quam vitae, aliquam nisl. Cras ac lobortis nulla. Sed
-                    ligula felis, pulvinar id velit ac, tristique vestibulum risus. Duis luctus sem nec aliquam
-                    vestibulum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                    himenaeos. Curabitur suscipit at ligula vel cursus. Aliquam erat volutpat. Curabitur velit lacus,
-                    feugiat et accumsan.</p>
+                <p th:text="${post?.content}"></p>
                 <!--Post Text Content End-->
 
                 <div data-height="17"></div>

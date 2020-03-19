@@ -8,28 +8,28 @@
     <title th:replace="${title}">Ahihi</title>
 
     <!--Bootstrap Element and Grid System-->
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link th:href="@{css/bootstrap.css}" rel="stylesheet" type="text/css">
 
     <!--Main Elements CSS-->
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link th:href="@{css/style.css}" rel="stylesheet" type="text/css">
 
     <!--Font Awesome-->
-    <link href="fonts/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link th:href="@{fonts/css/font-awesome.min.css}" rel="stylesheet" type="text/css">
 
     <!--FlexSlider CSS-->
-    <link href="bower_components/FlexSlider/flexslider.css" rel="stylesheet" type="text/css">
+    <link th:href="@{bower_components/FlexSlider/flexslider.css}" rel="stylesheet" type="text/css">
 
     <!--OWL Carousel CSS-->
-    <link href="bower_components/owl.carousel/assets/owl.carousel.css" rel="stylesheet" type="text/css">
+    <link th:href="@{bower_components/owl.carousel/assets/owl.carousel.css}" rel="stylesheet" type="text/css">
 
     <!--Megafolio CSS-->
-    <link href="bower_components/megafolio/css/settings.css" rel="stylesheet" type="text/css">
+    <link th:href="@{bower_components/megafolio/css/settings.css}" rel="stylesheet" type="text/css">
 
     <!--FancyBox CSS-->
-    <link rel="stylesheet" href="bower_components/fancybox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="bower_components/fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css"
+    <link rel="stylesheet" th:href="@{bower_components/fancybox/jquery.fancybox.css?v=2.1.5}" type="text/css" media="screen"/>
+    <link rel="stylesheet" th:href="@{bower_components/fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5}" type="text/css"
           media="screen"/>
-    <link rel="stylesheet" href="bower_components/fancybox/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css"
+    <link rel="stylesheet" th:href="@{bower_components/fancybox/helpers/jquery.fancybox-thumbs.css?v=1.0.7}" type="text/css"
           media="screen"/>
 
     <!--Google Fonts-->
@@ -37,7 +37,7 @@
           rel='stylesheet' type='text/css'>
 
     <!--Color Scheme Setting-->
-    <link href="css/color.css" rel="stylesheet" type="text/css">
+    <link th:href="@{css/color.css}" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -446,48 +446,48 @@
 <!--Whole Container End-->
 
 <!--jQuery files-->
-<script type="text/javascript" src="js/vendor/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="js/vendor/modernizr.custom.js"></script>
-<script type="text/javascript" src="js/classie.js"></script>
-<script type="text/javascript" src="js/search.js"></script>
+<script type="text/javascript" th:src="@{js/vendor/jquery-1.11.3.min.js}"></script>
+<script type="text/javascript" th:src="@{js/vendor/modernizr.custom.js}"></script>
+<script type="text/javascript" th:src="@{js/classie.js}"></script>
+<script type="text/javascript" th:src="@{js/search.js}"></script>
 
 <!--jQuery Retina-->
-<script type="text/javascript" src="js/retina.js"></script>
+<script type="text/javascript" th:src="@{js/retina.js}"></script>
 
 <!--Particle Background js file-->
-<script type="text/javascript" src="js/jquery.particleground.js"></script>
+<script type="text/javascript" th:src="@{js/jquery.particleground.js}"></script>
 
 <!--jQuery FlexSlider-->
-<script type="text/javascript" src="bower_components/FlexSlider/jquery.flexslider.js"></script>
+<script type="text/javascript" th:src="@{bower_components/FlexSlider/jquery.flexslider.js}"></script>
 
 <!--jQuery OWL Carousel-->
-<script type="text/javascript" src="bower_components/owl.carousel/owl.carousel.min.js"></script>
+<script type="text/javascript" th:src="@{bower_components/owl.carousel/owl.carousel.min.js}"></script>
 
 <!--jQuery Megafolio-->
-<script type="text/javascript" src="bower_components/megafolio/js/jquery.themepunch.tools.min.js"></script>
-<script type="text/javascript" src="bower_components/megafolio/js/jquery.themepunch.megafoliopro.js"></script>
+<script type="text/javascript" th:src="@{bower_components/megafolio/js/jquery.themepunch.tools.min.js}"></script>
+<script type="text/javascript" th:src="@{bower_components/megafolio/js/jquery.themepunch.megafoliopro.js}"></script>
 
 <!--jQuery FancyBox-->
-<script type="text/javascript" src="bower_components/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
-<script type="text/javascript" src="bower_components/fancybox/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
-<script type="text/javascript" src="bower_components/fancybox/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
-<script type="text/javascript" src="bower_components/fancybox/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+<script type="text/javascript" th:src="@{bower_components/fancybox/jquery.fancybox.pack.js?v=2.1.5}"></script>
+<script type="text/javascript" th:src="@{bower_components/fancybox/helpers/jquery.fancybox-buttons.js?v=1.0.5}"></script>
+<script type="text/javascript" th:src="@{bower_components/fancybox/helpers/jquery.fancybox-media.js?v=1.0.6}"></script>
+<script type="text/javascript" th:src="@{bower_components/fancybox/helpers/jquery.fancybox-thumbs.js?v=1.0.7}"></script>
 
 <!--jQuery Isotope-->
-<script type="text/javascript" src="js/isotope.pkgd.min.js"></script>
+<script type="text/javascript" th:src="@{js/isotope.pkgd.min.js}"></script>
 
 <!--jQuery Imageloaded-->
-<script type="text/javascript" src="js/imagesloaded.pkgd.min.js"></script>
+<script type="text/javascript" th:src="@{js/imagesloaded.pkgd.min.js}"></script>
 
 <!--FitVids js file-->
-<script type="text/javascript" src="js/jquery.fitvids.js"></script>
+<script type="text/javascript" th:src="@{js/jquery.fitvids.js}"></script>
 
 <!--Placeholder js file-->
-<script type="text/javascript" src="js/placeholder.js"></script>
+<script type="text/javascript" th:src="@{js/placeholder.js}"></script>
 
 <!--Custom js file-->
-<script type="text/javascript" src="js/custom.js"></script>
-<script type="text/javascript" src="js/signin.js"></script>
+<script type="text/javascript" th:src="@{js/custom.js}"></script>
+<script type="text/javascript" th:src="@{js/signin.js}"></script>
 
 </body>
 </html>
