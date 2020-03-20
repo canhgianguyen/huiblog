@@ -16,6 +16,8 @@ public class CategoryDTO {
 
     private String name;
 
+    private String metaName;
+
     private Date createdDate;
 
     private Date updatedDate;

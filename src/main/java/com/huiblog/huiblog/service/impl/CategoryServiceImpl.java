@@ -130,6 +130,45 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public Paging getListPostByCategoryMetaName(String metaName, int page) {
+        Category category = categoryRepository.findByMetaName(metaName);
+        if (category == null) {
+            throw new NotFoundException("This Category does not exist!");
+        }
+
+        // Paging list post
+        Paging paging = new Paging();
+        int limit = 6;
+        int totalElements = category.getPosts().size();
+
+        int totalPage = (((float) totalElements % limit == 0) ? totalElements/limit : totalElements/limit + 1);
+
+        page = ((page <= 0) || (page > totalPage) ? 0 : page);
+
+        boolean hasNext = ((page == (totalPage - 1)) ? false : true);
+        boolean hasPrevious = ((page == 0) ? false : true);
+
+        // Set start and endIndex for subList
+        int startIndex = ((totalElements < limit) ? 0 : (page * limit));
+        int endIndex = ((totalElements < limit) ? totalElements : (startIndex + limit));
+
+        List<PostDTO> postDTOS = new ArrayList<>();
+        for (Post post : category.getPosts().subList(startIndex, endIndex)) {
+            postDTOS.add(PostMapper.toPostDTO(post));
+        }
+
+        int currPage = ((page == totalPage) ? page : page + 1);
+        paging.setCurrPage(currPage);
+        paging.setTotalPages(totalPage);
+        paging.setHasNext(hasNext);
+        paging.setHasPrevious(hasPrevious);
+        paging.setContent(postDTOS);
+        paging.setName(category.getName());
+
+        return paging;
+    }
+
+    @Override
     public CategoryDTO createCategory(CreateCategoryReq categoryReq) {
         Category category = categoryRepository.findAllByName(categoryReq.getName());
         if(category != null) {
@@ -149,9 +188,9 @@ public class CategoryServiceImpl implements CategoryService {
             throw new NotFoundException("This Category does not exist!");
         }
 
-        if(categoryReq.getName().equals(category.get().getName())) {
-            throw new DuplicateRecordException("This name is already exists!");
-        }
+//        if(categoryReq.getName().equals(category.get().getName())) {
+//            throw new DuplicateRecordException("This name is already exists!");
+//        }
         Category updateCategory = CategoryMapper.toCategory(categoryReq, categoryId, category.get().getCreatedDate());
 
         try {

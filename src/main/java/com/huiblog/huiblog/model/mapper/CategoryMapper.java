@@ -2,6 +2,7 @@ package com.huiblog.huiblog.model.mapper;
 
 import com.huiblog.huiblog.entity.Category;
 import com.huiblog.huiblog.model.dto.CategoryDTO;
+import com.huiblog.huiblog.model.dto.ConvertStringToURL;
 import com.huiblog.huiblog.model.request.CreateCategoryReq;
 import com.huiblog.huiblog.model.request.UpdateCategoryReq;
 
@@ -14,6 +15,7 @@ public class CategoryMapper {
         CategoryDTO categoryDTO = new CategoryDTO();
         categoryDTO.setCategoryId(category.getId());
         categoryDTO.setName(category.getName());
+        categoryDTO.setMetaName(category.getMetaName());
         categoryDTO.setCreatedDate(category.getCreatedDate());
         categoryDTO.setUpdatedDate(category.getUpdatedDate());
 
@@ -23,6 +25,7 @@ public class CategoryMapper {
     public static Category toCategory(CreateCategoryReq categoryReq) {
         Category category = new Category();
         category.setName(categoryReq.getName());
+        category.setMetaName(ConvertStringToURL.convert(categoryReq.getName()));
         category.setCreatedDate(new Date());
         category.setUpdatedDate(new Date());
 
@@ -33,6 +36,7 @@ public class CategoryMapper {
         Category category = new Category();
         category.setId(categoryId);
         category.setName(categoryReq.getName());
+        category.setMetaName(ConvertStringToURL.convert(categoryReq.getName()));
         category.setCreatedDate(cretedDate);
         category.setUpdatedDate(new Date());
 

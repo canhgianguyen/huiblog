@@ -11,4 +11,5 @@ public class Paging {
     private boolean hasPrevious;
     private int totalPages;
     private int currPage;
+    private String name;
 }

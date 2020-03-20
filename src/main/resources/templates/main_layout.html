@@ -113,9 +113,9 @@
                 <ul>
                     <li class="current-menu"><a href="/">Home</a>
                     </li>
-                    <li><a href="#">Category</a>
+                    <li><a>Category</a>
                         <ul>
-                            <li th:each="category : ${listCate}"><a href="#" th:text="${category.name}"></a></li>
+                            <li th:each="category : ${listCate}"><a th:href="@{'/c/' + ${category.metaName}}" th:text="${category.name}"></a></li>
 
                         </ul>
                     </li>

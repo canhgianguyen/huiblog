@@ -12,4 +12,5 @@ import org.springframework.stereotype.Repository;
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
     public Category findAllByName(String name);
     public Page<Category> findAll(Pageable pageable);
+    public Category findByMetaName(String metaName);
 }

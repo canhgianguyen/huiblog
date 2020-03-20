@@ -6,6 +6,7 @@ import com.huiblog.huiblog.model.dto.PostDTO;
 import com.huiblog.huiblog.service.CategoryService;
 import com.huiblog.huiblog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,8 +48,6 @@ public class ClientController {
         return "index";
     }
 
-
-
     @GetMapping("/p/{metaTitle}")
     public String post(Model model, @PathVariable(required = true) String metaTitle) {
         PostDTO postDTO = postService.getPostByMetaTitle(metaTitle);
@@ -57,6 +56,18 @@ public class ClientController {
         addListCateToModel(model);
 
         return "post";
+    }
+
+    @GetMapping(value = {"/c/{metaName}", "/c/{metaName}/{page}"})
+    public String cate(Model model, @PathVariable(required = true) String metaName, @PathVariable(required = false) Integer page) {
+        int currPage = (page == null ? 0 : page - 1);
+        Paging listPost = categoryService.getListPostByCategoryMetaName(metaName, currPage);
+        model.addAttribute("listPost", listPost);
+        model.addAttribute("metaName", "/c/" + metaName);
+
+        addListCateToModel(model);
+
+        return "category";
     }
 
     @GetMapping("/about")

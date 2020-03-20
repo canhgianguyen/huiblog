@@ -5,6 +5,7 @@ import com.huiblog.huiblog.model.dto.PostDTO;
 import com.huiblog.huiblog.model.request.AuthenticateReq;
 import com.huiblog.huiblog.model.request.CreateUserReq;
 import com.huiblog.huiblog.security.JwtTokenUtil;
+import com.huiblog.huiblog.service.CategoryService;
 import com.huiblog.huiblog.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -27,6 +28,9 @@ import javax.validation.Valid;
 public class SignUpSignInControllerClientApi {
     @Autowired
     UserService userService;
+
+    @Autowired
+    CategoryService categoryService;
 
     @Autowired
     private AuthenticationManager authenticationManager;
