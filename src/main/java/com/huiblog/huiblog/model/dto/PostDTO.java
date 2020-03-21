@@ -1,8 +1,10 @@
 package com.huiblog.huiblog.model.dto;
 
+import com.huiblog.huiblog.entity.Comment;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class PostDTO {
@@ -27,6 +29,8 @@ public class PostDTO {
     private Date updated;
 
     private String img;
+
+    private List<Comment> comments;
 
     private int viewNum;
 }

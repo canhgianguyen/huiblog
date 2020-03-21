@@ -28,9 +28,6 @@ public class Comment {
     @Column(name = "content")
     private String content;
 
-    @Column(name = "created")
-    private Date creatd;
-
-    @Column(name = "updated")
-    private Date updated;
+    @Column(name = "created_date")
+    private Date createdDate;
 }

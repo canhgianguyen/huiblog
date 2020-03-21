@@ -24,14 +24,13 @@ public class PostMapper {
         postDTO.setUpdated(post.getUpdatedDate());
         postDTO.setImg(post.getImg());
         postDTO.setViewNum(post.getViewNum());
+        postDTO.setComments(post.getComments());
 
         return  postDTO;
     }
 
     public static Post toPost(CreatePostReq  createPostReq) {
         Post post = new Post();
-//        post.setCategoryID(createPostReq.getCategoryID());
-//        post.setUserID(createPostReq.getUserID());
         post.setImg(createPostReq.getImg());
         post.setTitle(createPostReq.getTitle());
         post.setMetaTitle(ConvertStringToURL.convert(createPostReq.getTitle()));

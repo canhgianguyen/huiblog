@@ -16,7 +16,7 @@
 <body>
 
 <!--Content Start-->
-<div th:fragment="mainContent" class="col-md-8 content-section-body" id="main-content">
+<div th:fragment="mainContent" class="col-md-8 content-section-body" id="main-content" th:attr="postid=${post.id}">
     <div class="box">
         <div class="post-single-content-body">
 
@@ -80,6 +80,75 @@
                 <div class="post-author-overlay"></div>
             </div>
             <!--About Author End-->
+
+            <!--Post Single Details Bottom Start-->
+            <div class="post-single-details-body">
+
+                <!--Post Comments Start-->
+                <div class="post-comments">
+
+                    <div class="page-title subtitle">
+                        <h2>Comments<span th:text="${post.comments.size()}"></span></h2>
+                    </div>
+
+                    <ul class="comment-list">
+
+                        <!--Comment Start-->
+                        <li th:each="comment : ${post.comments}">
+                            <div class="comment-wrapper">
+                                <div class="comment-avatar">
+                                    <figure>
+                                        <img th:src="@{${comment.user.avatar}}" style="width: 80px; height: 80px" alt="avatar" />
+                                    </figure>
+                                </div>
+                                <div class="comment-details">
+                                    <div class="comment-name">
+                                        <a th:text="${comment.user.name}"></a>
+                                        <span class="comment-date" th:text="${#dates.format(comment.createdDate, 'dd MMMM yyyy')}">20 November 2015</span>
+                                    </div>
+                                    <div class="comment-description">
+                                        <p th:text="${comment.content}"></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </li>
+                        <!--Comment End-->
+
+                    </ul>
+
+                </div>
+                <!--Post Comments End-->
+
+                <!--Leave a Comment Start-->
+                <div class="post-leave-comment">
+
+                    <div class="page-title subtitle">
+                        <h2>Leave a comment</h2>
+                    </div>
+
+                    <div class="contact-form comment-input">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <textarea id="comment-content" name="mymessage" required></textarea>
+                                    <label>Your comment *</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button id="comment-submit-btn" type="submit" >Send Comment</button>
+                            </div>
+                            <div id="reply_message"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--Leave a Comment End-->
+
+            </div>
+            <!--Post Single Details Bottom End-->
 
 
         </div>
