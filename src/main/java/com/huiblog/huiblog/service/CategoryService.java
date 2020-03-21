@@ -28,4 +28,6 @@ public interface CategoryService {
     CategoryDTO updateCategory(UpdateCategoryReq categoryReq, int categoryId);
 
     void deleteCategory(int categoryId);
+
+    public Long getAmount();
 }

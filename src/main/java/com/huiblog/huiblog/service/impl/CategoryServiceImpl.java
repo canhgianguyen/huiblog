@@ -24,6 +24,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,7 +45,6 @@ public class CategoryServiceImpl implements CategoryService {
         for (Category category : cateEntities.getContent()) {
             cateDTOs.add(CategoryMapper.toCategoryDTO(category));
         }
-        
 
         paging.setCurrPage(page + 1);
         paging.setContent(cateDTOs);
@@ -136,6 +136,8 @@ public class CategoryServiceImpl implements CategoryService {
             throw new NotFoundException("This Category does not exist!");
         }
 
+        Collections.reverse(category.getPosts());
+
         // Paging list post
         Paging paging = new Paging();
         int limit = 6;
@@ -212,5 +214,10 @@ public class CategoryServiceImpl implements CategoryService {
         } catch (Exception ex) {
             throw new InternalServerException("Database error. Can't delete user");
         }
+    }
+
+    @Override
+    public Long getAmount() {
+        return categoryRepository.count();
     }
 }

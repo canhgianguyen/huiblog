@@ -1,17 +1,17 @@
 package com.huiblog.huiblog.entity;
 
 import lombok.*;
+import org.hibernate.search.annotations.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@Indexed
 @Entity
 @Table(name = "users")
 public class User {
@@ -19,6 +19,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @Field(termVector = TermVector.YES, analyze= Analyze.YES, store= Store.NO)
     @Column(name = "name")
     private String name;
 
@@ -38,11 +39,11 @@ public class User {
     @Column(name = "gender")
     private Boolean gender;
 
-    @Column(name = "created")
-    private Date created;
+    @Column(name = "created_date")
+    private Date createdDate;
 
-    @Column(name = "updated")
-    private Date updated;
+    @Column(name = "updated_date")
+    private Date updatedDate;
 
     @Column(name = "avatar")
     private String avatar;

@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,4 +21,10 @@ public class UserDto {
     private String phone;
 
     private String avatar;
+
+    private Date createdDate;
+
+    private Date updatedDate;
+
+    private String role;
 }

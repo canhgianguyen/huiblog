@@ -47,7 +47,7 @@ public class SignUpSignInControllerClientApi {
     public ResponseEntity<?> signUp(@Valid @RequestBody CreateUserReq createUserReq) {
         BaseApiResult result = new BaseApiResult();
         try {
-            userService.createUser(createUserReq);
+            userService.regUser(createUserReq);
             result.setSuccess(true);
             result.setMessage("Sign Up successfully!");
         } catch (Exception e) {

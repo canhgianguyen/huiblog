@@ -29,6 +29,8 @@ public class ClientController {
 
         addListPostToModel(currPage, model);
 
+        addListPostToModelSideBar(model);
+
         addListCateToModel(model);
 
         return "index";
@@ -39,6 +41,8 @@ public class ClientController {
         int currPage = (page == null ? 0 : page - 1);
 
         addListPostToModel(currPage, model);
+
+        addListPostToModelSideBar(model);
 
         model.addAttribute("search", true);
         model.addAttribute("searchKey", searchKey);
@@ -53,6 +57,8 @@ public class ClientController {
         PostDTO postDTO = postService.getPostByMetaTitle(metaTitle);
         model.addAttribute("post", postDTO);
 
+        addListPostToModelSideBar(model);
+
         addListCateToModel(model);
 
         return "post";
@@ -64,6 +70,8 @@ public class ClientController {
         Paging listPost = categoryService.getListPostByCategoryMetaName(metaName, currPage);
         model.addAttribute("listPost", listPost);
         model.addAttribute("metaName", "/c/" + metaName);
+
+        addListPostToModelSideBar(model);
 
         addListCateToModel(model);
 
@@ -120,5 +128,10 @@ public class ClientController {
     private void addListPostToModel(int currPage, Model model) {
         Paging listPost = postService.getListPost(currPage);
         model.addAttribute("listPost", listPost);
+    }
+
+    private void addListPostToModelSideBar(Model model) {
+        Paging listPost = postService.getListPost(0);
+        model.addAttribute("listPostSideBar", listPost);
     }
 }

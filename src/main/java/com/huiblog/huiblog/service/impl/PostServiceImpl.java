@@ -165,6 +165,7 @@ public class PostServiceImpl implements PostService {
 
         Post updatePost = PostMapper.toPost(updatePostReq, postID, post.get().getCreatedDate());
         updatePost.setCategory(categoryRepository.getOne(updatePostReq.getCategoryID()));
+        updatePost.setUser(post.get().getUser());
         try {
             postRepository.save(updatePost);
         } catch (Exception e){
@@ -184,5 +185,10 @@ public class PostServiceImpl implements PostService {
         } catch (Exception ex) {
             throw new InternalServerException("Database error. Can't delete user");
         }
+    }
+
+    @Override
+    public Long getAmount() {
+        return postRepository.count();
     }
 }

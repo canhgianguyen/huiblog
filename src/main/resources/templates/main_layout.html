@@ -94,8 +94,8 @@
 
             <!--Logo Start-->
             <div class="logo">
-                <a href="main_layout.html">
-                    <img th:src="@{/images/logo.png}" alt="logo"/>
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo"/>
                 </a>
             </div>
             <!--Logo End-->
@@ -116,7 +116,6 @@
                     <li><a>Category</a>
                         <ul>
                             <li th:each="category : ${listCate}"><a th:href="@{'/c/' + ${category.metaName}}" th:text="${category.name}"></a></li>
-
                         </ul>
                     </li>
                     <li><a href="/about">About me</a></li>

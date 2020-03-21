@@ -10,7 +10,6 @@ import org.apache.lucene.analysis.standard.StandardFilterFactory;
 import org.apache.lucene.analysis.standard.StandardTokenizerFactory;
 
 import org.hibernate.search.annotations.*;
-import org.hibernate.search.annotations.Parameter;
 
 import javax.persistence.*;
 import java.util.Date;

@@ -1,21 +1,26 @@
 package com.huiblog.huiblog.service;
 
-import com.huiblog.huiblog.entity.User;
+import com.huiblog.huiblog.model.dto.Paging;
 import com.huiblog.huiblog.model.dto.UserDto;
 import com.huiblog.huiblog.model.request.CreateUserReq;
+import com.huiblog.huiblog.model.request.UpdateUserReq;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public interface UserService {
-    public List<UserDto> getListUser();
+    Paging getlistUser(int page);
 
-    public User getUserById(int id);
+    Paging getListUserFTS(int page, String searchKey);
 
-    public UserDto createUser(CreateUserReq createUserReq);
+    UserDto getUserById(int id);
 
-    public UserDto editUser(int id, User user);
+    UserDto regUser(CreateUserReq createUserReq);
 
-    public UserDto removeUser(int id);
+    UserDto createUser(CreateUserReq createUserReq);
+
+    UserDto updateUser(UpdateUserReq updateUserReq, int userID);
+
+    void deleteUser(int userID);
+
+    Long getAmount();
 }

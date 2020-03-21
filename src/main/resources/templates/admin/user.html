@@ -1,0 +1,210 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/admin/main_layout_admin :: main-fragment(
+                                                ~{:: title},
+                                                ~{:: mainContent}
+                                               )}">
+<head>
+    <h2 th:fragment="title">Users</h2>
+
+</head>
+<body>
+
+<!-- start: page -->
+<section th:fragment="mainContent" class="panel">
+
+    <div class="panel-body">
+
+
+        <div class="row" style="margin-bottom: 15px">
+            <div class="col-md-6">
+                <button type="button" class="btn btn-primary" id="add-user">Add User <i
+                        class="fa fa-plus"></i></button>
+            </div>
+            <div class="col-md-6">
+                <form class="form-inline pull-right" th:action="@{/admin/user/search/}">
+                    <input type="search" class="form-control" placeholder="Search" name="searchKey"
+                           th:value="${searchKey}">
+                    <button type="submit" class="btn btn-primary"><i
+                            class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-striped mb-none">
+            <thead>
+            <tr>
+                <td align="center" style="font-weight: bold">ID</td>
+                <td align="center" style="font-weight: bold">Avatar</td>
+                <td style="font-weight: bold">Name</td>
+                <td style="font-weight: bold">Email</td>
+                <td style="font-weight: bold">Created Date</td>
+                <td style="font-weight: bold">Updated Date</td>
+                <td align="center" style="font-weight: bold">Action</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${listUser?.content}">
+                <td align="center" th:text="${user?.id}"></td>
+                <td align="center"><img th:src="@{${user.avatar}}" style="width: 40px; height: 40px"/></td>
+                <td th:text="${user?.name}"></td>
+                <td th:text="${user?.email}"></td>
+                <td th:text="${#dates.format(user.createdDate, 'dd-MM-yyyy HH:mm:ss')}"></td>
+                <td th:text="${#dates.format(user.updatedDate, 'dd-MM-yyyy HH:mm:ss')}"></td>
+                <td align="center">
+                    <button type="button" class="mb-xs btn btn-info btn-edit-user" th:attr="userid=${user?.id}"><i
+                            class="fa fa-pencil" title="Edit category" style="cursor: pointer"></i></button>
+                    <button type="button" class="mb-xs btn btn-info btn-delete-user" th:attr="userid=${user?.id}"><i
+                            class="fa fa-trash-o" title="Delete category" style="cursor: pointer"></i></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- Paging -->
+        <th:block th:unless="${search}">
+            <ul class="pagination">
+                <li th:if="${listUser?.hasPrevious}"><a th:href="@{'/admin/user/' + ${listUser?.currPage - 1}}">Prev</a>
+                </li>
+                <li class="active"><a><span
+                        th:text="'Page ' + ${listUser?.currPage} +' of ' + ${listUser?.totalPages}"></span></a></li>
+                <li th:if="${listUser?.hasNext}"><a th:href="@{'/admin/user/' + ${listUser?.currPage + 1}}">Next</a>
+                </li>
+            </ul>
+        </th:block>
+
+        <th:block th:if="${search}">
+            <ul class="pagination">
+                <li th:if="${listUser?.hasPrevious}"><a
+                        th:href="@{'/admin/post/search/' + ${listUser?.currPage - 1} + '?searchKey=' + ${searchKey}}">Prev</a>
+                </li>
+                <li class="active"><a><span
+                        th:text="'Page ' + ${listUser?.currPage} +' of ' + ${listUser?.totalPages}"></span></a></li>
+                <li th:if="${listUser?.hasNext}"><a
+                        th:href="@{'/admin/post/search/' + ${listUser?.currPage + 1} + '?searchKey=' + ${searchKey}}">Next</a>
+                </li>
+            </ul>
+        </th:block>
+    </div>
+
+
+    <!-- Modal Add Post -->
+    <div class="modal fade" id="modal-add-user" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Add User</h5>
+                    <button type="button" class="panel-actions" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Name <span class="required">*</span></label>
+                        <div class="col-sm-10">
+                            <input type="text" name="fullname" class="form-control"
+                                   id="user-cteate-name"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Email <span class="required">*</span></label>
+                        <div class="col-sm-10">
+                            <input type="text" name="fullname" class="form-control"
+                                   id="user-cteate-email"/>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary modal-close" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" id="user-cteate-submit-btn">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Update User -->
+    <div class="modal fade" id="modal-update-user" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Update User</h5>
+                    <button type="button" class="panel-actions" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Avatar <span class="required">*</span></label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    <div class="fileupload-new thumbnail"
+                                         style="max-width: 360px; max-height: 270px; margin-right: 10px">
+                                        <img id="user-update-avatar"
+                                             src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" style="width: 128px; height: 128px" />
+                                    </div>
+                                    <div class="fileupload-preview fileupload-exists thumbnail" style="width: 128px; height: 128px"></div>
+                                    <span class="btn btn-default btn-file"><span
+                                            class="fileupload-new">Select image</span><span
+                                            class="fileupload-exists">Change</span><input type="file"
+                                                                                          id="user-update-file-upload"/></span>
+                                    <a href="#" class="btn btn-default fileupload-exists"
+                                       data-dismiss="fileupload">Remove</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Name <span class="required">*</span></label>
+                        <div class="col-sm-10">
+                            <input type="text" name="fullname" class="form-control"
+                                   id="user-update-name"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Email <span class="required">*</span></label>
+                        <div class="col-sm-10">
+                            <input type="text" name="fullname" class="form-control"
+                                   id="user-update-email" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Role <span class="required">*</span></label>
+                        <div class="col-sm-10">
+                            <select id="user-update-role" class="form-control" required>
+                                <option value="" disabled selected hidden>Choose a Category</option>
+
+                                <option value="ADMIN" >Admin</option>
+                                <option value="USER" >User</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary modal-close" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" id="user-update-submit-btn">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end: page -->
+
+</body>
+</html>

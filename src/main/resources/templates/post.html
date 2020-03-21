@@ -100,18 +100,8 @@
                 <div class="widget-about-img img-div-cover">
                     <img src="/images/upload/sidebar-about-me.jpg" alt="about me"/>
                 </div>
-                <div class="widget-about-detail">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mauris magna, lacinia ac purus quis,
-                        rutrum bibendum leo. Nullam sit amet nibh eu odio ornare.</p>
-                    <div class="widget-about-social">
-                        <ul>
-                            <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fa fa-google"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fa fa-pinterest-p"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fa fa-instagram"></i></a></li>
-                        </ul>
-                    </div>
+                <div class="widget-about-detail" align="center">
+                    <p>Chào các bạn, mình là Hủi ^^.</p>
                 </div>
             </div>
         </aside>
@@ -124,70 +114,19 @@
             </div>
             <div class="widget-detail">
 
-                <!--Recent Post 1-->
-                <div class="recent-wrap">
+                <!--Recent Post -->
+                <div class="recent-wrap" th:each="post : ${listPostSideBar?.content}">
                     <div class="recent-post-thumb">
-                        <a href="#">
-                            <figure>
+                        <a th:href="@{'/p/' + ${post.metaTitle}}">
+                            <figure class="fit-img">
                                 <div class="overlay-hover"></div>
-                                <img src="/images/upload/recent-post01.jpg" alt="recent post"/>
+                                <img th:src="@{${post.img}}" alt="recent post"/>
                             </figure>
                         </a>
                     </div>
                     <div class="recent-post-detail">
-                        <h4>Lorem ipsum dolor dictum consectetur elit amet</h4>
-                        <a href="#">Read more</a>
-                    </div>
-                </div>
-                <!--End-->
-
-                <!--Recent Post 2-->
-                <div class="recent-wrap">
-                    <div class="recent-post-thumb">
-                        <a href="#">
-                            <figure>
-                                <div class="overlay-hover"></div>
-                                <img src="/images/upload/recent-post02.jpg" alt="recent post"/>
-                            </figure>
-                        </a>
-                    </div>
-                    <div class="recent-post-detail">
-                        <h4>Lorem ipsum dolor dictum consectetur elit amet</h4>
-                        <a href="#">Read more</a>
-                    </div>
-                </div>
-                <!--End-->
-
-                <!--Recent Post 3-->
-                <div class="recent-wrap">
-                    <div class="recent-post-thumb">
-                        <a href="#">
-                            <figure>
-                                <div class="overlay-hover"></div>
-                                <img src="/images/upload/recent-post03.jpg" alt="recent post"/>
-                            </figure>
-                        </a>
-                    </div>
-                    <div class="recent-post-detail">
-                        <h4>Lorem ipsum dolor dictum consectetur elit amet</h4>
-                        <a href="#">Read more</a>
-                    </div>
-                </div>
-                <!--End-->
-
-                <!--Recent Post 4-->
-                <div class="recent-wrap">
-                    <div class="recent-post-thumb">
-                        <a href="#">
-                            <figure>
-                                <div class="overlay-hover"></div>
-                                <img src="/images/upload/recent-post04.jpg" alt="recent post"/>
-                            </figure>
-                        </a>
-                    </div>
-                    <div class="recent-post-detail">
-                        <h4>Lorem ipsum dolor dictum consectetur elit amet</h4>
-                        <a href="#">Read more</a>
+                        <h4 th:text="${post?.title}"></h4>
+                        <a th:href="@{'/p/' + ${post.metaTitle}}">Read more</a>
                     </div>
                 </div>
                 <!--End-->
@@ -203,15 +142,7 @@
             </div>
             <div class="widget-detail">
                 <ul>
-                    <li><a href="#">Vestibulum tincidunt<span>(6)</span></a>
-                        <ul>
-                            <li><a href="#">Aliquam ullamcor dolor<span>(5)</span></a></li>
-                            <li><a href="#">Quisque nec lobortis<span>(4)</span></a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Maecenas rutrum nunc<span>(8)</span></a></li>
-                    <li><a href="#">Eliquam faucibus<span>(10)</span></a></li>
-                    <li><a href="#">Aenean sollicitudin eros<span>(2)</span></a></li>
+                    <li th:each="category : ${listCate}"><a th:href="@{'/c/' + ${category.metaName}}" th:text="${category.name}"></a></li>
                 </ul>
             </div>
         </aside>
@@ -276,7 +207,7 @@
                         <a href="#" target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
-                                <img src="/images/upload/widget-instagram07.jpg" alt="widget instagram"/>
+                                <img src="/ images/upload/widget-instagram07.jpg" alt="widget instagram"/>
                             </figure>
                         </a>
                     </li>
@@ -337,33 +268,6 @@
             </div>
         </aside>
         <!--Widget Banner Sidebar End-->
-
-        <!--Widget Tag Cloud Start-->
-        <aside class="widget widget_tag_cloud">
-            <div class="widget-title">
-                <h3>Popular tags</h3>
-            </div>
-            <div class="widget-detail">
-                <div class="tagcloud">
-                    <a href="#">semper<span>(5)</span></a>
-                    <a href="#">semper<span>(5)</span></a>
-                    <a href="#">ullamcorper<span>(5)</span></a>
-                    <a href="#">condimentum<span>(5)</span></a>
-                    <a href="#">condimentum<span>(5)</span></a>
-                    <a href="#">semper<span>(5)</span></a>
-                    <a href="#">semper<span>(5)</span></a>
-                    <a href="#">ullamcorper<span>(5)</span></a>
-                    <a href="#">condimentum<span>(5)</span></a>
-                    <a href="#">condimentum<span>(5)</span></a>
-                    <a href="#">semper<span>(5)</span></a>
-                    <a href="#">semper<span>(5)</span></a>
-                    <a href="#">ullamcorper<span>(5)</span></a>
-                    <a href="#">condimentum<span>(5)</span></a>
-                    <a href="#">condimentum<span>(5)</span></a>
-                </div>
-            </div>
-        </aside>
-        <!--Widget Tag Cloud End-->
 
     </div>
 </div>

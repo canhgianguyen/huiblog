@@ -46,7 +46,6 @@ public class PostMapper {
     public static Post toPost(UpdatePostReq updatePostReq, int postID, Date createdDate) {
         Post post = new Post();
         post.setId(postID);
-//        post.setCategoryID(updatePostReq.getCategoryID());
         post.setImg(updatePostReq.getImg());
         post.setTitle(updatePostReq.getTitle());
         post.setMetaTitle(ConvertStringToURL.convert(updatePostReq.getTitle()));

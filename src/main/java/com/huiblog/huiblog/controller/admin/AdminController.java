@@ -2,9 +2,14 @@ package com.huiblog.huiblog.controller.admin;
 
 import com.huiblog.huiblog.model.dto.CategoryDTO;
 import com.huiblog.huiblog.model.dto.Paging;
+import com.huiblog.huiblog.model.dto.UserDto;
+import com.huiblog.huiblog.model.mapper.UserMapper;
+import com.huiblog.huiblog.security.CustomUserDetails;
 import com.huiblog.huiblog.service.CategoryService;
 import com.huiblog.huiblog.service.PostService;
+import com.huiblog.huiblog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +26,17 @@ public class AdminController {
     @Autowired
     private PostService postService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("")
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("usersAmount", userService.getAmount());
+        model.addAttribute("catesAmount", categoryService.getAmount());
+        model.addAttribute("postsAmount", postService.getAmount());
+
+        addUserToMoDel(model);
+
         return "admin/index";
     }
 
@@ -34,6 +48,8 @@ public class AdminController {
 
         List<CategoryDTO> listCate = categoryService.getListCategory();
         model.addAttribute("listCate", listCate);
+
+        addUserToMoDel(model);
 
         return "admin/post";
     }
@@ -50,6 +66,8 @@ public class AdminController {
         List<CategoryDTO> listCate = categoryService.getListCategory();
         model.addAttribute("listCate", listCate);
 
+        addUserToMoDel(model);
+
         return "admin/post";
     }
 
@@ -58,6 +76,9 @@ public class AdminController {
         int currPage = (page == null ? 0 : page - 1);
         Paging listCate = categoryService.getListCategory(currPage);
         model.addAttribute("listCate", listCate);
+
+        addUserToMoDel(model);
+
         return "admin/category";
     }
 
@@ -68,12 +89,40 @@ public class AdminController {
         model.addAttribute("listCate", listCate);
         model.addAttribute("search", true);
         model.addAttribute("searchKey", searchKey);
+
+        addUserToMoDel(model);
+
         return "admin/category";
     }
 
-    @GetMapping("/user")
-    public String category() {
+    @GetMapping(value = {"/user", "/user/{page}"})
+    public String user(Model model, @PathVariable(required = false) Integer page) {
+        int currPage = (page == null ? 0 : page - 1);
+        Paging listUser = userService.getlistUser(currPage);
+        model.addAttribute("listUser", listUser);
+
+        addUserToMoDel(model);
+
         return "admin/user";
+    }
+
+    @GetMapping(value = {"/user/search/", "/user/search/{page}"})
+    public String searchUser(Model model, @PathVariable(required = false) Integer page, @RequestParam(required = false) String searchKey) {
+        int currPage = (page == null ? 0 : page - 1);
+        Paging listUser = userService.getListUserFTS(currPage, searchKey);
+        model.addAttribute("listUser", listUser);
+        model.addAttribute("search", true);
+        model.addAttribute("searchKey", searchKey);
+
+        addUserToMoDel(model);
+
+        return "admin/user";
+    }
+
+    public void addUserToMoDel(Model model) {
+        CustomUserDetails user = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDto userDto = UserMapper.toUserDto(user.getUser());
+        model.addAttribute("info", userDto);
     }
 }
 

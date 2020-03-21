@@ -16,7 +16,7 @@ import java.util.List;
 public interface PostService {
     Paging getListPost(int page);
 
-    Paging getListPostFTS(int page, String s);
+    Paging getListPostFTS(int page, String searchKey);
 
     PostDTO getPostByID(int postID);
 
@@ -27,4 +27,6 @@ public interface PostService {
     PostDTO updatePost(UpdatePostReq updatePostReq, int postID);
 
     void deletePost(int postID);
+
+    Long getAmount();
 }

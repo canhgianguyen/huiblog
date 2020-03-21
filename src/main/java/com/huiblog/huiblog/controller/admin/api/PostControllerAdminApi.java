@@ -1,12 +1,8 @@
 package com.huiblog.huiblog.controller.admin.api;
 
-import com.huiblog.huiblog.entity.Post;
 import com.huiblog.huiblog.model.api.BaseApiResult;
-import com.huiblog.huiblog.model.dto.CategoryDTO;
 import com.huiblog.huiblog.model.dto.PostDTO;
-import com.huiblog.huiblog.model.request.CreateCategoryReq;
 import com.huiblog.huiblog.model.request.CreatePostReq;
-import com.huiblog.huiblog.model.request.UpdateCategoryReq;
 import com.huiblog.huiblog.model.request.UpdatePostReq;
 import com.huiblog.huiblog.service.PostService;
 import io.swagger.annotations.ApiOperation;
@@ -17,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api")
