@@ -3,6 +3,9 @@ package com.huiblog.huiblog.controller.client;
 import com.huiblog.huiblog.model.dto.CategoryDTO;
 import com.huiblog.huiblog.model.dto.Paging;
 import com.huiblog.huiblog.model.dto.PostDTO;
+import com.huiblog.huiblog.model.dto.UserDto;
+import com.huiblog.huiblog.model.mapper.UserMapper;
+import com.huiblog.huiblog.security.CustomUserDetails;
 import com.huiblog.huiblog.service.CategoryService;
 import com.huiblog.huiblog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +36,8 @@ public class ClientController {
 
         addListCateToModel(model);
 
+        isUser(model);
+
         return "index";
     }
 
@@ -49,6 +54,8 @@ public class ClientController {
 
         addListCateToModel(model);
 
+        isUser(model);
+
         return "index";
     }
 
@@ -60,6 +67,8 @@ public class ClientController {
         addListPostToModelSideBar(model);
 
         addListCateToModel(model);
+
+        isUser(model);
 
         return "post";
     }
@@ -75,12 +84,16 @@ public class ClientController {
 
         addListCateToModel(model);
 
+        isUser(model);
+
         return "category";
     }
 
     @GetMapping("/about")
     public String about(Model model) {
         addListCateToModel(model);
+
+        isUser(model);
 
         return "about-me";
     }
@@ -89,12 +102,16 @@ public class ClientController {
     public String category(Model model) {
         addListCateToModel(model);
 
+        isUser(model);
+
         return "category";
     }
 
     @GetMapping("/contact")
     public String contact(Model model) {
         addListCateToModel(model);
+
+        isUser(model);
 
         return "contact";
     }
@@ -133,5 +150,18 @@ public class ClientController {
     private void addListPostToModelSideBar(Model model) {
         Paging listPost = postService.getListPost(0);
         model.addAttribute("listPostSideBar", listPost);
+    }
+
+    private void isUser(Model model) {
+        if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
+            model.addAttribute("isUser", true);
+            addUserToMoDel(model);
+        }
+    }
+
+    public void addUserToMoDel(Model model) {
+        CustomUserDetails user = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDto userDto = UserMapper.toUserDto(user.getUser());
+        model.addAttribute("info", userDto);
     }
 }

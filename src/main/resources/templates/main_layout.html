@@ -13,6 +13,10 @@
     <!--Main Elements CSS-->
     <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
 
+    <!-- Theme CSS -->
+    <link rel="stylesheet" th:href="@{/assets/stylesheets/theme.css}" />
+
+
     <!--Font Awesome-->
     <link th:href="@{/fonts/css/font-awesome.min.css}" rel="stylesheet" type="text/css">
 
@@ -88,9 +92,27 @@
     <header>
         <div class="container">
 
-            <a href="/signin"><button type="submit" class="btn btn-primary pull-right" id="btn-sign-in">Sign In</button></a>
-            <a href="/signup"><button type="submit" class="btn btn-primary pull-right" id="btn-sign-up" style="margin-right: 8px">Sign Up</button></a>
+            <th:block th:unless="${isUser}">
+                <a href="/signin"><button type="submit" class="btn btn-primary pull-right" id="btn-sign-in">Sign In</button></a>
+                <a href="/signup"><button type="submit" class="btn btn-primary pull-right" id="btn-sign-up" style="margin-right: 8px">Sign Up</button></a>
+            </th:block>
 
+            <th:block th:if="${isUser}">
+                <div class="header-right">
+
+                    <div id="userbox" class="userbox" style="background: white; padding: 5px; border-radius: 5px">
+                        <a>
+                            <figure class="profile-picture">
+                                <img th:src="@{${info.avatar}}" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
+                            </figure>
+                            <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
+                                <b><span class="name" th:text="${info.name}"></span></b>
+                                <span class="role" th:text="${info.role}"></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </th:block>
 
             <!--Logo Start-->
             <div class="logo">
