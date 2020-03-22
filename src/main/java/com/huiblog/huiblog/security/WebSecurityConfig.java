@@ -60,6 +60,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/signin")
                 .permitAll()
                 .and()
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/").deleteCookies("jwt_token").invalidateHttpSession(true)
+                .and()
                 .exceptionHandling()
                 .accessDeniedPage("/403")
 //                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
@@ -72,6 +74,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/ad/**");
+        web.ignoring().antMatchers(
+                "/swagger-resources/**",
+                "/configuration/security",
+                "/swagger-ui.html",
+                "/webjars/**"
+        );
     }
 }

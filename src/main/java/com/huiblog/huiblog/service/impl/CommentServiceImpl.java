@@ -44,4 +44,9 @@ public class CommentServiceImpl implements CommentService {
 
         return null;
     }
+
+    @Override
+    public Long getAmount() {
+        return commentRepository.count();
+    }
 }

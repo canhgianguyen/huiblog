@@ -23,28 +23,11 @@ public class CategoryControllerAdminApi {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping("/category/{page}")
-    public ResponseEntity<?> category(@PathVariable(required = false) Integer page) {
-        int currPage = page == null ? 0 : page - 1;
-//        if(page == null) {
-//            currPage = 0;
-//        } else {
-//            currPage = page - 1;
-//        }
-        Paging listCate = categoryService.getListCategory(currPage);
-        return ResponseEntity.ok(listCate);
-    }
-
-    @ApiOperation(value = "Get list category", response = CategoryDTO.class, responseContainer = "List")
+    @ApiOperation(value = "Get category bi ID", response = BaseApiResult.class)
     @ApiResponses({
+            @ApiResponse(code=400,message = "Category does not exists exists in the system"),
             @ApiResponse(code=500,message = "")
     })
-    @GetMapping("/categories")
-    public ResponseEntity<?> getListCategory(){
-        List<CategoryDTO> categoryDTOS = categoryService.getListCategory();
-        return ResponseEntity.ok(categoryDTOS);
-    }
-
     @GetMapping("/categories/{id}")
     public ResponseEntity<?> getCategoryById(@PathVariable int id){
         BaseApiResult result= new BaseApiResult();
@@ -61,7 +44,7 @@ public class CategoryControllerAdminApi {
         return ResponseEntity.ok(result);
     }
 
-    @ApiOperation(value = "Create category", response = CategoryDTO.class)
+    @ApiOperation(value = "Create category", response = BaseApiResult.class)
     @ApiResponses({
             @ApiResponse(code=400,message = "Category already exists in the system"),
             @ApiResponse(code=500,message = "")
@@ -80,6 +63,11 @@ public class CategoryControllerAdminApi {
         return ResponseEntity.ok(result);
     }
 
+    @ApiOperation(value = "Update category", response = BaseApiResult.class)
+    @ApiResponses({
+            @ApiResponse(code=400,message = "Category already exists in the system"),
+            @ApiResponse(code=500,message = "")
+    })
     @PutMapping("/categories/{id}")
     public ResponseEntity<?> updateCategory(@RequestBody UpdateCategoryReq categoryReq, @PathVariable int id){
         BaseApiResult result = new BaseApiResult();
@@ -94,6 +82,11 @@ public class CategoryControllerAdminApi {
         return ResponseEntity.ok(result);
     }
 
+    @ApiOperation(value = "Delete category", response = BaseApiResult.class)
+    @ApiResponses({
+            @ApiResponse(code=400,message = "Category does not exists in the system"),
+            @ApiResponse(code=500,message = "")
+    })
     @DeleteMapping("/categories/{id}")
     public ResponseEntity<?> deleteCategory(@PathVariable int id){
         BaseApiResult result = new BaseApiResult();

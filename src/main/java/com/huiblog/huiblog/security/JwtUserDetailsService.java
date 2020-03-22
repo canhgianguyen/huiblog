@@ -20,8 +20,7 @@ public class JwtUserDetailsService implements UserDetailsService {
         User user = userRepository.findByEmail(email);
         if (user != null) {
             return new CustomUserDetails(user);
-        } else {
-            throw new UsernameNotFoundException("User get email " + email + " does not exist.");
         }
+        return null;
     }
 }

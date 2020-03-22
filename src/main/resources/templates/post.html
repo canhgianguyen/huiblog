@@ -51,7 +51,7 @@
                         <li th:text="${#dates.format(post?.created, 'dd MMMM yyyy')}"></li>
                         <li th:text="${post.categoryName}"></li>
                         <li th:text="${post.userName}"></li>
-                        <li>Comments<span>0</span></li>
+                        <li>Comments<span th:text="${post.comments.size()}"></span></li>
                     </ul>
                 </div>
                 <!--Post Meta End-->

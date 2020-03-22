@@ -15,6 +15,7 @@ public class PostMapper {
         postDTO.setId(post.getId());
         postDTO.setCategoryID(post.getCategory().getId());
         postDTO.setCategoryName(post.getCategory().getName());
+        postDTO.setMetaCategoryName(post.getCategory().getMetaName());
         postDTO.setUserID(post.getUser().getId());
         postDTO.setUserName(post.getUser().getName());
         postDTO.setTitle(post.getTitle());

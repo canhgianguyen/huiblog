@@ -7,7 +7,6 @@ import javax.validation.constraints.NotNull;
 
 @Data
 public class UpdatePostReq {
-    @NotNull(message = "CategoryID is required")
     @NotEmpty(message = "CategoryID must be not Empty")
     private int categoryID;
 

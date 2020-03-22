@@ -6,6 +6,7 @@ import com.huiblog.huiblog.model.dto.UserDto;
 import com.huiblog.huiblog.model.mapper.UserMapper;
 import com.huiblog.huiblog.security.CustomUserDetails;
 import com.huiblog.huiblog.service.CategoryService;
+import com.huiblog.huiblog.service.CommentService;
 import com.huiblog.huiblog.service.PostService;
 import com.huiblog.huiblog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +30,15 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CommentService commentService;
+
     @GetMapping("")
     public String index(Model model) {
         model.addAttribute("usersAmount", userService.getAmount());
         model.addAttribute("catesAmount", categoryService.getAmount());
         model.addAttribute("postsAmount", postService.getAmount());
+        model.addAttribute("commentsAmount", commentService.getAmount());
 
         addUserToMoDel(model);
 

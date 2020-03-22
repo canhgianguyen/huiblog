@@ -20,109 +20,28 @@
     <div class="flexslider">
         <ul class="slides">
 
-            <!--Slider 1 Start-->
-            <li class="img-div-cover">
+            <!--Slider Start-->
+            <li class="img-div-cover" th:each="post : ${listPostSideBar?.content}">
                 <div class="home-slide-overlay" data-bg-color="#000" data-opacity="0.15"></div>
-                <img src="/images/upload/home-slider01.jpg" alt="slider"/>
+                <img th:src="@{${post.img}}" alt="slider" style="height: 650px"/>
 
                 <!--Slider Caption Start-->
                 <div class="flex-caption">
                     <div class="home-slide-caption">
                         <div class="home-slide-category">
-                            <a href="#">
-                                Travel
-                            </a>
+                            <a th:href="@{'/c/' + ${post.metaCategoryName}}" th:text="${post.categoryName}"></a>
                         </div>
-                        <h1>Aenean tortor vitae diam ornare</h1>
+                        <h1 th:text="${post?.title}"></h1>
                         <div class="home-slide-link">
-                            <a href="#">
+                            <a th:href="@{'/p/' + ${post.metaTitle}}">
                                 Read this article
                             </a>
                         </div>
                     </div>
                 </div>
                 <!--Slider Caption End-->
-
             </li>
-            <!--Slider 1 End-->
-
-            <!--Slider 2 Start-->
-            <li class="img-div-cover">
-                <div class="home-slide-overlay" data-bg-color="#000" data-opacity="0.15"></div>
-                <img src="/images/upload/home-slider02.jpg" alt="slider"/>
-
-                <!--Slider Caption Start-->
-                <div class="flex-caption">
-                    <div class="home-slide-caption">
-                        <div class="home-slide-category">
-                            <a href="#">
-                                Photography
-                            </a>
-                        </div>
-                        <h1>Vestibulum odio facilisis ultrices ullamcorper dolor</h1>
-                        <div class="home-slide-link">
-                            <a href="#">
-                                Read this article
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!--Slider Caption End-->
-
-            </li>
-            <!--Slider 2 End-->
-
-            <!--Slider 3 Start-->
-            <li class="img-div-cover">
-                <div class="home-slide-overlay" data-bg-color="#000" data-opacity="0.15"></div>
-                <img src="/images/upload/home-slider03.jpg" alt="slider"/>
-
-                <!--Slider Caption Start-->
-                <div class="flex-caption">
-                    <div class="home-slide-caption">
-                        <div class="home-slide-category">
-                            <a href="#">
-                                People
-                            </a>
-                        </div>
-                        <h1>Aenean ipsum primis in faucibus</h1>
-                        <div class="home-slide-link">
-                            <a href="#">
-                                Read this article
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!--Slider Caption End-->
-
-            </li>
-            <!--Slider 3 End-->
-
-            <!--Slider 4 Start-->
-            <li class="img-div-cover">
-                <div class="home-slide-overlay" data-bg-color="#000" data-opacity="0.15"></div>
-                <img src="/images/upload/home-slider04.jpg" alt="slider"/>
-
-                <!--Slider Caption Start-->
-                <div class="flex-caption">
-                    <div class="home-slide-caption">
-                        <div class="home-slide-category">
-                            <a href="#">
-                                Lifestyle
-                            </a>
-                        </div>
-                        <h1>Quisque vitae enim nec gravida</h1>
-                        <div class="home-slide-link">
-                            <a href="#">
-                                Read this article
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!--Slider Caption End-->
-
-            </li>
-            <!--Slider 4 End-->
+            <!--Slider End-->
 
         </ul>
     </div>
@@ -245,6 +164,7 @@
                         <ul>
                             <li th:text="${#dates.format(post?.created, 'dd MMMM yyyy')}"></li>
                             <li th:text="${post.userName}"></li>
+                            <li>Comments<span th:text="${post.comments.size()}"></span></li>
                         </ul>
                     </div>
                 </div>

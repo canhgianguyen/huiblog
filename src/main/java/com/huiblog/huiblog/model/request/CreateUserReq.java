@@ -36,10 +36,4 @@ public class CreateUserReq {
 
     @Size(min = 4, max = 30, message = "Password phai nam trong khoang 4 - 30")
     private String password;
-
-//    @Pattern(regexp = "", message = "So dien thoai khong hop le")
-//    private String phone;
-
-//    @JsonFormat(pattern = "yyyy/MM/dd", shape = JsonFormat.Shape.STRING)
-//    private Date dob;
 }

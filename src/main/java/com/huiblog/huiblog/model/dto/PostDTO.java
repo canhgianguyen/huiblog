@@ -18,6 +18,8 @@ public class PostDTO {
 
     private String categoryName;
 
+    private String metaCategoryName;
+
     private String title;
 
     private String metaTitle;

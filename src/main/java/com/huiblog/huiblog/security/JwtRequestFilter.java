@@ -26,13 +26,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    private static String HEADER = "Authorization";
-
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
-        // Lấy token từ header
-        //String token = httpServletRequest.getHeader(HEADER);
-
         // Lấy token từ cookie
         String token =  null;
         Cookie cookie = WebUtils.getCookie(httpServletRequest, "jwt_token");
@@ -75,7 +70,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         if (username != null) {
             UserDetails user = userDetailsService.loadUserByUsername(username);
-            return new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+            if (user != null) {
+                return new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+            }
         }
         return null;
     }
