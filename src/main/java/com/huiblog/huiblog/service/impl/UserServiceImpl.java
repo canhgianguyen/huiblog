@@ -22,6 +22,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +40,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Paging getlistUser(int page) {
         Paging paging = new Paging();
+        page = ((page < 0) ? 0 : page);
         Page<User> userEntities = userRepository.findAll(PageRequest.of(page, 6, Sort.by("createdDate").descending()));
         List<UserDto> userDTOs = new ArrayList<>();
         for (User user : userEntities.getContent()) {
@@ -80,6 +82,7 @@ public class UserServiceImpl implements UserService {
 
 
         Paging paging = new Paging();
+        page = ((page < 0) ? 0 : page);
         page++;
         int limit = 6;
         int totalElements = jpaQuery.getResultSize();
@@ -88,8 +91,8 @@ public class UserServiceImpl implements UserService {
 
         page = ((page < 0) || (page > totalPage) ? 1 : page);
 
-        boolean hasNext = ((page == totalPage) ? false : true);
-        boolean hasPrevious = ((page == 1) ? false : true);
+        boolean hasNext = ((page == totalPage || totalPage == 0) ? false : true);
+        boolean hasPrevious = ((page == 1 || totalPage == 0) ? false : true);
 
         jpaQuery.setFirstResult(page * limit - limit);
         jpaQuery.setMaxResults(limit);
@@ -98,6 +101,8 @@ public class UserServiceImpl implements UserService {
         for (Object  user  : jpaQuery.getResultList()) {
             userDTOs.add(UserMapper.toUserDto((User) user));
         }
+
+        page = ((totalPage == 0) ? 0 : page);
 
         paging.setCurrPage(page);
         paging.setTotalPages(totalPage);
@@ -156,7 +161,7 @@ public class UserServiceImpl implements UserService {
         user.get().setName(updateUserReq.getName());
         user.get().setRole(updateUserReq.getRole());
         user.get().setAvatar(updateUserReq.getAvatar());
-
+        user.get().setUpdatedDate(new Date());
         try {
             userRepository.save(user.get());
         } catch (Exception e) {

@@ -1,5 +1,7 @@
 package com.huiblog.huiblog.model.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.models.auth.In;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
@@ -7,10 +9,10 @@ import javax.validation.constraints.NotNull;
 
 @Data
 public class CreatePostReq {
-    @NotEmpty(message = "CategoryID is required")
+//    @NotNull(message = "CategoryID is required")
     private int categoryID;
 
-    @NotNull(message = "UserID is required")
+//    @NotNull(message = "UserID is required")
     private int userID;
 
     @NotNull(message = "Image is required")

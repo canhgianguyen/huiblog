@@ -44,8 +44,8 @@ public class ClientController {
     @GetMapping(value = {"/p/search", "/p/search/{page}"})
     public String search(Model model, @PathVariable(required = false) Integer page, @RequestParam(required = false) String searchKey) {
         int currPage = (page == null ? 0 : page - 1);
-
-        addListPostToModel(currPage, model);
+        Paging listPost = postService.getListPostFTS(currPage, searchKey);
+        model.addAttribute("listPost", listPost);
 
         addListPostToModelSideBar(model);
 

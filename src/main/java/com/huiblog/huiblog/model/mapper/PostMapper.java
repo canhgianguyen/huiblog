@@ -1,5 +1,9 @@
 package com.huiblog.huiblog.model.mapper;
 
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.huiblog.huiblog.entity.Post;
 import com.huiblog.huiblog.model.dto.ConvertStringToURL;
 import com.huiblog.huiblog.model.dto.PostDTO;
@@ -31,6 +35,8 @@ public class PostMapper {
     }
 
     public static Post toPost(CreatePostReq  createPostReq) {
+
+        System.out.println(createPostReq.getContent());
         Post post = new Post();
         post.setImg(createPostReq.getImg());
         post.setTitle(createPostReq.getTitle());

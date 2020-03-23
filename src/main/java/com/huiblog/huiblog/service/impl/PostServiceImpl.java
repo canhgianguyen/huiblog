@@ -13,7 +13,6 @@ import com.huiblog.huiblog.repository.CategoryRepository;
 import com.huiblog.huiblog.repository.PostRepository;
 import com.huiblog.huiblog.repository.UserRepository;
 import com.huiblog.huiblog.security.CustomUserDetails;
-import com.huiblog.huiblog.service.CategoryService;
 import com.huiblog.huiblog.service.PostService;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.query.dsl.QueryBuilder;
@@ -46,6 +45,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public Paging getListPost(int page) {
         Paging paging = new Paging();
+        page = ((page < 0) ? 0 : page);
         Page<Post> postEntities = postRepository.findAll(PageRequest.of(page, 6, Sort.by("createdDate").descending()));
         List<PostDTO> postDTOs = new ArrayList<>();
         for (Post post : postEntities.getContent()) {
@@ -88,6 +88,7 @@ public class PostServiceImpl implements PostService {
 
 
         Paging paging = new Paging();
+        page = ((page < 0) ? 0 : page);
         page++;
         int limit = 6;
         int totalElements = jpaQuery.getResultSize();
@@ -96,8 +97,8 @@ public class PostServiceImpl implements PostService {
 
         page = ((page < 0) || (page > totalPage) ? 1 : page);
 
-        boolean hasNext = ((page == totalPage) ? false : true);
-        boolean hasPrevious = ((page == 1) ? false : true);
+        boolean hasNext = ((page == totalPage || totalPage == 0) ? false : true);
+        boolean hasPrevious = ((page == 1 || totalPage == 0) ? false : true);
 
         jpaQuery.setFirstResult(page * limit - limit);
         jpaQuery.setMaxResults(limit);
@@ -106,6 +107,8 @@ public class PostServiceImpl implements PostService {
         for (Object  post  : jpaQuery.getResultList()) {
             postDTOs.add(PostMapper.toPostDTO((Post) post));
         }
+
+        page = ((totalPage == 0) ? 0 : page);
 
         paging.setCurrPage(page);
         paging.setTotalPages(totalPage);

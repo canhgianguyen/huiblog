@@ -32,7 +32,7 @@ $(document).ready(function() {
                     userID: 1,
                     img: imgLink,
                     title: $("#post-cteate-title").val(),
-                    content: $("#post-cteate-content").val()
+                    content:$("#post-cteate-content").val().trim()
                 };
                 console.log(data)
 

@@ -31,6 +31,16 @@ $(document).ready(function() {
             return;
         }
 
+        if (($('#sign-up-password').val().trim().length < 4) || ($('#sign-up-password').val().trim().length > 30)) {
+            new PNotify({
+                title: 'Error!',
+                text: 'Password phải nằm trong khoảng 4 đến 30 ký tự bạn ơi -_-',
+                type: 'error',
+                delay: 500
+            });
+            return;
+        }
+
         var data = {
             name: $('#sign-up-name').val().trim(),
             email: $('#sign-up-email').val().trim(),
@@ -45,7 +55,15 @@ $(document).ready(function() {
                     type: 'success',
                     delay: 500
                 });
-                setTimeout(() => location.replace("/"), 500);
+
+                var dataSignIn = {
+                    email: $('#sign-up-email').val().trim(),
+                    password: $('#sign-up-password').val().trim()
+                }
+
+                axios.post("/api/users/signin", dataSignIn).then(function(res){
+                    setTimeout(() => location.replace("/"), 500);
+                });
             } else  {
                 new PNotify({
                     title: 'Error!',

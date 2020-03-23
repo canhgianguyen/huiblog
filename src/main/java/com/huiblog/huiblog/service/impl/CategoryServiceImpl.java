@@ -40,6 +40,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Paging getListCategory(int page) {
         Paging paging = new Paging();
+        page = ((page < 0) ? 0 : page);
         Page<Category> cateEntities = categoryRepository.findAll(PageRequest.of(page, 6, Sort.by("createdDate").descending()));
         List<CategoryDTO> cateDTOs = new ArrayList<>();
         for (Category category : cateEntities.getContent()) {
@@ -81,6 +82,7 @@ public class CategoryServiceImpl implements CategoryService {
                 fullTextEntityManager.createFullTextQuery(query, Category.class);
 
         Paging paging = new Paging();
+        page = ((page < 0) ? 0 : page);
         page++;
         int limit = 6;
         int totalElements = jpaQuery.getResultSize();
@@ -89,8 +91,8 @@ public class CategoryServiceImpl implements CategoryService {
 
         page = ((page < 0) || (page > totalPage) ? 1 : page);
 
-        boolean hasNext = ((page == totalPage) ? false : true);
-        boolean hasPrevious = ((page == 1) ? false : true);
+        boolean hasNext = ((page == totalPage || totalPage == 0) ? false : true);
+        boolean hasPrevious = ((page == 1 || totalPage == 0) ? false : true);
 
         jpaQuery.setFirstResult(page * limit - limit);
         jpaQuery.setMaxResults(limit);
@@ -99,6 +101,8 @@ public class CategoryServiceImpl implements CategoryService {
         for (Object cate : jpaQuery.getResultList()) {
             categoryDTOS.add(CategoryMapper.toCategoryDTO((Category) cate));
         }
+
+        page = ((totalPage == 0) ? 0 : page);
 
         paging.setCurrPage(page);
         paging.setTotalPages(totalPage);
@@ -139,29 +143,35 @@ public class CategoryServiceImpl implements CategoryService {
         Collections.reverse(category.getPosts());
 
         // Paging list post
+        // Page start: 0
+        // Page limit: 6
         Paging paging = new Paging();
+        page = ((page < 0) ? 0 : page);
         int limit = 6;
         int totalElements = category.getPosts().size();
 
-        int totalPage = (((float) totalElements % limit == 0) ? totalElements/limit : totalElements/limit + 1);
+        int totalPages = (((float) totalElements % limit == 0) ? totalElements/limit : totalElements/limit + 1);
 
-        page = ((page <= 0) || (page > totalPage) ? 0 : page);
+        int mod = totalElements - (totalElements / limit) * limit;
 
-        boolean hasNext = ((page == (totalPage - 1)) ? false : true);
+        page = ((page <= 0) || (page > totalPages) ? 0 : page);
+
+        boolean hasNext = ((page == (totalPages - 1)) ? false : true);
         boolean hasPrevious = ((page == 0) ? false : true);
 
         // Set start and endIndex for subList
         int startIndex = ((totalElements < limit) ? 0 : (page * limit));
-        int endIndex = ((totalElements < limit) ? totalElements : (startIndex + limit));
-
+        int endIndex = ((totalElements < limit) ? totalElements :
+                ((mod == 0) ? ((page + 1) * limit) : (((page + 1) == totalPages) ?
+                        (page * limit + mod) : ((page + 1) * limit))));
         List<PostDTO> postDTOS = new ArrayList<>();
         for (Post post : category.getPosts().subList(startIndex, endIndex)) {
             postDTOS.add(PostMapper.toPostDTO(post));
         }
 
-        int currPage = ((page == totalPage) ? page : page + 1);
+        int currPage = ((page == totalPages) ? page : page + 1);
         paging.setCurrPage(currPage);
-        paging.setTotalPages(totalPage);
+        paging.setTotalPages(totalPages);
         paging.setHasNext(hasNext);
         paging.setHasPrevious(hasPrevious);
         paging.setContent(postDTOS);
@@ -190,9 +200,6 @@ public class CategoryServiceImpl implements CategoryService {
             throw new NotFoundException("This Category does not exist!");
         }
 
-//        if(categoryReq.getName().equals(category.get().getName())) {
-//            throw new DuplicateRecordException("This name is already exists!");
-//        }
         Category updateCategory = CategoryMapper.toCategory(categoryReq, categoryId, category.get().getCreatedDate());
 
         try {

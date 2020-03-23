@@ -1,5 +1,6 @@
 package com.huiblog.huiblog.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.huiblog.huiblog.model.dto.Paging;
 import com.huiblog.huiblog.model.dto.PostDTO;
 import com.huiblog.huiblog.model.request.CreatePostReq;
@@ -17,7 +18,7 @@ public interface PostService {
 
     PostDTO getPostByMetaTitle(String metaTitle);
 
-    PostDTO createPost(CreatePostReq createPostReq);
+    PostDTO createPost(CreatePostReq createPostReq) throws JsonProcessingException;
 
     PostDTO updatePost(UpdatePostReq updatePostReq, int postID);
 
