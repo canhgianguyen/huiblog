@@ -9,10 +9,8 @@ import javax.validation.constraints.NotNull;
 
 @Data
 public class CreatePostReq {
-//    @NotNull(message = "CategoryID is required")
     private int categoryID;
 
-//    @NotNull(message = "UserID is required")
     private int userID;
 
     @NotNull(message = "Image is required")

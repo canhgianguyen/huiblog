@@ -9,7 +9,8 @@ $(document).ready(function() {
 
     // Create Post
     $("#post-cteate-submit-btn").on("click", function () {
-        if ($("#post-cteate-category-id").val() === null || $("#post-cteate-file-upload")[0].files.length === 0 || $("#post-cteate-title").val().trim() === '' || $("#post-cteate-content").val() === '') {
+        // console.log($("#post-cteate-content").code())
+        if ($("#post-cteate-category-id").val() === null || $("#post-cteate-file-upload")[0].files.length === 0 || $("#post-cteate-title").val().trim() === '' || $("#post-cteate-content").code() === '') {
             new PNotify({
                 title: 'Error!',
                 text: 'Nhập hết các thứ vào đi bạn êi -_-',
@@ -32,7 +33,7 @@ $(document).ready(function() {
                     userID: 1,
                     img: imgLink,
                     title: $("#post-cteate-title").val(),
-                    content:$("#post-cteate-content").val().trim()
+                    content:$("#post-cteate-content").code()
                 };
                 console.log(data)
 
@@ -69,12 +70,12 @@ $(document).ready(function() {
     // Update Post
     $(".btn-edit-post").on("click",function (){
         postID = $(this).attr("postid");
-        axios.get("/api/posts/"+ postID).then(function(res){
+        axios.get("/api/posts/update/"+ postID).then(function(res){
             if(res.data.success) {
                 //$('#input-cate-name-update').val(res.data.data.name)
                 $('#post-update-category-id').val(res.data.data.categoryID);
                 $('#post-update-title').val(res.data.data.title);
-                $('#post-update-content').val(res.data.data.content);
+                $('#post-update-content').code(res.data.data.content);
                 $('#post-update-img').attr('src', res.data.data.img);
                 imglinkUpdate = res.data.data.img;
                 $('#modal-update-post').modal();
@@ -83,7 +84,7 @@ $(document).ready(function() {
     });
 
     $("#post-update-submit-btn").on("click", function () {
-        if ($("#post-update-title").val().trim() === '' || $("#post-update-content").val() === '') {
+        if ($("#post-update-title").val().trim() === '' || $("#post-update-content").code() === '') {
             new PNotify({
                 title: 'Error!',
                 text: 'Sao lại xoá các thứ của ngta đi thế bạn ôi??? -_-',
@@ -96,7 +97,7 @@ $(document).ready(function() {
             categoryID: $("#post-update-category-id").val(),
             img: "Chưa có gì đôu",
             title: $("#post-update-title").val(),
-            content: $("#post-update-content").val()
+            content: $("#post-update-content").code()
         };
 
         if($("#post-update-file-upload")[0].files.length === 0) {

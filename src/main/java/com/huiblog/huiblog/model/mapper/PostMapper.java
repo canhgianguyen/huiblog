@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.huiblog.huiblog.entity.Post;
 import com.huiblog.huiblog.model.dto.ConvertStringToURL;
 import com.huiblog.huiblog.model.dto.PostDTO;
+import com.huiblog.huiblog.model.dto.PostUpdateDTO;
 import com.huiblog.huiblog.model.request.CreatePostReq;
 import com.huiblog.huiblog.model.request.UpdatePostReq;
 
@@ -14,6 +15,17 @@ import javax.xml.crypto.Data;
 import java.util.Date;
 
 public class PostMapper {
+    public static PostUpdateDTO topostUpdateDTO(Post post) {
+        PostUpdateDTO postUpdateDTO = new PostUpdateDTO();
+        postUpdateDTO.setId(post.getId());
+        postUpdateDTO.setCategoryID(post.getCategory().getId());
+        postUpdateDTO.setImg(post.getImg());
+        postUpdateDTO.setTitle(post.getTitle());
+        postUpdateDTO.setContent(post.getContent());
+
+        return postUpdateDTO;
+    }
+
     public static PostDTO toPostDTO(Post post) {
         PostDTO postDTO = new PostDTO();
         postDTO.setId(post.getId());

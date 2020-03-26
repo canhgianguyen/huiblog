@@ -88,7 +88,7 @@
 
     <!-- Modal Add Post -->
     <div class="modal fade" id="modal-add-post" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" style="width: 950px" role="document">
+        <div class="modal-dialog modal-dialog-centered" style="width: 930px" role="document">
             <div class="modal-content">
 
                 <div class="modal-header">
@@ -99,55 +99,55 @@
                 </div>
 
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Category <span class="required">*</span></label>
-                        <div class="col-sm-10">
-                            <select id="post-cteate-category-id" class="form-control" required>
-                                <option value="" disabled selected hidden>Choose a Category</option>
+                    <div class="form-horizontal form-bordered">
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Category</label>
+                            <div class="col-md-11">
+                                <select id="post-cteate-category-id" class="form-control" required>
+                                    <option value="" disabled selected hidden>Choose a Category</option>
 
-                                <option th:each="category : ${listCate}" th:attr="value=${category.categoryId}"
-                                        th:text="${category.name}"></option>
+                                    <option th:each="category : ${listCate}" th:attr="value=${category.categoryId}"
+                                            th:text="${category.name}"></option>
 
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Title <span class="required">*</span></label>
-                        <div class="col-sm-10">
-                            <input type="text" name="fullname" class="form-control"
-                                   placeholder="Hủi đẹp trai. Ahihi"
-                                   id="post-cteate-title"/>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Image <span class="required">*</span></label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <div class="fileupload fileupload-new" data-provides="fileupload">
-                                    <div class="fileupload-new thumbnail"
-                                         style="max-width: 360px; max-height: 270px; margin-right: 10px">
-                                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image"/>
-                                    </div>
-                                    <div class="fileupload-preview fileupload-exists thumbnail" style=" "></div>
-                                    <span class="btn btn-default btn-file"><span
-                                            class="fileupload-new">Select image</span><span
-                                            class="fileupload-exists">Change</span><input type="file"
-                                                                                          id="post-cteate-file-upload"/></span>
-                                    <a href="#" class="btn btn-default fileupload-exists"
-                                       data-dismiss="fileupload">Remove</a>
-                                </div>
+                                </select>
                             </div>
-
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Content <span class="required">*</span></label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <textarea style="width: 750px; height: 200px" class="col-sm-10 form-control"
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Title</label>
+                            <div class="col-md-11">
+                                <input type="text" name="fullname" class="form-control"
+                                       id="post-cteate-title"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Image</label>
+                            <div class="col-md-11">
+                                <div class="input-group">
+                                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                                        <div class="fileupload-new thumbnail"
+                                             style="max-width: 360px; max-height: 270px; margin-right: 10px">
+                                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image"/>
+                                        </div>
+                                        <div class="fileupload-preview fileupload-exists thumbnail" style=" "></div>
+                                        <span class="btn btn-default btn-file"><span
+                                                class="fileupload-new">Select image</span><span
+                                                class="fileupload-exists">Change</span><input type="file"
+                                                                                              id="post-cteate-file-upload"/></span>
+                                        <a href="#" class="btn btn-default fileupload-exists"
+                                           data-dismiss="fileupload">Remove</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Content</label>
+                            <div class="col-md-11">
+                                <textarea class="col-md-11" data-plugin-summernote
+                                          data-plugin-options='{ "height": 180, "codemirror": { "theme": "ambiance" } }'
                                           id="post-cteate-content"></textarea>
                             </div>
                         </div>
@@ -176,56 +176,57 @@
                 </div>
 
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Category <span class="required">*</span></label>
-                        <div class="col-sm-10">
-                            <select id="post-update-category-id" class="form-control" required>
-                                <option value="" disabled selected hidden>Choose a Category</option>
+                    <div class="form-horizontal form-bordered">
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Category</label>
+                            <div class="col-md-11">
+                                <select id="post-update-category-id" class="form-control" required>
+                                    <option value="" disabled selected hidden>Choose a Category</option>
 
-                                <option th:each="category : ${listCate}" th:attr="value=${category.categoryId}"
-                                        th:text="${category.name}"></option>
+                                    <option th:each="category : ${listCate}" th:attr="value=${category.categoryId}"
+                                            th:text="${category.name}"></option>
 
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Title <span class="required">*</span></label>
-                        <div class="col-sm-10">
-                            <input type="text" name="fullname" class="form-control"
-                                   placeholder="Hủi đẹp trai. Ahihi"
-                                   id="post-update-title"/>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Image <span class="required">*</span></label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <div class="fileupload fileupload-new" data-provides="fileupload">
-                                    <div class="fileupload-new thumbnail"
-                                         style="max-width: 360px; max-height: 270px; margin-right: 10px">
-                                        <img id="post-update-img"
-                                             src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image"/>
-                                    </div>
-                                    <div class="fileupload-preview fileupload-exists thumbnail"></div>
-                                    <span class="btn btn-default btn-file"><span
-                                            class="fileupload-new">Select image</span><span
-                                            class="fileupload-exists">Change</span><input type="file"
-                                                                                          id="post-update-file-upload"/></span>
-                                    <a href="#" class="btn btn-default fileupload-exists"
-                                       data-dismiss="fileupload">Remove</a>
-                                </div>
+                                </select>
                             </div>
-
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Content <span class="required">*</span></label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <textarea style="width: 750px; height: 200px" class="col-sm-10 form-control"
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Title</label>
+                            <div class="col-md-11">
+                                <input type="text" name="fullname" class="form-control"
+                                       placeholder="Hủi đẹp trai. Ahihi"
+                                       id="post-update-title"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Image</label>
+                            <div class="col-md-11">
+                                <div class="input-group">
+                                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                                        <div class="fileupload-new thumbnail"
+                                             style="max-width: 360px; max-height: 270px; margin-right: 10px">
+                                            <img id="post-update-img"
+                                                 src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image"/>
+                                        </div>
+                                        <div class="fileupload-preview fileupload-exists thumbnail"></div>
+                                        <span class="btn btn-default btn-file"><span
+                                                class="fileupload-new">Select image</span><span
+                                                class="fileupload-exists">Change</span><input type="file"
+                                                                                              id="post-update-file-upload"/></span>
+                                        <a href="#" class="btn btn-default fileupload-exists"
+                                           data-dismiss="fileupload">Remove</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Content</label>
+                            <div class="col-md-11">
+                                <textarea class="col-md-11" data-plugin-summernote
+                                          data-plugin-options='{ "height": 180, "codemirror": { "theme": "ambiance" } }'
                                           id="post-update-content"></textarea>
                             </div>
                         </div>

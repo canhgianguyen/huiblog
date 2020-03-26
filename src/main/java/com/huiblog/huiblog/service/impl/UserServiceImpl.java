@@ -180,7 +180,7 @@ public class UserServiceImpl implements UserService {
         try {
             userRepository.deleteById(userID);
         } catch (Exception e) {
-            throw new InternalServerException("Database error. Can't delete user");
+            throw new InternalServerException("Can not delete this user!");
         }
     }
 

@@ -2,6 +2,7 @@ package com.huiblog.huiblog.controller.admin.api;
 
 import com.huiblog.huiblog.model.api.BaseApiResult;
 import com.huiblog.huiblog.model.dto.PostDTO;
+import com.huiblog.huiblog.model.dto.PostUpdateDTO;
 import com.huiblog.huiblog.model.request.CreatePostReq;
 import com.huiblog.huiblog.model.request.UpdatePostReq;
 import com.huiblog.huiblog.service.PostService;
@@ -35,6 +36,24 @@ public class PostControllerAdminApi {
 
         return ResponseEntity.ok(result);
     }
+
+
+    @GetMapping("/posts/update/{id}")
+    public ResponseEntity<?> getPostUpdateById(@PathVariable int id){
+        BaseApiResult result= new BaseApiResult();
+        try {
+            PostUpdateDTO postUpdateDTO = postService.getPostUpdateByID(id);
+            result.setSuccess(true);
+            result.setData(postUpdateDTO);
+            result.setMessage("Success");
+        }catch (Exception e){
+            result.setSuccess(false);
+            result.setMessage(e.getMessage());
+        }
+
+        return ResponseEntity.ok(result);
+    }
+
 
     @ApiOperation(value = "Create post", response = PostDTO.class)
     @ApiResponses({

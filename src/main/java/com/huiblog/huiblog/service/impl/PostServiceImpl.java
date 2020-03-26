@@ -6,6 +6,7 @@ import com.huiblog.huiblog.exception.InternalServerException;
 import com.huiblog.huiblog.exception.NotFoundException;
 import com.huiblog.huiblog.model.dto.Paging;
 import com.huiblog.huiblog.model.dto.PostDTO;
+import com.huiblog.huiblog.model.dto.PostUpdateDTO;
 import com.huiblog.huiblog.model.mapper.PostMapper;
 import com.huiblog.huiblog.model.request.CreatePostReq;
 import com.huiblog.huiblog.model.request.UpdatePostReq;
@@ -126,6 +127,15 @@ public class PostServiceImpl implements PostService {
             throw new NotFoundException("This Post does not exist!");
         }
         return PostMapper.toPostDTO(post.get());
+    }
+
+    @Override
+    public PostUpdateDTO getPostUpdateByID(int postID) {
+        Optional<Post> post = postRepository.findById(postID);
+        if(!post.isPresent()) {
+            throw new NotFoundException("This Post does not exist!");
+        }
+        return PostMapper.topostUpdateDTO(post.get());
     }
 
     @Override

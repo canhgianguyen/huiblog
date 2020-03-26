@@ -43,8 +43,8 @@
                     <div class="post-entry">
                         <div class="blog-list-details">
                             <h2><a th:href="@{'/p/' + ${post.metaTitle}}" th:text="${post?.title}"></a></h2>
-                            <div class="post-description">
-                                <p th:text="${#strings.abbreviate(post?.content, 45)}"></p>
+                            <div class="post-description" >
+                                <div th:utext="${#strings.abbreviate(T(org.jsoup.Jsoup).parse(post.content).text(), 45)}"></div>
                             </div>
                             <div class="post-meta">
                                 <ul>
@@ -52,17 +52,6 @@
                                     <li th:text="${post.userName}"></li>
                                 </ul>
                             </div>
-                        </div>
-                        <div class="blog-list-share share-tooltip-animate">
-                            <i class="fa fa-share-alt"></i>
-                        </div>
-                        <div class="share-tooltip">
-                            <ul>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google"></i></a></li>
-                                <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -158,7 +147,7 @@
             <div class="widget-detail">
                 <ul>
                     <li>
-                        <a href="#" target="_blank">
+                        <a target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
                                 <img src="/images/upload/widget-instagram01.jpg" alt="widget instagram"/>
@@ -166,7 +155,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" target="_blank">
+                        <a target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
                                 <img src="/images/upload/widget-instagram02.jpg" alt="widget instagram"/>
@@ -174,7 +163,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" target="_blank">
+                        <a target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
                                 <img src="/images/upload/widget-instagram03.jpg" alt="widget instagram"/>
@@ -190,7 +179,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" target="_blank">
+                        <a target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
                                 <img src="/images/upload/widget-instagram05.jpg" alt="widget instagram"/>
@@ -198,7 +187,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" target="_blank">
+                        <a target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
                                 <img src="/images/upload/widget-instagram06.jpg" alt="widget instagram"/>
@@ -206,7 +195,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" target="_blank">
+                        <a target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
                                 <img src="/ images/upload/widget-instagram07.jpg" alt="widget instagram"/>
@@ -214,7 +203,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" target="_blank">
+                        <a target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
                                 <img src="/images/upload/widget-instagram08.jpg" alt="widget instagram"/>
@@ -222,7 +211,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" target="_blank">
+                        <a target="_blank">
                             <figure>
                                 <div class="overlay-hover"></div>
                                 <img src="/images/upload/widget-instagram09.jpg" alt="widget instagram"/>
@@ -234,37 +223,11 @@
         </aside>
         <!--Widget Instagram End-->
 
-        <!--Widget Follow Subscribe Start-->
-        <aside class="widget widget_follow_subscribe">
-            <div class="widget-title">
-                <h3>Subscribe & Follow</h3>
-            </div>
-            <div class="widget-detail">
-                <div class="follow-subscribe-social">
-                    <ul>
-                        <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#" target="_blank"><i class="fa fa-google"></i></a></li>
-                        <li><a href="#" target="_blank"><i class="fa fa-pinterest-p"></i></a></li>
-                        <li><a href="#" target="_blank"><i class="fa fa-dribbble"></i></a></li>
-                        <li><a href="#" target="_blank"><i class="fa fa-instagram"></i></a></li>
-                    </ul>
-                </div>
-                <p>Subscribe to my Newsletter</p>
-                <form class="subscribe">
-                    <input class="subscribe-email" type="text" name="email" placeholder="Your email address..."
-                           required/>
-                    <input class="subscribe-button" type="submit" value="Subscribe"/>
-                </form>
-            </div>
-        </aside>
-        <!--Widget Follow Subscribe End-->
 
         <!--Widget Banner Sidebar Start-->
         <aside class="widget widget_banner_sidebar">
             <div class="widget-detail">
-                <a href="#" target="_blank">
+                <a target="_blank">
                     <img src="/images/upload/banner-widget.jpg" alt="banner widget"/>
                 </a>
             </div>

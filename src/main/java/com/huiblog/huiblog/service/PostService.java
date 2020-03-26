@@ -3,6 +3,7 @@ package com.huiblog.huiblog.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.huiblog.huiblog.model.dto.Paging;
 import com.huiblog.huiblog.model.dto.PostDTO;
+import com.huiblog.huiblog.model.dto.PostUpdateDTO;
 import com.huiblog.huiblog.model.request.CreatePostReq;
 import com.huiblog.huiblog.model.request.UpdatePostReq;
 
@@ -15,6 +16,8 @@ public interface PostService {
     Paging getListPostFTS(int page, String searchKey);
 
     PostDTO getPostByID(int postID);
+
+    PostUpdateDTO getPostUpdateByID(int postID);
 
     PostDTO getPostByMetaTitle(String metaTitle);
 
