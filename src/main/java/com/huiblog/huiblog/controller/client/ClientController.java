@@ -8,14 +8,18 @@ import com.huiblog.huiblog.model.mapper.UserMapper;
 import com.huiblog.huiblog.security.CustomUserDetails;
 import com.huiblog.huiblog.service.CategoryService;
 import com.huiblog.huiblog.service.PostService;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RequestMapping("/")
 @Controller
@@ -27,114 +31,166 @@ public class ClientController {
     private CategoryService categoryService;
 
     @GetMapping(value = {"", "/{page}"})
-    public String index(Model model, @PathVariable(required = false) Integer page) {
-        int currPage = (page == null ? 0 : page - 1);
+    public String index(Model model, @PathVariable(required = false) String page) {
+        try {
+            int pageTemp = 0;
+            if(page != null) {
+                pageTemp = Integer.parseInt(page);
+            }
+            int currPage = (page == null ? 0 : pageTemp - 1);
 
-        addListPostToModel(currPage, model);
+            addListPostToModel(currPage, model);
 
-        addListPostToModelSideBar(model);
+            addListPostToModelSideBar(model);
 
-        addListCateToModel(model);
+            addListCateToModel(model);
 
-        isUser(model);
+            isUser(model);
 
-        return "index";
+            return "index";
+        } catch (Exception e) {
+            return "error";
+        }
     }
 
     @GetMapping(value = {"/p/search", "/p/search/{page}"})
-    public String search(Model model, @PathVariable(required = false) Integer page, @RequestParam(required = false) String searchKey) {
-        int currPage = (page == null ? 0 : page - 1);
-        Paging listPost = postService.getListPostFTS(currPage, searchKey);
-        model.addAttribute("listPost", listPost);
+    public String search(Model model, @PathVariable(required = false) String page, @RequestParam(required = false) String searchKey) {
+        try {
+            int pageTemp = 0;
+            if(page != null) {
+                pageTemp = Integer.parseInt(page);
+            }
+            int currPage = (page == null ? 0 : pageTemp - 1);
+            Paging listPost = postService.getListPostFTS(currPage, searchKey);
+            model.addAttribute("listPost", listPost);
 
-        addListPostToModelSideBar(model);
+            addListPostToModelSideBar(model);
 
-        model.addAttribute("search", true);
-        model.addAttribute("searchKey", searchKey);
+            model.addAttribute("search", true);
+            model.addAttribute("searchKey", searchKey);
 
-        addListCateToModel(model);
+            addListCateToModel(model);
 
-        isUser(model);
+            isUser(model);
 
-        return "index";
+            return "index";
+        } catch (Exception e) {
+            return "error";
+        }
     }
 
     @GetMapping("/p/{metaTitle}")
     public String post(Model model, @PathVariable(required = true) String metaTitle) {
-        PostDTO postDTO = postService.getPostByMetaTitle(metaTitle);
-        model.addAttribute("post", postDTO);
+        try {
+            PostDTO postDTO = postService.getPostByMetaTitle(metaTitle);
+            model.addAttribute("post", postDTO);
 
-        addListPostToModelSideBar(model);
+            addListPostToModelSideBar(model);
 
-        addListCateToModel(model);
+            addListCateToModel(model);
 
-        isUser(model);
+            isUser(model);
 
-        return "post";
+            return "post";
+        } catch (Exception e) {
+            return "error";
+        }
     }
 
     @GetMapping(value = {"/c/{metaName}", "/c/{metaName}/{page}"})
-    public String cate(Model model, @PathVariable(required = true) String metaName, @PathVariable(required = false) Integer page) {
-        int currPage = (page == null ? 0 : page - 1);
-        Paging listPost = categoryService.getListPostByCategoryMetaName(metaName, currPage);
-        model.addAttribute("listPost", listPost);
-        model.addAttribute("metaName", "/c/" + metaName);
+    public String cate(Model model, @PathVariable(required = true) String metaName, @PathVariable(required = false) String page) {
+        try {
+            int pageTemp = 0;
+            if(page != null) {
+                pageTemp = Integer.parseInt(page);
+            }
+            int currPage = (page == null ? 0 : pageTemp - 1);
+            Paging listPost = categoryService.getListPostByCategoryMetaName(metaName, currPage);
+            model.addAttribute("listPost", listPost);
+            model.addAttribute("metaName", "/c/" + metaName);
 
-        addListPostToModelSideBar(model);
+            addListPostToModelSideBar(model);
 
-        addListCateToModel(model);
+            addListCateToModel(model);
 
-        isUser(model);
+            isUser(model);
 
-        return "category";
+            return "category";
+        } catch (Exception e) {
+            return "error";
+        }
     }
 
     @GetMapping("/about")
     public String about(Model model) {
-        addListCateToModel(model);
+        try {
+            addListCateToModel(model);
 
-        isUser(model);
+            isUser(model);
 
-        return "about-me";
+            return "about-me";
+        } catch (Exception e) {
+            return "error";
+        }
     }
 
     @GetMapping("/category")
     public String category(Model model) {
-        addListCateToModel(model);
+        try {
+            addListCateToModel(model);
 
-        isUser(model);
+            isUser(model);
 
-        return "category";
+            return "category";
+        } catch (Exception e) {
+            return "error";
+        }
     }
 
     @GetMapping("/contact")
     public String contact(Model model) {
-        addListCateToModel(model);
+        try {
+            addListCateToModel(model);
 
-        isUser(model);
+            isUser(model);
 
-        return "contact";
+            return "contact";
+        } catch (Exception e) {
+            return "error";
+        }
     }
 
     @GetMapping("/signin")
     public String signIn() {
-        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
-            return "signin";
+        try {
+            if (SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
+                return "signin";
+            }
+            return "signedin";
+        } catch (Exception e) {
+            return "error";
         }
-        return "signedin";
     }
 
     @GetMapping("/signup")
     public String signUp() {
-        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
-            return "signup";
+        try {
+            if (SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
+                return "signup";
+            }
+            return "signedin";
+        } catch (Exception e) {
+            return "error";
         }
-        return "signedin";
     }
 
     @GetMapping("/403")
     public String forbidden() {
-        return "403";
+        try {
+            return "403";
+        } catch (Exception e) {
+            return "error";
+        }
     }
 
     private void addListCateToModel(Model model) {

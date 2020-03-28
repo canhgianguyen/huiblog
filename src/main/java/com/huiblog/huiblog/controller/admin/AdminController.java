@@ -35,93 +35,145 @@ public class AdminController {
 
     @GetMapping("")
     public String index(Model model) {
-        model.addAttribute("usersAmount", userService.getAmount());
-        model.addAttribute("catesAmount", categoryService.getAmount());
-        model.addAttribute("postsAmount", postService.getAmount());
-        model.addAttribute("commentsAmount", commentService.getAmount());
+        try {
+            model.addAttribute("usersAmount", userService.getAmount());
+            model.addAttribute("catesAmount", categoryService.getAmount());
+            model.addAttribute("postsAmount", postService.getAmount());
+            model.addAttribute("commentsAmount", commentService.getAmount());
 
-        addUserToMoDel(model);
+            addUserToMoDel(model);
 
-        return "admin/index";
+            return "admin/index";
+        } catch (Exception e) {
+            return "error";
+        }
     }
 
     @GetMapping(value = {"/post", "/post/{page}"})
-    public String post(Model model, @PathVariable(required = false) Integer page) {
-        int currPage = (page == null ? 0 : page - 1);
-        Paging listPost = postService.getListPost(currPage);
-        model.addAttribute("listPost", listPost);
+    public String post(Model model, @PathVariable(required = false) String page) {
+        try {
+            int pageTemp = 0;
+            if(page != null) {
+                pageTemp = Integer.parseInt(page);
+            }
+            int currPage = (page == null ? 0 : pageTemp - 1);
+            Paging listPost = postService.getListPost(currPage);
+            model.addAttribute("listPost", listPost);
 
-        List<CategoryDTO> listCate = categoryService.getListCategory();
-        model.addAttribute("listCate", listCate);
+            List<CategoryDTO> listCate = categoryService.getListCategory();
+            model.addAttribute("listCate", listCate);
 
-        addUserToMoDel(model);
+            addUserToMoDel(model);
 
-        return "admin/post";
+            return "admin/post";
+        } catch (Exception e) {
+            return "error";
+        }
     }
 
     @GetMapping(value = {"/post/search/", "/post/search/{page}"})
-    public String searchPost(Model model, @PathVariable(required = false) Integer page, @RequestParam(required = false) String searchKey) {
-        int currPage = (page == null ? 0 : page - 1);
-        Paging listPost = postService.getListPostFTS(currPage, searchKey);
-        model.addAttribute("listPost", listPost);
+    public String searchPost(Model model, @PathVariable(required = false) String page, @RequestParam(required = false) String searchKey) {
+        try {
+            int pageTemp = 0;
+            if(page != null) {
+                pageTemp = Integer.parseInt(page);
+            }
+            int currPage = (page == null ? 0 : pageTemp - 1);
+            Paging listPost = postService.getListPostFTS(currPage, searchKey);
+            model.addAttribute("listPost", listPost);
 
-        model.addAttribute("search", true);
-        model.addAttribute("searchKey", searchKey);
+            model.addAttribute("search", true);
+            model.addAttribute("searchKey", searchKey);
 
-        List<CategoryDTO> listCate = categoryService.getListCategory();
-        model.addAttribute("listCate", listCate);
+            List<CategoryDTO> listCate = categoryService.getListCategory();
+            model.addAttribute("listCate", listCate);
 
-        addUserToMoDel(model);
+            addUserToMoDel(model);
 
-        return "admin/post";
+            return "admin/post";
+        } catch (Exception e) {
+            return "error";
+        }
     }
 
     @GetMapping(value = {"/category", "/category/{page}"})
-    public String category(Model model, @PathVariable(required = false) Integer page) {
-        int currPage = (page == null ? 0 : page - 1);
-        Paging listCate = categoryService.getListCategory(currPage);
-        model.addAttribute("listCate", listCate);
+    public String category(Model model, @PathVariable(required = false) String page) {
+        try {
+            int pageTemp = 0;
+            if(page != null) {
+                pageTemp = Integer.parseInt(page);
+            }
+            int currPage = (page == null ? 0 : pageTemp - 1);
+            Paging listCate = categoryService.getListCategory(currPage);
+            model.addAttribute("listCate", listCate);
 
-        addUserToMoDel(model);
+            addUserToMoDel(model);
 
-        return "admin/category";
+            return "admin/category";
+        } catch (Exception e) {
+            return "error";
+        }
     }
 
     @GetMapping(value = {"/category/search/", "/category/search/{page}"})
-    public String searchCategory(Model model, @PathVariable(required = false) Integer page, @RequestParam(required = false) String searchKey) {
-        int currPage = (page == null ? 0 : page - 1);
-        Paging listCate = categoryService.getListPostFTS(currPage, searchKey);
-        model.addAttribute("listCate", listCate);
-        model.addAttribute("search", true);
-        model.addAttribute("searchKey", searchKey);
+    public String searchCategory(Model model, @PathVariable(required = false) String page, @RequestParam(required = false) String searchKey) {
+        try {
+            int pageTemp = 0;
+            if(page != null) {
+                pageTemp = Integer.parseInt(page);
+            }
+            int currPage = (page == null ? 0 : pageTemp - 1);
+            Paging listCate = categoryService.getListPostFTS(currPage, searchKey);
+            model.addAttribute("listCate", listCate);
+            model.addAttribute("search", true);
+            model.addAttribute("searchKey", searchKey);
 
-        addUserToMoDel(model);
+            addUserToMoDel(model);
 
-        return "admin/category";
+            return "admin/category";
+        } catch (Exception e) {
+            return "error";
+        }
     }
 
     @GetMapping(value = {"/user", "/user/{page}"})
-    public String user(Model model, @PathVariable(required = false) Integer page) {
-        int currPage = (page == null ? 0 : page - 1);
-        Paging listUser = userService.getlistUser(currPage);
-        model.addAttribute("listUser", listUser);
+    public String user(Model model, @PathVariable(required = false) String page) {
+        try {
+            int pageTemp = 0;
+            if(page != null) {
+                pageTemp = Integer.parseInt(page);
+            }
+            int currPage = (page == null ? 0 : pageTemp - 1);
+            Paging listUser = userService.getlistUser(currPage);
+            model.addAttribute("listUser", listUser);
 
-        addUserToMoDel(model);
+            addUserToMoDel(model);
 
-        return "admin/user";
+            return "admin/user";
+        } catch (Exception e) {
+            return "error";
+        }
     }
 
     @GetMapping(value = {"/user/search/", "/user/search/{page}"})
-    public String searchUser(Model model, @PathVariable(required = false) Integer page, @RequestParam(required = false) String searchKey) {
-        int currPage = (page == null ? 0 : page - 1);
-        Paging listUser = userService.getListUserFTS(currPage, searchKey);
-        model.addAttribute("listUser", listUser);
-        model.addAttribute("search", true);
-        model.addAttribute("searchKey", searchKey);
+    public String searchUser(Model model, @PathVariable(required = false) String page, @RequestParam(required = false) String searchKey) {
+        try {
+            int pageTemp = 0;
+            if(page != null) {
+                pageTemp = Integer.parseInt(page);
+            }
+            int currPage = (page == null ? 0 : pageTemp - 1);
+            Paging listUser = userService.getListUserFTS(currPage, searchKey);
+            model.addAttribute("listUser", listUser);
+            model.addAttribute("search", true);
+            model.addAttribute("searchKey", searchKey);
 
-        addUserToMoDel(model);
+            addUserToMoDel(model);
 
-        return "admin/user";
+            return "admin/user";
+        } catch (Exception e) {
+            return "error";
+        }
     }
 
     public void addUserToMoDel(Model model) {
