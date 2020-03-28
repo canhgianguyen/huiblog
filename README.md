@@ -10,7 +10,7 @@
   - Xem các Bài viết của từng danh mục.
   - Comment thảo luận (trong trường hợp đã đăng nhập).
 - Admin:
-  - Bộ đếm tổng số Post, Danh mục, Comments, Users.
+  - Bộ đếm tổng số Posts, Danh mục, Comments, Users.
   - Quản lý: thêm, sửa, xoá bài Post.
   - Quản lý: thêm, sửa, xoá Danh mục.
   - Quản lý: thêm, sửa, xoá User (User được tạo sẽ có pass mặc định là *123456*).
@@ -21,7 +21,7 @@
   - Password: *không có password ^^*
 - IDE: Intellij Community Version
 - Run: *HuiblogApplication.java*
-- Sử Dụng trình duyệt bất kỳ để tương tác tại host: http://localhost:8080.
-- Góp ý, thắc mắc, vui lòng liên hệ;
+- Sử dụng trình duyệt bất kỳ để tương tác tại host: http://localhost:8080.
+- Góp ý, thắc mắc, vui lòng liên hệ:
   - Facebook: https://www.facebook.com/canhhui
   - Email: canhgianguyen@gmail.com
