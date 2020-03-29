@@ -15,7 +15,10 @@ public class ConvertStringToURL {
                     .replaceAll("Đ", "D")
                     .replaceAll("\\,", "")
                     .replaceAll("\\.", "")
-                    .replaceAll("\\?", "");
+                    .replaceAll("\\?", "")
+                    .replaceAll("\\/", "-")
+                    .replaceAll("\\'", "")
+                    .replaceAll("\\\"", "");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -490,20 +490,20 @@ jQuery(document).ready(function() {
 		
 		$('.loading').fadeIn(500);
 		
-		// Send form data to mailer.php
-		$.ajax({
-			type: "POST",
-			url: "mailer.php",
-			data: dataString,
-			success: function() {
-				$('.loading').hide();
-				$('#reply_message').addClass('list3');
-				$('#reply_message').html("<span>Mail sent successfully</span>")
-				.fadeIn(1500);
-				$('#form_contact')[0].reset();
-				}
-			});
-		return false;
+		// // Send form data to mailer.php
+		// $.ajax({
+		// 	type: "POST",
+		// 	url: "mailer.php",
+		// 	data: dataString,
+		// 	success: function() {
+		// 		$('.loading').hide();
+		// 		$('#reply_message').addClass('list3');
+		// 		$('#reply_message').html("<span>Mail sent successfully</span>")
+		// 		.fadeIn(1500);
+		// 		$('#form_contact')[0].reset();
+		// 		}
+		// 	});
+		// return false;
 	});
 	
 });

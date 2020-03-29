@@ -8,18 +8,12 @@ import com.huiblog.huiblog.model.mapper.UserMapper;
 import com.huiblog.huiblog.security.CustomUserDetails;
 import com.huiblog.huiblog.service.CategoryService;
 import com.huiblog.huiblog.service.PostService;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @RequestMapping("/")
 @Controller
@@ -40,11 +34,8 @@ public class ClientController {
             int currPage = (page == null ? 0 : pageTemp - 1);
 
             addListPostToModel(currPage, model);
-
             addListPostToModelSideBar(model);
-
             addListCateToModel(model);
-
             isUser(model);
 
             return "index";
@@ -64,13 +55,11 @@ public class ClientController {
             Paging listPost = postService.getListPostFTS(currPage, searchKey);
             model.addAttribute("listPost", listPost);
 
-            addListPostToModelSideBar(model);
-
             model.addAttribute("search", true);
             model.addAttribute("searchKey", searchKey);
 
+            addListPostToModelSideBar(model);
             addListCateToModel(model);
-
             isUser(model);
 
             return "index";
@@ -86,9 +75,7 @@ public class ClientController {
             model.addAttribute("post", postDTO);
 
             addListPostToModelSideBar(model);
-
             addListCateToModel(model);
-
             isUser(model);
 
             return "post";
@@ -110,9 +97,7 @@ public class ClientController {
             model.addAttribute("metaName", "/c/" + metaName);
 
             addListPostToModelSideBar(model);
-
             addListCateToModel(model);
-
             isUser(model);
 
             return "category";
@@ -125,7 +110,6 @@ public class ClientController {
     public String about(Model model) {
         try {
             addListCateToModel(model);
-
             isUser(model);
 
             return "about-me";
@@ -138,7 +122,6 @@ public class ClientController {
     public String category(Model model) {
         try {
             addListCateToModel(model);
-
             isUser(model);
 
             return "category";
@@ -151,7 +134,6 @@ public class ClientController {
     public String contact(Model model) {
         try {
             addListCateToModel(model);
-
             isUser(model);
 
             return "contact";
@@ -161,8 +143,11 @@ public class ClientController {
     }
 
     @GetMapping("/signin")
-    public String signIn() {
+    public String signIn(Model model) {
         try {
+            addListCateToModel(model);
+            isUser(model);
+
             if (SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
                 return "signin";
             }
@@ -173,8 +158,11 @@ public class ClientController {
     }
 
     @GetMapping("/signup")
-    public String signUp() {
+    public String signUp(Model model) {
         try {
+            addListCateToModel(model);
+            isUser(model);
+
             if (SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
                 return "signup";
             }

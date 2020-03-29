@@ -45,7 +45,7 @@ public class Post {
     private String metaTitle;
 
     @Field(termVector = TermVector.YES, analyze= Analyze.YES, store= Store.NO)
-    @Column(name = "content")
+    @Column(name = "content", columnDefinition = "Text")
     private String content;
 
     @Column(name = "created")
